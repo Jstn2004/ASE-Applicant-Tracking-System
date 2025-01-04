@@ -12,7 +12,7 @@
         <module>3-ats-domain</module>
         <module>2-ats-application</module>
         <module>1-ats-adapters</module>
-        <module>0-ats-plugin-database</module>
+        <module>0-ats-plugin</module>
     </modules>
 
     <properties>
