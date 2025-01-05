@@ -7,13 +7,13 @@ public class Rangliste {
     private final UUID id;
     private String name;
     private Iterable<Bewerber> bewerber;
-    private Ausschreibung ausschreibung;
+    private Tender tender;
 
-    public Rangliste(String name, Iterable<Bewerber> bewerber, Ausschreibung ausschreibung) {
+    public Rangliste(String name, Iterable<Bewerber> bewerber, Tender tender) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.bewerber = bewerber;
-        this.ausschreibung = ausschreibung;
+        this.tender = tender;
     }
 
     public UUID getId() {
@@ -36,22 +36,22 @@ public class Rangliste {
         this.bewerber = bewerber;
     }
 
-    public Ausschreibung getAusschreibung() {
-        return ausschreibung;
+    public Tender getAusschreibung() {
+        return tender;
     }
 
-    public void setAusschreibung(Ausschreibung ausschreibung) {
-        this.ausschreibung = ausschreibung;
+    public void setAusschreibung(Tender tender) {
+        this.tender = tender;
     }
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Rangliste rangliste)) return false;
-        return Objects.equals(id, rangliste.id) && Objects.equals(name, rangliste.name) && Objects.equals(bewerber, rangliste.bewerber) && Objects.equals(ausschreibung, rangliste.ausschreibung);
+        return Objects.equals(id, rangliste.id) && Objects.equals(name, rangliste.name) && Objects.equals(bewerber, rangliste.bewerber) && Objects.equals(tender, rangliste.tender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, bewerber, ausschreibung);
+        return Objects.hash(id, name, bewerber, tender);
     }
 }
