@@ -9,6 +9,8 @@ import java.util.Scanner;
 public class MainConsole {
     Scanner scanner = new Scanner(System.in);
     boolean running = true;
+    TenderRepository tenderRepository = new TenderRepositoryImpl();
+    TenderAdapter tenderAdapter = new TenderAdapter(tenderRepository);
 
 
     public MainConsole() {
@@ -41,6 +43,7 @@ public class MainConsole {
                     break;
                 default:
                     System.out.println("Ungültige Eingabe, bitte versuchen Sie es erneut.");
+                    startCLI();
             }
         }
         scanner.close();
@@ -62,7 +65,7 @@ public class MainConsole {
                     newTenderCLI();
                     break;
                 case "2":
-                    System.out.println("Alle Ausschreibungen");
+                    allTenders();
                     break;
                 case "3":
                     startCLI();
@@ -73,6 +76,7 @@ public class MainConsole {
                     break;
                 default:
                     System.out.println("Ungültige Eingabe, bitte versuchen Sie es erneut.");
+                    tenderCLI();
             }
         }
         scanner.close();
@@ -83,18 +87,54 @@ public class MainConsole {
         System.out.println();
         System.out.println("== Neue Ausschreibung == ");
 
-        System.out.print("Titel:");
-        String title = scanner.next();
+        System.out.print("Titel: ");
+        String title = scanner.nextLine();
+        title = scanner.nextLine();
 
-        System.out.print("Beschreibung:");
-        String description = scanner.next();
+        System.out.print("Beschreibung: ");
+        String description = scanner.nextLine();
 
-        TenderRepository tenderRepository = new TenderRepositoryImpl();
-        TenderAdapter tenderAdapter = new TenderAdapter(title, description, tenderRepository);
+        tenderAdapter = new TenderAdapter(title, description, tenderRepository);
         tenderAdapter.createTender();
 
-
+        tenderCLI();
         //kriterienCLI();
+    }
+
+    public void allTenders() {
+        System.out.println();
+        System.out.println("== Alle Ausschreibungen == ");
+        tenderAdapter.loadAllTenders().forEach(tender ->
+                {
+                    System.out.println("ID:");
+                    System.out.println(" → " + tender.getId());
+                    System.out.println("Title:");
+                    System.out.println(" → " + tender.getTitel());
+                    System.out.println("Beschreibung:");
+                    System.out.println(" → " + tender.getDescription());
+                    System.out.println();
+                }
+        );
+
+        System.out.println("Wählen Sie eine Option:");
+        System.out.println("1: Ausschreibung Löschen");
+        System.out.println("2: Zurück");
+        System.out.print("Eingabe:");
+        while (running) {
+            String input = scanner.next();
+            switch (input) {
+                case "1":
+                    System.out.println("Löschen");;
+                    break;
+                case "2":
+                    tenderCLI();
+                    break;
+                default:
+                    System.out.println("Ungültige Eingabe, bitte versuchen Sie es erneut.");
+                    allTenders();
+            }
+        }
+
     }
 
     public void criteriaCLI() {

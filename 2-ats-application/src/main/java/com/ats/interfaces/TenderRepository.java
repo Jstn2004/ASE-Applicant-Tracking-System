@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface TenderRepository {
         void saveTender(Tender tender);
-        String loadTender();
+        List<String> loadTender();
 }

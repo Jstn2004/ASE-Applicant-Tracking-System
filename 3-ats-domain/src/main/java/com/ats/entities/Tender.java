@@ -5,14 +5,14 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Tender {
-    private final UUID id;
+    private final String id;
     private String titel;
     private String description;
     //private Iterable<Bewertungskriterium> kriterien;
 
 
-    public Tender(String titel, String description) {
-        this.id = UUID.randomUUID();
+    public Tender(String id, String titel, String description) {
+        this.id = id;
         this.titel = titel;
         this.description = description;
         //this.kriterien = kriterien;
@@ -30,7 +30,7 @@ public class Tender {
 //        this.kriterien = kriterien;
 //    }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
