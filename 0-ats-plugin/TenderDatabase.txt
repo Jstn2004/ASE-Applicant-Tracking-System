@@ -1,8 +1,5 @@
-Tender{id=8855ffbe-1139-4278-8e55-ef3850ef97b6, titel='Hallo', description='TEst'}
+Tender{id=3e6523b9-8c0a-494d-95ad-34e3d1bfe079, titel='Test', description='Test'}
 
-Tender{id=611750d9-590f-49d4-a7ff-7424f7e4c8c9, titel='2', description='3'}
+Tender{id=c405d41c-388d-458e-b09c-30431d6c45a9, titel='Test', description='Test'}
 
-Tender{id=303b3c93-310f-4fa5-9bae-24a699984186, titel='Fachinformatiker für Softwareentwicklung', description='Eine Schnucklingen Typen'}
-
-Tender{id=ef586f54-2213-4b6c-91bf-ee84281c9ec9, titel='TEsten ich hasse das alles so sehr', description='lol'}
 

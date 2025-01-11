@@ -1,7 +1,9 @@
 package com.ats.ui;
 
-import com.ats.TenderAdapter;
-import com.ats.datenbank.TenderRepositoryImpl;
+import com.ats.TenderController;
+import com.ats.TenderRepositoryImpl;
+import com.ats.datenbank.DatabaseConfigurationImpl;
+import com.ats.interfaces.DatabaseConfiguration;
 import com.ats.interfaces.TenderRepository;
 
 import java.util.Scanner;
@@ -9,8 +11,9 @@ import java.util.Scanner;
 public class MainConsole {
     Scanner scanner = new Scanner(System.in);
     boolean running = true;
-    TenderRepository tenderRepository = new TenderRepositoryImpl();
-    TenderAdapter tenderAdapter = new TenderAdapter(tenderRepository);
+    DatabaseConfiguration databaseConfiguration = new DatabaseConfigurationImpl();
+    TenderRepository tenderRepository = new TenderRepositoryImpl(databaseConfiguration.getDatabaseFilePath());
+    TenderController tenderAdapter = new TenderController(tenderRepository);
 
 
     public MainConsole() {
@@ -94,8 +97,7 @@ public class MainConsole {
         System.out.print("Beschreibung: ");
         String description = scanner.nextLine();
 
-        tenderAdapter = new TenderAdapter(title, description, tenderRepository);
-        tenderAdapter.createTender();
+        tenderAdapter.createTender(title, description);
 
         tenderCLI();
         //kriterienCLI();
@@ -112,6 +114,9 @@ public class MainConsole {
                     System.out.println(" → " + tender.getTitel());
                     System.out.println("Beschreibung:");
                     System.out.println(" → " + tender.getDescription());
+                    for (int i = 0; i < 100; i++) {
+                        System.out.print("-");
+                    }
                     System.out.println();
                 }
         );
@@ -124,7 +129,7 @@ public class MainConsole {
             String input = scanner.next();
             switch (input) {
                 case "1":
-                    System.out.println("Löschen");;
+                    deleteActiveTender();
                     break;
                 case "2":
                     tenderCLI();
@@ -137,10 +142,19 @@ public class MainConsole {
 
     }
 
+    public void deleteActiveTender() {
+        System.out.println();
+        System.out.println("== Ausschreibung löschen == ");
+        System.out.println("Zum Löschen die ID der Ausschreibung eingeben");
+        String idToDelete = scanner.next();
+        tenderAdapter.deleteTenderById(idToDelete);
+        System.out.println("Ausschreibung wurde gelöscht");
+
+
+    }
+
     public void criteriaCLI() {
         System.out.println("= Kriterien =");
-
-
     }
 
 }
