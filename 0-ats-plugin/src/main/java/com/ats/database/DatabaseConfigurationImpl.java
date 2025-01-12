@@ -1,4 +1,4 @@
-package com.ats.datenbank;
+package com.ats.database;
 
 import com.ats.interfaces.DatabaseConfiguration;
 

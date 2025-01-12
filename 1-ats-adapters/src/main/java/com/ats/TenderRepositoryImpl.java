@@ -1,6 +1,6 @@
 package com.ats;
 
-import com.ats.entities.Tender;
+import com.ats.entities.JobAdvertisement;
 import com.ats.interfaces.TenderRepository;
 
 import java.io.*;
@@ -19,9 +19,9 @@ public class TenderRepositoryImpl implements TenderRepository {
         this.filePath = filePath;
     }
 
-    public void saveTender(Tender tender) {
+    public void saveTender(JobAdvertisement jobAdvertisement) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            writer.write(tender.toString());
+            writer.write(jobAdvertisement.toString());
             writer.write("\n\n");
             System.out.println("Ausschreibung wurde gespeichert.");
         } catch (IOException e) {

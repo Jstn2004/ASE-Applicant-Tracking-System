@@ -1,24 +1,24 @@
 package com.ats.entities;
 
-import com.ats.vo.Lebenslauf;
-import com.ats.vo.Rang;
+import com.ats.vo.Resume;
+import com.ats.vo.Rank;
 
 import java.util.Objects;
 import java.util.UUID;
 
-public class Bewerber {
+public class Applicants {
     private final UUID id;
     private String name;
     private String email;
-    private Lebenslauf lebenslauf;
-    private Rang rang;
+    private Resume resume;
+    private Rank rank;
 
-    public Bewerber(String name, String email, Lebenslauf lebenslauf) {
+    public Applicants(String name, String email, Resume resume) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.email = email;
-        this.lebenslauf = lebenslauf;
-        this.rang = null;
+        this.resume = resume;
+        this.rank = null;
     }
 
     public UUID getId() {
@@ -41,27 +41,27 @@ public class Bewerber {
         this.email = email;
     }
 
-    public Lebenslauf getLebenslaufPfad() {
-        return lebenslauf;
+    public Resume getLebenslaufPfad() {
+        return resume;
     }
 
-    public void setLebenslaufPfad(Lebenslauf lebenslauf) {
-        this.lebenslauf = lebenslauf;
+    public void setLebenslaufPfad(Resume resume) {
+        this.resume = resume;
     }
 
-    public Rang getRang() {
-        return rang;
+    public Rank getRang() {
+        return rank;
     }
 
-    public void setRang(Rang rang) {
-        this.rang = rang;
+    public void setRang(Rank rank) {
+        this.rank = rank;
     }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Bewerber bewerber = (Bewerber) o;
-        return id.equals(bewerber.id);
+        Applicants applicants = (Applicants) o;
+        return id.equals(applicants.id);
     }
 
     @Override

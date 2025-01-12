@@ -3,12 +3,12 @@ package com.ats.entities;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Bewertungskriterium {
+public class EvaluationCriterion {
     private final UUID id;
     private String name;
     private int punkte;
 
-    public Bewertungskriterium(String name, int punkte) {
+    public EvaluationCriterion(String name, int punkte) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.punkte = punkte;
@@ -39,7 +39,7 @@ public class Bewertungskriterium {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        Bewertungskriterium that = (Bewertungskriterium) obj;
+        EvaluationCriterion that = (EvaluationCriterion) obj;
         return punkte == that.punkte && id.equals(that.id);
     }
 

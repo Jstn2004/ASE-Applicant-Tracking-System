@@ -2,7 +2,7 @@ package com.ats.ui;
 
 import com.ats.TenderController;
 import com.ats.TenderRepositoryImpl;
-import com.ats.datenbank.DatabaseConfigurationImpl;
+import com.ats.database.DatabaseConfigurationImpl;
 import com.ats.interfaces.DatabaseConfiguration;
 import com.ats.interfaces.TenderRepository;
 
@@ -149,6 +149,7 @@ public class MainConsole {
         String idToDelete = scanner.next();
         tenderAdapter.deleteTenderById(idToDelete);
         System.out.println("Ausschreibung wurde gelöscht");
+        allTenders();
 
 
     }

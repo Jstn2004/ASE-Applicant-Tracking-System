@@ -2,16 +2,15 @@ package com.ats.entities;
 
 
 import java.util.Objects;
-import java.util.UUID;
 
-public class Tender {
+public class JobAdvertisement {
     private final String id;
     private String titel;
     private String description;
-    //private Iterable<Bewertungskriterium> kriterien;
+    //private Iterable<EvaluationCriterion> kriterien;
 
 
-    public Tender(String id, String titel, String description) {
+    public JobAdvertisement(String id, String titel, String description) {
         this.id = id;
         this.titel = titel;
         this.description = description;
@@ -26,7 +25,7 @@ public class Tender {
         this.description = description;
     }
 
-//    public void setKriterien(Iterable<Bewertungskriterium> kriterien) {
+//    public void setKriterien(Iterable<EvaluationCriterion> kriterien) {
 //        this.kriterien = kriterien;
 //    }
 
@@ -42,13 +41,13 @@ public class Tender {
         return description;
     }
 
-//    public Iterable<Bewertungskriterium> getKriterien() {
+//    public Iterable<EvaluationCriterion> getKriterien() {
 //        return kriterien;
 //    }
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Tender that)) return false;
+        if (!(o instanceof JobAdvertisement that)) return false;
         return Objects.equals(id, that.id) &&
                 Objects.equals(titel, that.titel) &&
                 Objects.equals(description, that.description);  //&&
@@ -62,7 +61,7 @@ public class Tender {
 
     @Override
     public String toString() {
-        return "Tender{" +
+        return "JobAdvertisement{" +
                 "id=" + id +
                 ", titel='" + titel + '\'' +
                 ", description='" + description + '\'' +

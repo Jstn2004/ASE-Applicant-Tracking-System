@@ -1,15 +1,15 @@
 package com.ats.vo;
 
-import com.ats.entities.Bewertungskriterium;
+import com.ats.entities.EvaluationCriterion;
 
 import java.util.Objects;
 
-public class Lebenslauf {
+public class Resume {
     private final String pfad;
-    private final Iterable<Bewertungskriterium> kriterien;
+    private final Iterable<EvaluationCriterion> kriterien;
 
 
-    public Lebenslauf(String pfad, Iterable<Bewertungskriterium> kriterien) {
+    public Resume(String pfad, Iterable<EvaluationCriterion> kriterien) {
         this.pfad = pfad;
         this.kriterien = kriterien;
     }
@@ -18,13 +18,13 @@ public class Lebenslauf {
         return pfad;
     }
 
-    public Iterable<Bewertungskriterium> getKriterien() {
+    public Iterable<EvaluationCriterion> getKriterien() {
         return kriterien;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Lebenslauf that)) return false;
+        if (!(o instanceof Resume that)) return false;
         return Objects.equals(pfad, that.pfad) && Objects.equals(kriterien, that.kriterien);
     }
 

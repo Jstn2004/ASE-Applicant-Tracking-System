@@ -2,10 +2,10 @@ package com.ats.vo;
 
 import java.util.Objects;
 
-public final class Punkte {
+public final class Points {
     private final int anzahl;
 
-    public Punkte(int anzahl) {
+    public Points(int anzahl) {
         if (anzahl < 1) {
             throw new IllegalArgumentException("Anzahl muss größer als 0 sein");
         }
@@ -18,7 +18,7 @@ public final class Punkte {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Punkte punkte)) return false;
+        if (!(o instanceof Points punkte)) return false;
         return anzahl == punkte.anzahl;
     }
 

@@ -1,10 +1,9 @@
 package com.ats;
 
 
-import com.ats.entities.Tender;
+import com.ats.entities.JobAdvertisement;
 import com.ats.interfaces.TenderRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TenderController {
@@ -22,7 +21,7 @@ public class TenderController {
         createTenderApp.createNewTender(title, description);
     }
 
-    public List<Tender> loadAllTenders()
+    public List<JobAdvertisement> loadAllTenders()
     {
         return createTenderApp.loadAllTenders();
     }
