@@ -1,7 +1,7 @@
-package com.ats;
+package com.ats.database;
 
 import com.ats.entities.JobAdvertisement;
-import com.ats.interfaces.TenderRepository;
+import com.ats.repositories.JobAdvertisementRepository;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class TenderRepositoryImpl implements TenderRepository {
+public class JobAdvertisementRepositoryImpl implements JobAdvertisementRepository {
 
     private final String filePath;
 
-    public TenderRepositoryImpl(String filePath) {
+    public JobAdvertisementRepositoryImpl(String filePath) {
         this.filePath = filePath;
     }
 

@@ -1,5 +1,3 @@
 
-Tender{id=c405d41c-388d-458e-b09c-30431d6c45a9, titel='Test', description='Test'}
-
-
+JobAdvertisement{id=eb96a3c9-a33c-4869-ada2-b4d9eb20b11c, titel='Test', description='Test'}
 

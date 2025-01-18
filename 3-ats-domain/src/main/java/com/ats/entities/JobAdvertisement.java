@@ -7,7 +7,7 @@ public class JobAdvertisement {
     private final String id;
     private String titel;
     private String description;
-    //private Iterable<EvaluationCriterion> kriterien;
+    private Iterable<EvaluationCriterion> kriterien;
 
 
     public JobAdvertisement(String id, String titel, String description) {
@@ -25,9 +25,11 @@ public class JobAdvertisement {
         this.description = description;
     }
 
-//    public void setKriterien(Iterable<EvaluationCriterion> kriterien) {
-//        this.kriterien = kriterien;
-//    }
+
+    public void setKriterien(Iterable<EvaluationCriterion> kriterien) {
+        this.kriterien = kriterien;
+    }
+
 
     public String getId() {
         return id;
@@ -40,10 +42,6 @@ public class JobAdvertisement {
     public String getDescription() {
         return description;
     }
-
-//    public Iterable<EvaluationCriterion> getKriterien() {
-//        return kriterien;
-//    }
 
     @Override
     public boolean equals(Object o) {

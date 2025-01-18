@@ -1,20 +1,25 @@
 package com.ats.ui;
 
-import com.ats.TenderController;
-import com.ats.TenderRepositoryImpl;
+import com.ats.JobAdvertisementController;
+import com.ats.database.JobAdvertisementRepositoryImpl;
 import com.ats.database.DatabaseConfigurationImpl;
 import com.ats.interfaces.DatabaseConfiguration;
-import com.ats.interfaces.TenderRepository;
+import com.ats.jobadvertisementService.JobAdvertisementCreater;
+import com.ats.jobadvertisementService.JobAdvertisementDeleter;
+import com.ats.jobadvertisementService.JobAdvertisementLoader;
+import com.ats.repositories.JobAdvertisementRepository;
 
 import java.util.Scanner;
 
 public class MainConsole {
-    Scanner scanner = new Scanner(System.in);
-    boolean running = true;
-    DatabaseConfiguration databaseConfiguration = new DatabaseConfigurationImpl();
-    TenderRepository tenderRepository = new TenderRepositoryImpl(databaseConfiguration.getDatabaseFilePath());
-    TenderController tenderAdapter = new TenderController(tenderRepository);
-
+    private final Scanner scanner = new Scanner(System.in);
+    private boolean running = true;
+    DatabaseConfiguration databaseConfiguration = new DatabaseConfigurationImpl();;
+    JobAdvertisementRepository jobAdvertisementRepository = new JobAdvertisementRepositoryImpl(databaseConfiguration.getDatabaseFilePath());
+    JobAdvertisementCreater jobAdvertisementCreater = new JobAdvertisementCreater(jobAdvertisementRepository);
+    JobAdvertisementLoader jobAdvertisementLoader = new JobAdvertisementLoader(jobAdvertisementRepository);
+    JobAdvertisementDeleter jobAdvertisementDeleter = new JobAdvertisementDeleter(jobAdvertisementRepository);
+    JobAdvertisementController jobAdvertismentController = new JobAdvertisementController(jobAdvertisementDeleter, jobAdvertisementCreater, jobAdvertisementLoader);
 
     public MainConsole() {
     }
@@ -38,7 +43,7 @@ public class MainConsole {
                     break;
                 case "2":
                     System.out.println();
-                    tenderCLI();
+                    jobAdvertismentCLI();
                     break;
                 case "3":
                     System.out.println("Beenden");
@@ -52,7 +57,7 @@ public class MainConsole {
         scanner.close();
     }
 
-    public void tenderCLI() {
+    public void jobAdvertismentCLI() {
         System.out.println();
         System.out.println("== Ausschreibungen == ");
         System.out.println("Wählen Sie eine Option:");
@@ -65,10 +70,10 @@ public class MainConsole {
             String input = scanner.next();
             switch (input) {
                 case "1":
-                    newTenderCLI();
+                    newJobAdvertismentCLI();
                     break;
                 case "2":
-                    allTenders();
+                    allJobAdvertisment();
                     break;
                 case "3":
                     startCLI();
@@ -79,34 +84,35 @@ public class MainConsole {
                     break;
                 default:
                     System.out.println("Ungültige Eingabe, bitte versuchen Sie es erneut.");
-                    tenderCLI();
+                    jobAdvertismentCLI();
             }
         }
         scanner.close();
 
     }
 
-    public void newTenderCLI() {
+    public void newJobAdvertismentCLI() {
         System.out.println();
         System.out.println("== Neue Ausschreibung == ");
 
         System.out.print("Titel: ");
         String title = scanner.nextLine();
+
         title = scanner.nextLine();
 
         System.out.print("Beschreibung: ");
         String description = scanner.nextLine();
 
-        tenderAdapter.createTender(title, description);
+        jobAdvertismentController.createTender(title, description);
 
-        tenderCLI();
+        jobAdvertismentCLI();
         //kriterienCLI();
     }
 
-    public void allTenders() {
+    public void allJobAdvertisment() {
         System.out.println();
         System.out.println("== Alle Ausschreibungen == ");
-        tenderAdapter.loadAllTenders().forEach(tender ->
+        jobAdvertismentController.loadAllTenders().forEach(tender ->
                 {
                     System.out.println("ID:");
                     System.out.println(" → " + tender.getId());
@@ -129,27 +135,27 @@ public class MainConsole {
             String input = scanner.next();
             switch (input) {
                 case "1":
-                    deleteActiveTender();
+                    deleteActiveJobAdvertisment();
                     break;
                 case "2":
-                    tenderCLI();
+                    jobAdvertismentCLI();
                     break;
                 default:
                     System.out.println("Ungültige Eingabe, bitte versuchen Sie es erneut.");
-                    allTenders();
+                    allJobAdvertisment();
             }
         }
 
     }
 
-    public void deleteActiveTender() {
+    public void deleteActiveJobAdvertisment() {
         System.out.println();
         System.out.println("== Ausschreibung löschen == ");
         System.out.println("Zum Löschen die ID der Ausschreibung eingeben");
         String idToDelete = scanner.next();
-        tenderAdapter.deleteTenderById(idToDelete);
+        jobAdvertismentController.deleteTenderById(idToDelete);
         System.out.println("Ausschreibung wurde gelöscht");
-        allTenders();
+        allJobAdvertisment();
 
 
     }
