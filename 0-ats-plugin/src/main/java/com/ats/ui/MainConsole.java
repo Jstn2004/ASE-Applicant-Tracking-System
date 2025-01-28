@@ -7,6 +7,7 @@ import com.ats.interfaces.DatabaseConfiguration;
 import com.ats.jobadvertisementService.JobAdvertisementCreater;
 import com.ats.jobadvertisementService.JobAdvertisementDeleter;
 import com.ats.jobadvertisementService.JobAdvertisementLoader;
+import com.ats.jobadvertisementService.JobAdvertisementParser;
 import com.ats.repositories.JobAdvertisementRepository;
 
 import java.util.Scanner;
@@ -14,12 +15,13 @@ import java.util.Scanner;
 public class MainConsole {
     private final Scanner scanner = new Scanner(System.in);
     private boolean running = true;
-    DatabaseConfiguration databaseConfiguration = new DatabaseConfigurationImpl();;
+    DatabaseConfiguration databaseConfiguration = new DatabaseConfigurationImpl();
     JobAdvertisementRepository jobAdvertisementRepository = new JobAdvertisementRepositoryImpl(databaseConfiguration.getDatabaseFilePath());
     JobAdvertisementCreater jobAdvertisementCreater = new JobAdvertisementCreater(jobAdvertisementRepository);
     JobAdvertisementLoader jobAdvertisementLoader = new JobAdvertisementLoader(jobAdvertisementRepository);
     JobAdvertisementDeleter jobAdvertisementDeleter = new JobAdvertisementDeleter(jobAdvertisementRepository);
-    JobAdvertisementController jobAdvertismentController = new JobAdvertisementController(jobAdvertisementDeleter, jobAdvertisementCreater, jobAdvertisementLoader);
+    JobAdvertisementParser jobAdvertisementParser = new JobAdvertisementParser();
+    JobAdvertisementController jobAdvertismentController = new JobAdvertisementController(jobAdvertisementDeleter, jobAdvertisementCreater, jobAdvertisementLoader, jobAdvertisementParser);
 
     public MainConsole() {
     }
@@ -103,7 +105,7 @@ public class MainConsole {
         System.out.print("Beschreibung: ");
         String description = scanner.nextLine();
 
-        jobAdvertismentController.createTender(title, description);
+        jobAdvertismentController.createJobAdvertisement(title, description);
 
         jobAdvertismentCLI();
         //kriterienCLI();

@@ -6,12 +6,12 @@ import java.util.UUID;
 public class EvaluationCriterion {
     private final UUID id;
     private String name;
-    private int punkte;
+    private int points;
 
-    public EvaluationCriterion(String name, int punkte) {
+    public EvaluationCriterion(String name, int points) {
         this.id = UUID.randomUUID();
         this.name = name;
-        this.punkte = punkte;
+        this.points = points;
     }
 
     public UUID getId() {
@@ -27,12 +27,12 @@ public class EvaluationCriterion {
         this.name = name;
     }
 
-    public int getPunkte() {
-        return punkte;
+    public int getPoints() {
+        return points;
     }
 
-    public void setPunkte(int punkte) {
-        this.punkte = punkte;
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     @Override
@@ -40,11 +40,11 @@ public class EvaluationCriterion {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         EvaluationCriterion that = (EvaluationCriterion) obj;
-        return punkte == that.punkte && id.equals(that.id);
+        return points == that.points && id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, punkte);
+        return Objects.hash(id, points);
     }
 }
