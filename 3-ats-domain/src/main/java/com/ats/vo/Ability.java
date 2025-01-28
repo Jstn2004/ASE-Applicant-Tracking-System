@@ -3,14 +3,9 @@ package com.ats.vo;
 import java.util.Objects;
 
 public final class Ability {
-    private final int points;
     private final String name;
 
-    public Ability(int points, String name) {
-        if (points < 1) {
-            throw new IllegalArgumentException("Punkte muss größer als 0 sein");
-        }
-        this.points = points;
+    public Ability( String name) {
         this.name = name;
     }
 
@@ -18,18 +13,19 @@ public final class Ability {
         return name;
     }
 
-    public int getPoints() {
-        return this.points;
-    }
-
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Ability punkte)) return false;
-        return points == punkte.points;
+        if (!(o instanceof Ability ability)) return false;
+        return Objects.equals(name, ability.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(points);
+        return Objects.hashCode(name);
+    }
+
+    @Override
+    public String toString() {
+        return  name ;
     }
 }

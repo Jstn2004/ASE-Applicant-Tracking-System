@@ -7,14 +7,14 @@ public class JobAdvertisement {
     private final String id;
     private String titel;
     private String description;
-    private Iterable<EvaluationCriterion> kriterien;
+    private Iterable<EvaluationCriterion> criteria;
 
 
-    public JobAdvertisement(String id, String titel, String description) {
+    public JobAdvertisement(String id, String titel, String description, Iterable<EvaluationCriterion> criteria) {
         this.id = id;
         this.titel = titel;
         this.description = description;
-        //this.kriterien = kriterien;
+        this.criteria = criteria;
     }
 
     public void setTitel(String titel) {
@@ -26,8 +26,8 @@ public class JobAdvertisement {
     }
 
 
-    public void setKriterien(Iterable<EvaluationCriterion> kriterien) {
-        this.kriterien = kriterien;
+    public void setCriteria(Iterable<EvaluationCriterion> criteria) {
+        this.criteria = criteria;
     }
 
 
@@ -60,9 +60,10 @@ public class JobAdvertisement {
     @Override
     public String toString() {
         return "JobAdvertisement{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", titel='" + titel + '\'' +
                 ", description='" + description + '\'' +
+                ", criteria=" + criteria +
                 '}';
     }
 }

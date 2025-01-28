@@ -1,50 +1,62 @@
 package com.ats;
 
 
+import com.ats.entities.EvaluationCriterion;
 import com.ats.entities.JobAdvertisement;
-import com.ats.jobadvertisementService.JobAdvertisementCreater;
-import com.ats.jobadvertisementService.JobAdvertisementDeleter;
-import com.ats.jobadvertisementService.JobAdvertisementLoader;
-import com.ats.jobadvertisementService.JobAdvertisementParser;
+import com.ats.entities.criteria.EvaluationAbilities;
+import com.ats.jobadvertisementService.*;
+import com.ats.vo.Ability;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class JobAdvertisementController {
 
+    private Logger logger;
     private JobAdvertisementDeleter jobAdvertisementDeleter;
     private JobAdvertisementCreater jobAdvertisementCreater;
     private JobAdvertisementLoader jobAdvertisementLoader;
     private JobAdvertisementParser jobAdvertisementParser;
+    private EvaluationCriteriaCreater evaluationCriteriaCreater;
 
 
-    public JobAdvertisementController(JobAdvertisementDeleter jobAdvertisementDeleter, JobAdvertisementCreater jobAdvertisementCreater, JobAdvertisementLoader jobAdvertisementLoader, JobAdvertisementParser jobAdvertisementParser) {
+
+    public JobAdvertisementController(Logger logger, JobAdvertisementDeleter jobAdvertisementDeleter, JobAdvertisementCreater jobAdvertisementCreater, JobAdvertisementLoader jobAdvertisementLoader, JobAdvertisementParser jobAdvertisementParser, EvaluationCriteriaCreater evaluationCriteriaCreater) {
+        this.logger = logger;
         this.jobAdvertisementDeleter = jobAdvertisementDeleter;
         this.jobAdvertisementCreater = jobAdvertisementCreater;
         this.jobAdvertisementLoader = jobAdvertisementLoader;
         this.jobAdvertisementParser = jobAdvertisementParser;
+        this.evaluationCriteriaCreater = evaluationCriteriaCreater;
     }
 
-    public void createJobAdvertisement(String title, String description)
+    public void createJobAdvertisement(String title, String description, Iterable<EvaluationCriterion> criteria)
     {
-        jobAdvertisementCreater.createNewTender(title, description);
+        this.logger.info("Creating Job Advertisement");
+        this.logger.info(criteria.toString());
+        jobAdvertisementCreater.createNewJobAdvertisement(title, description, criteria);
     }
 
-    public List<JobAdvertisement> loadAllTenders()
+    public List<JobAdvertisement> loadAllJobAdvertisement()
     {
         List<JobAdvertisement> jobAdvertisementsList = new ArrayList<>();
         jobAdvertisementLoader.loadAllTenders().forEach(item-> jobAdvertisementsList.add(jobAdvertisementParser.parseTenderString(item)));
         return jobAdvertisementsList;
     }
 
-    public void deleteTenderById(String id)
+    public void deleteJobAdvertisementById(String id)
     {
         jobAdvertisementDeleter.deleteTender(id);
     }
 
-    public void createEvaluationCriterions()
+    public EvaluationAbilities createEvaluationAbilities(String name, String points, String weighting, String abilities)
     {
-
+        logger.info("Creating Evaluation Abilities");
+        logger.info(abilities);
+       int pointsInt = Integer.parseInt(points);
+       int weightingInt = Integer.parseInt(weighting);
+       return evaluationCriteriaCreater.generateEvaluationAbilityCriteria(name, pointsInt, abilities, weightingInt);
     }
 
 

@@ -1,5 +1,6 @@
 package com.ats.jobadvertisementService;
 
+import com.ats.entities.EvaluationCriterion;
 import com.ats.entities.JobAdvertisement;
 
 public class JobAdvertisementParser {
@@ -13,7 +14,8 @@ public class JobAdvertisementParser {
             String id = matcher.group(1);
             String title = matcher.group(2);
             String description = matcher.group(3);
-            return new JobAdvertisement(id, title, description);
+            Iterable<EvaluationCriterion> criteria = null;
+            return new JobAdvertisement(id, title, description,criteria);
         }
         return null;
     }

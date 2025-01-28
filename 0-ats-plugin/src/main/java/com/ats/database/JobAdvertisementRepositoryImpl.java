@@ -19,7 +19,7 @@ public class JobAdvertisementRepositoryImpl implements JobAdvertisementRepositor
         this.filePath = filePath;
     }
 
-    public void saveTender(JobAdvertisement jobAdvertisement) {
+    public void saveJobAdvertisement(JobAdvertisement jobAdvertisement) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(jobAdvertisement.toString());
             writer.write("\n\n");

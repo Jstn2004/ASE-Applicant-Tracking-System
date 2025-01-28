@@ -1,5 +1,6 @@
 package com.ats.jobadvertisementService;
 
+import com.ats.entities.EvaluationCriterion;
 import com.ats.entities.JobAdvertisement;
 import com.ats.repositories.JobAdvertisementRepository;
 
@@ -13,10 +14,10 @@ public class JobAdvertisementCreater {
         this.jobAdvertisementRepository = jobAdvertisementRepository;
     }
 
-    public void createNewTender(String title, String description) {
+    public void createNewJobAdvertisement(String title, String description, Iterable<EvaluationCriterion> criteria) {
         String id = UUID.randomUUID().toString();
-        JobAdvertisement jobAdvertisement = new JobAdvertisement(id, title, description);
-        jobAdvertisementRepository.saveTender(jobAdvertisement);
+        JobAdvertisement jobAdvertisement = new JobAdvertisement(id, title, description, criteria);
+        jobAdvertisementRepository.saveJobAdvertisement(jobAdvertisement);
     }
 
 }

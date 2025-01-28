@@ -14,6 +14,12 @@ public class EvaluationAbilities extends EvaluationCriterion {
 
     public EvaluationAbilities(String name, int points, List<Ability> listOfAbilities, int weighting) {
         super(name, points);
+        if(points < 1 || points > 100 ){
+            throw new IllegalArgumentException("Points must be between 1 and 100");
+        }
+        if(weighting < 1 || weighting > 10){
+            throw new IllegalArgumentException("Weighting must be between 1 and 10");
+        }
         this.listOfAbilities = listOfAbilities;
         this.weighting = weighting;
     }
@@ -54,5 +60,15 @@ public class EvaluationAbilities extends EvaluationCriterion {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), listOfAbilities);
+    }
+
+    @Override
+    public String toString() {
+        return "EvaluationAbilities{" +
+                "name=" + super.getName() +
+                ", points=" + super.getPoints() +
+                ", listOfAbilities=" + listOfAbilities +
+                ", weighting=" + weighting +
+                '}';
     }
 }

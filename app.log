@@ -1,0 +1,8 @@
+Jan. 28, 2025 4:39:45 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: Creating Job Advertisement
+Jan. 28, 2025 4:39:45 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: [EvaluationAbilities{name=test, points=1, listOfAbilities=[hallo, Hallo], weighting=3}]
+Jan. 28, 2025 4:41:21 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: Creating Job Advertisement
+Jan. 28, 2025 4:41:21 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: [EvaluationAbilities{name=Test, points=3, listOfAbilities=[Test, Test], weighting=1}]
