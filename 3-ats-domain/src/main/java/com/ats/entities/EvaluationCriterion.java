@@ -7,8 +7,10 @@ public class EvaluationCriterion {
     private final UUID id;
     private String name;
     private int points;
+    private int weighting;
 
-    public EvaluationCriterion(String name, int points) {
+    public EvaluationCriterion(String name, int points, int weighting) {
+        this.weighting = weighting;
         this.id = UUID.randomUUID();
         this.name = name;
         this.points = points;
@@ -33,6 +35,14 @@ public class EvaluationCriterion {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public int getWeighting() {
+        return weighting;
+    }
+
+    public void setWeighting(int weighting) {
+        this.weighting = weighting;
     }
 
     @Override

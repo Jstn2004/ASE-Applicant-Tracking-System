@@ -6,20 +6,10 @@ import java.util.Objects;
 
 public class EvaluationExperience extends EvaluationCriterion {
     private int experienceInYears;
-    private int weighting;
 
     public EvaluationExperience(String name, int punkte, int experienceInYears, int weighting) {
-        super(name, punkte);
+        super(name, punkte, weighting);
         this.experienceInYears = experienceInYears;
-        this.weighting = weighting;
-    }
-
-    public int getWeighting() {
-        return weighting;
-    }
-
-    public void setWeighting(int weighting) {
-        this.weighting = weighting;
     }
 
     public int getExperienceInYears() {
@@ -39,5 +29,15 @@ public class EvaluationExperience extends EvaluationCriterion {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), experienceInYears);
+    }
+
+    @Override
+    public String toString() {
+        return  "EvaluationExperience{" +
+                "name=" + super.getName() +
+                ", points=" + super.getPoints() +
+                ", experienceInYear=" + experienceInYears +
+                ", weighting=" + super.getWeighting() +
+                '}';
     }
 }

@@ -10,10 +10,9 @@ public class EvaluationAbilities extends EvaluationCriterion {
 
     //Es soll überprüft werden ob de Lebenslauf die an anegegebenen Fähgikeiten die gefordert werden enthält und vergibt dazu Punkte
     private List<Ability> listOfAbilities;
-    private int weighting;
 
     public EvaluationAbilities(String name, int points, List<Ability> listOfAbilities, int weighting) {
-        super(name, points);
+        super(name, points, weighting);
         if(points < 1 || points > 100 ){
             throw new IllegalArgumentException("Points must be between 1 and 100");
         }
@@ -21,7 +20,6 @@ public class EvaluationAbilities extends EvaluationCriterion {
             throw new IllegalArgumentException("Weighting must be between 1 and 10");
         }
         this.listOfAbilities = listOfAbilities;
-        this.weighting = weighting;
     }
 
     public void addAbility(Ability ability)
@@ -42,14 +40,6 @@ public class EvaluationAbilities extends EvaluationCriterion {
         this.listOfAbilities = listOfAbilities;
     }
 
-    public int getWeighting() {
-        return weighting;
-    }
-
-    public void setWeighting(int weighting) {
-        this.weighting = weighting;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof EvaluationAbilities that)) return false;
@@ -68,7 +58,7 @@ public class EvaluationAbilities extends EvaluationCriterion {
                 "name=" + super.getName() +
                 ", points=" + super.getPoints() +
                 ", listOfAbilities=" + listOfAbilities +
-                ", weighting=" + weighting +
+                ", weighting=" + super.getWeighting() +
                 '}';
     }
 }

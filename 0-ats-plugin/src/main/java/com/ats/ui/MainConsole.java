@@ -6,12 +6,14 @@ import com.ats.database.JobAdvertisementRepositoryImpl;
 import com.ats.database.DatabaseConfigurationImpl;
 import com.ats.entities.EvaluationCriterion;
 import com.ats.entities.criteria.EvaluationAbilities;
+import com.ats.entities.criteria.EvaluationExperience;
 import com.ats.interfaces.DatabaseConfiguration;
 import com.ats.jobadvertisementService.*;
 import com.ats.repositories.JobAdvertisementRepository;
 import com.ats.validation.JobAdvertismentValidation;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -41,7 +43,11 @@ public class MainConsole {
     public void startCLI() {
 
         System.out.println();
-        System.out.println("== Start ==");
+        String header = "Start";
+        System.out.println(line(header));
+        System.out.println(header(header));
+        System.out.println(line(header));
+
         System.out.println("Wählen Sie eine Option:");
         System.out.println("1: Lebensläufe");
         System.out.println("2: Ausschreibungen");
@@ -73,7 +79,12 @@ public class MainConsole {
 
     public void jobAdvertismentCLI() {
         System.out.println();
-        System.out.println("== Ausschreibungen == ");
+
+        String header = "Ausschreibungen ";
+        System.out.println(line(header));
+        System.out.println(header(header));
+        System.out.println(line(header));
+
         System.out.println("Wählen Sie eine Option:");
         System.out.println("1: Neue Ausschreibung");
         System.out.println("2: Alle Ausschreibung");
@@ -107,7 +118,11 @@ public class MainConsole {
 
     public void newJobAdvertismentCLI() {
         System.out.println();
-        System.out.println("== Neue Ausschreibung == ");
+
+        String header = "Neue Ausschreibung";
+        System.out.println(line(header));
+        System.out.println(header(header));
+        System.out.println(line(header));
 
         System.out.print("Titel: ");
         String title = scanner.nextLine();
@@ -127,52 +142,88 @@ public class MainConsole {
     public Iterable<EvaluationCriterion> createEvaluationCriteriaCLI() {
         LinkedList<EvaluationCriterion> evaluationCriterionIterable = new LinkedList<>();
         //Erstellen von Fähigkeits Bewertungen
+        String header = "Bewertungskriterien festlegen ";
+        System.out.println(line(header));
+        System.out.println(header(header));
+        System.out.println(line(header));
+
         EvaluationAbilities evaluationAbilities = createEvaluationAbilitiesCLI();
         evaluationCriterionIterable.add(evaluationAbilities);
+
+        EvaluationExperience evaluationExperience = createEvaluationExperienceCLI();
+        evaluationCriterionIterable.add(evaluationExperience);
         return evaluationCriterionIterable;
     }
 
     public EvaluationAbilities createEvaluationAbilitiesCLI() {
-        System.out.println("= Bewertungskriterien festlegen =");
         System.out.println("Fähigkeiten");
+        List<String> evaluationedCriterionArguments= evaluationCriterionCLI();
+        System.out.print("Fähigkeit (jeweils mit \",\" trennen): ");
+        String abilities = scanner.nextLine();
+
+        return jobAdvertismentController.createEvaluationAbilities(evaluationedCriterionArguments, abilities);
+    }
+
+    public EvaluationExperience createEvaluationExperienceCLI() {
+        System.out.println("Erfahrungen");
+        List<String> evaluationedCriterionArguments= evaluationCriterionCLI();
+        String experience;
+        do{
+            System.out.print("Erfahrungen (In Jahren angeben): ");
+            experience= scanner.nextLine();
+        }while (!jobAdvertisementValidationController.startExperienceValidation(experience));
+
+        return jobAdvertismentController.createEvaluationExperience(evaluationedCriterionArguments, experience);
+    }
+
+    public List<String> evaluationCriterionCLI(){
+        List<String> evaluationCriterionArguments= new LinkedList<>();
         System.out.print("Name: ");
         String name = scanner.nextLine();
         // Punkte
         String points;
+        evaluationCriterionArguments.add(name);
         do{
             System.out.print("Punkte (Zahl von 1 bis 100): ");
             points = scanner.nextLine();
         }while (!jobAdvertisementValidationController.startPointsValidation(points));
-
+        evaluationCriterionArguments.add(points);
         // Gewichtung
         String weighting;
         do {
             System.out.print("Gewichtung (Zahl von 1 bis 10): ");
             weighting = scanner.nextLine();
         }while (!jobAdvertisementValidationController.startWeightingValidation(weighting));
-
-        // Fähigkeiten
-        System.out.print("Fähigkeit (jeweils mit \",\" trennen): ");
-        String abilities = scanner.nextLine();
-
-        return jobAdvertismentController.createEvaluationAbilities(name, points, weighting, abilities);
+        evaluationCriterionArguments.add(weighting);
+        return evaluationCriterionArguments;
     }
 
     public void allJobAdvertisment() {
         System.out.println();
-        System.out.println("== Alle Ausschreibungen == ");
-        jobAdvertismentController.loadAllJobAdvertisement().forEach(tender ->
+        String header = "Alle Ausschreibungen";
+        System.out.println(line(header));
+        System.out.println(header(header));
+        System.out.println(line(header));
+        jobAdvertismentController.loadAllJobAdvertisement().forEach(item ->
                 {
-                    System.out.println("ID:");
-                    System.out.println(" → " + tender.getId());
-                    System.out.println("Title:");
-                    System.out.println(" → " + tender.getTitel());
-                    System.out.println("Beschreibung:");
-                    System.out.println(" → " + tender.getDescription());
-                    for (int i = 0; i < 100; i++) {
-                        System.out.print("-");
-                    }
-                    System.out.println();
+                    System.out.printf("ID:            %s%n", item.getId());
+                    System.out.printf("Title:         %s%n", item.getTitel());
+                    System.out.printf("Beschreibung:  %s%n", item.getDescription());
+                    System.out.println("Bewertungskriterien:");
+                    item.getCriteria().forEach(criteria ->
+                    {
+                        System.out.println("  " + criteria.getClass().getSimpleName());
+                        System.out.printf("     Name:           %s%n", criteria.getName());
+                        System.out.printf("     Punkte:         %d%n", criteria.getPoints());
+                        System.out.printf("     Gewichtung:     %d%n", criteria.getWeighting());
+                        if (criteria instanceof EvaluationAbilities) {
+                            System.out.printf("     Fähigkeiten:    %s%n", ((EvaluationAbilities) criteria).getListOfAbilities());                        }
+
+                        if (criteria instanceof EvaluationExperience) {
+                            System.out.printf("     Erfahrung:      %d%n", ((EvaluationExperience) criteria).getExperienceInYears());                        }
+
+                    });
+                    System.out.println(line(header));
                 }
         );
 
@@ -209,8 +260,24 @@ public class MainConsole {
 
     }
 
-    public void criteriaCLI() {
-        System.out.println("= Kriterien =");
+    public String header(String headertext) {
+        int totalLength = 50;
+        int padding = (totalLength - headertext.length() - 4) / 2;
+
+        String header = "=".repeat(padding) + "== " + headertext + " ==";
+        header += "=".repeat(padding);
+
+        if (header.length() < totalLength) {
+            header += "=";
+        }
+        return header;
     }
+
+    public String line(String headertext)
+    {
+        String line = "-".repeat(header(headertext).length());
+        return line;
+    }
+
 
 }

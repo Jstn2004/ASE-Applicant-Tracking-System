@@ -13,7 +13,7 @@ public class DatabaseConfigurationImpl implements DatabaseConfiguration {
             if (currentDirectory.getAbsolutePath().contains("target")) {
                 currentDirectory = currentDirectory.getParentFile();
             }
-            FILE_PATH = new File(currentDirectory, "TenderDatabase.txt").getAbsolutePath();
+            FILE_PATH = new File(currentDirectory, "JobAdvertisementDatabase.txt").getAbsolutePath();
         }
 
         @Override

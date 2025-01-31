@@ -31,8 +31,10 @@ public class EvaluationCriteriaCreater {
         return evaluationAbilities;
     }
 
-    public EvaluationExperience generateEvaluationExperienceCriteria() {
-        return null;
+    public EvaluationExperience generateEvaluationExperienceCriteria(String name, int points, int experience, int weighting) {
+
+        EvaluationExperience evaluationExperience = new EvaluationExperience(name, points, experience, weighting);
+        return evaluationExperience;
     }
 
     public EvaluationKeywords generateEvaluationKeywordCriteria() {

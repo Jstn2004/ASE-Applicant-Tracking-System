@@ -6,3 +6,71 @@ Jan. 28, 2025 4:41:21 PM com.ats.JobAdvertisementController createJobAdvertiseme
 INFORMATION: Creating Job Advertisement
 Jan. 28, 2025 4:41:21 PM com.ats.JobAdvertisementController createJobAdvertisement
 INFORMATION: [EvaluationAbilities{name=Test, points=3, listOfAbilities=[Test, Test], weighting=1}]
+Jan. 30, 2025 7:21:53 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Jan. 30, 2025 7:21:53 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: gut, Schlecht
+Jan. 30, 2025 7:21:53 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: Creating Job Advertisement
+Jan. 30, 2025 7:21:53 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: [EvaluationAbilities{name=Hallo , points=2, listOfAbilities=[gut, Schlecht], weighting=4}]
+Jan. 30, 2025 8:12:45 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Jan. 30, 2025 8:12:45 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Hallo, Hallo
+Jan. 30, 2025 8:14:11 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Jan. 30, 2025 8:14:11 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Test
+Jan. 31, 2025 6:19:47 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Jan. 31, 2025 6:19:47 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Hallo
+Jan. 31, 2025 6:26:57 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Jan. 31, 2025 6:26:57 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Test
+Jan. 31, 2025 6:27:07 PM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: Creating EvaluationExperience
+Jan. 31, 2025 6:27:07 PM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: 6
+Jan. 31, 2025 6:27:07 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: Creating Job Advertisement
+Jan. 31, 2025 6:27:07 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: [EvaluationAbilities{name=Test, points=3, listOfAbilities=[Test], weighting=1}, EvaluationExperience{name=Test, points=1, experienceInYear=6, weighting=3}]
+Jan. 31, 2025 6:30:40 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Jan. 31, 2025 6:30:40 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Trennen
+Jan. 31, 2025 6:30:54 PM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: Creating EvaluationExperience
+Jan. 31, 2025 6:30:54 PM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: 3
+Jan. 31, 2025 6:30:54 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: Creating Job Advertisement
+Jan. 31, 2025 6:30:54 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: [EvaluationAbilities{name=Test, points=12, listOfAbilities=[Trennen], weighting=1}, EvaluationExperience{name=Test, points=12, experienceInYear=3, weighting=1}]
+Jan. 31, 2025 6:36:00 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Jan. 31, 2025 6:36:00 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Hakkom Hallo, adhuiasd, asdasd
+Jan. 31, 2025 6:36:10 PM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: Creating EvaluationExperience
+Jan. 31, 2025 6:36:10 PM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: 2
+Jan. 31, 2025 6:36:10 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: Creating Job Advertisement
+Jan. 31, 2025 6:36:10 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: [EvaluationAbilities{name=Test, points=3, listOfAbilities=[Hakkom Hallo, adhuiasd, asdasd], weighting=1}, EvaluationExperience{name=Test, points=1, experienceInYear=2, weighting=2}]
+Jan. 31, 2025 6:57:53 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Jan. 31, 2025 6:57:53 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: test,test
+Jan. 31, 2025 6:57:59 PM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: Creating EvaluationExperience
+Jan. 31, 2025 6:57:59 PM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: 3
+Jan. 31, 2025 6:57:59 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: Creating Job Advertisement
+Jan. 31, 2025 6:57:59 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: [EvaluationAbilities{name=Test, points=1, listOfAbilities=[test, test], weighting=2}, EvaluationExperience{name=test, points=1, experienceInYear=3, weighting=2}]

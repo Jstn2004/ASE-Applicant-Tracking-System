@@ -30,6 +30,9 @@ public class JobAdvertisement {
         this.criteria = criteria;
     }
 
+    public Iterable<EvaluationCriterion> getCriteria() {
+        return criteria;
+    }
 
     public String getId() {
         return id;

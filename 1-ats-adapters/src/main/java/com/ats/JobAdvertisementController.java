@@ -4,6 +4,7 @@ package com.ats;
 import com.ats.entities.EvaluationCriterion;
 import com.ats.entities.JobAdvertisement;
 import com.ats.entities.criteria.EvaluationAbilities;
+import com.ats.entities.criteria.EvaluationExperience;
 import com.ats.jobadvertisementService.*;
 import com.ats.vo.Ability;
 
@@ -19,6 +20,9 @@ public class JobAdvertisementController {
     private JobAdvertisementLoader jobAdvertisementLoader;
     private JobAdvertisementParser jobAdvertisementParser;
     private EvaluationCriteriaCreater evaluationCriteriaCreater;
+
+    private int pointsInt = 0;
+    private int weightingInt  = 0;
 
 
 
@@ -50,13 +54,27 @@ public class JobAdvertisementController {
         jobAdvertisementDeleter.deleteTender(id);
     }
 
-    public EvaluationAbilities createEvaluationAbilities(String name, String points, String weighting, String abilities)
+    public EvaluationAbilities createEvaluationAbilities(List<String> evaluationCriterionArguments, String abilities)
     {
         logger.info("Creating Evaluation Abilities");
         logger.info(abilities);
-       int pointsInt = Integer.parseInt(points);
-       int weightingInt = Integer.parseInt(weighting);
-       return evaluationCriteriaCreater.generateEvaluationAbilityCriteria(name, pointsInt, abilities, weightingInt);
+       parseStringtoInterges(evaluationCriterionArguments.get(1), evaluationCriterionArguments.getLast());
+       return evaluationCriteriaCreater.generateEvaluationAbilityCriteria(evaluationCriterionArguments.getFirst(), pointsInt, abilities, weightingInt);
+    }
+
+    public void parseStringtoInterges(String points, String weighting)
+    {
+        pointsInt = Integer.parseInt(points);
+        weightingInt = Integer.parseInt(weighting);
+    }
+
+    public EvaluationExperience createEvaluationExperience(List<String> evaluationCriterionArguments, String experience)
+    {
+        logger.info("Creating EvaluationExperience");
+        logger.info(experience);
+        parseStringtoInterges(evaluationCriterionArguments.get(1), evaluationCriterionArguments.getLast());
+        int experienceInt = Integer.parseInt(experience);
+        return evaluationCriteriaCreater.generateEvaluationExperienceCriteria(evaluationCriterionArguments.getFirst(), pointsInt,experienceInt, weightingInt);
     }
 
 

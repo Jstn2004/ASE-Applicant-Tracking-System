@@ -1,0 +1,6 @@
+
+
+JobAdvertisement{id='6c8500d3-3fe3-434f-b3db-4760b9790ec4', titel='Test', description='Test', criteria=[EvaluationAbilities{name=Test, points=3, listOfAbilities=[Hakkom Hallo, adhuiasd, asdasd], weighting=1}, EvaluationExperience{name=Test, points=1, experienceInYear=2, weighting=2}]}
+
+JobAdvertisement{id='4d223f80-a541-4a7c-a3b9-6c5cb7ed7ba4', titel='Test', description='test', criteria=[EvaluationAbilities{name=Test, points=1, listOfAbilities=[test, test], weighting=2}, EvaluationExperience{name=test, points=1, experienceInYear=3, weighting=2}]}
+

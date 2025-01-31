@@ -7,10 +7,18 @@ public class JobAdvertismentValidation {
         if(isValidNumber(points))
         {
             int pointsInt = Integer.parseInt(points);
-            System.out.println("Bitte gebe ein Zahl zwischen 1 und 100 ein");
-            return pointsInt >= 1 && pointsInt <= 100;
+            if(pointsInt >= 1 && pointsInt <= 100)
+            {
+                return true;
+            }else
+            {
+                System.out.println("Bitte gebe ein Zahl zwischen 1 und 10 ein");
+                return false;
+            }
         }
-        else return false;
+        else{
+            return false;
+        }
     }
 
     public boolean validateWeighting(String weighting)
@@ -18,13 +26,21 @@ public class JobAdvertismentValidation {
         if(isValidNumber(weighting))
         {
             int weightingInt = Integer.parseInt(weighting);
-            System.out.println("Bitte gebe ein Zahl zwischen 1 und 10 ein");
-            return weightingInt >= 1 && weightingInt <= 10;
+            if(weightingInt >= 1 && weightingInt <= 10)
+            {
+                return true;
+            }else
+            {
+                System.out.println("Bitte gebe ein Zahl zwischen 1 und 10 ein");
+                return false;
+            }
         }
-        else return false;
+        else {
+            return false;
+        }
     }
 
-    public static boolean isValidNumber(String input) {
+    public boolean isValidNumber(String input) {
         try {
             Integer.parseInt(input);
             return true;

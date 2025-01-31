@@ -18,4 +18,8 @@ public class JobAdvertisementValidationController {
     public boolean startWeightingValidation(String weighting) {
         return jobAdvertismentValidation.validateWeighting(weighting);
     }
+
+    public boolean startExperienceValidation(String experience) {
+        return jobAdvertismentValidation.isValidNumber(experience);
+    }
 }
