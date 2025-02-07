@@ -9,8 +9,8 @@ import java.util.logging.Logger;
 
 public class JobAdvertisementCreater {
 
-    private Logger logger;
-    private JobAdvertisementRepository jobAdvertisementRepository;
+    private final Logger logger;
+    private final JobAdvertisementRepository jobAdvertisementRepository;
 
     public JobAdvertisementCreater(JobAdvertisementRepository jobAdvertisementRepository, Logger logger) {
         this.jobAdvertisementRepository = jobAdvertisementRepository;

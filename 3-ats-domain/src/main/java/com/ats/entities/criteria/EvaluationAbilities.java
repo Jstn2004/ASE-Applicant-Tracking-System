@@ -6,29 +6,34 @@ import com.ats.vo.Ability;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Die Klasse wird für die Evaluierung und Auswertung von Lebensläufen verwendet.
+ * Sie ist ein zentraler Bestandteil der Jobausschreibung und wird beim Erstellen einer neuen Ausschreibung erzeugt.
+ * Die Klasse enthält eine Liste von Fähigkeiten, die für den Bewerber erforderlich sind.
+ * Diese Fähigkeiten werden mit den Angaben des Bewerbers im Lebenslauf abgeglichen.
+ * Auf dieser Grundlage wird dem Bewerber eine Punktzahl zugewiesen, die seine Übereinstimmung mit den geforderten Fähigkeiten widerspiegelt.
+ * Zusätzlich wird ein Rang zugeordnet, um die Eignung des Bewerbers zu bewerten.
+ * Die Gewichtung der einzelnen Fähigkeiten ermöglicht eine differenzierte Beurteilung basierend auf ihrer Relevanz für die Position.
+ */
 public class EvaluationAbilities extends EvaluationCriterion {
-
-    //Es soll überprüft werden ob de Lebenslauf die an anegegebenen Fähgikeiten die gefordert werden enthält und vergibt dazu Punkte
     private List<Ability> listOfAbilities;
 
     public EvaluationAbilities(String name, int points, List<Ability> listOfAbilities, int weighting) {
         super(name, points, weighting);
-        if(points < 1 || points > 100 ){
+        if (points < 1 || points > 100) {
             throw new IllegalArgumentException("Points must be between 1 and 100");
         }
-        if(weighting < 1 || weighting > 10){
+        if (weighting < 1 || weighting > 10) {
             throw new IllegalArgumentException("Weighting must be between 1 and 10");
         }
         this.listOfAbilities = listOfAbilities;
     }
 
-    public void addAbility(Ability ability)
-    {
+    public void addAbility(Ability ability) {
         listOfAbilities.add(ability);
     }
 
-    public void removeAbility(Ability ability)
-    {
+    public void removeAbility(Ability ability) {
         listOfAbilities.remove(ability);
     }
 

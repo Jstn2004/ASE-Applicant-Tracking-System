@@ -6,8 +6,8 @@ import java.util.logging.Logger;
 
 public class JobAdvertisementValidationController {
 
-    private Logger logger;
-    private JobAdvertismentValidation jobAdvertismentValidation;
+    private final Logger logger;
+    private final JobAdvertismentValidation jobAdvertismentValidation;
 
     public JobAdvertisementValidationController(JobAdvertismentValidation jobAdvertismentValidation, Logger logger) {
         this.jobAdvertismentValidation = jobAdvertismentValidation;

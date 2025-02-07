@@ -6,8 +6,8 @@ import java.util.logging.Logger;
 
 public class JobAdvertisementDeleter {
 
-    private Logger logger;
-    private JobAdvertisementRepository jobAdvertisementRepository;
+    private final Logger logger;
+    private final JobAdvertisementRepository jobAdvertisementRepository;
 
     public JobAdvertisementDeleter(JobAdvertisementRepository jobAdvertisementRepository, Logger logger) {
         this.jobAdvertisementRepository = jobAdvertisementRepository;

@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public final class Resume {
     private final String path;
-    private Applicant application;
+    private final Applicant application;
 
     public Resume(String pfad, Applicant application) {
         this.path = pfad;

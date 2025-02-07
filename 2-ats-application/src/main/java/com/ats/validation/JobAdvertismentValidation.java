@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class JobAdvertismentValidation {
 
-    private Logger logger;
+    private final Logger logger;
 
     public JobAdvertismentValidation(Logger logger) {
         this.logger = logger;

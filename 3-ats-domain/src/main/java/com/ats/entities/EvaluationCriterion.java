@@ -20,7 +20,6 @@ public class EvaluationCriterion {
         return id;
     }
 
-
     public String getName() {
         return name;
     }

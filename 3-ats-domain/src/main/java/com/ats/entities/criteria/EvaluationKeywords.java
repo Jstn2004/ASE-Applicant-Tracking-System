@@ -3,10 +3,18 @@ package com.ats.entities.criteria;
 import com.ats.entities.EvaluationCriterion;
 import com.ats.vo.Keyword;
 
-import java.security.Key;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Die Klasse wird für die Evaluierung von Schlüsselwörtern im Lebenslauf eines Bewerbers verwendet.
+ * Sie ist Teil der Jobausschreibung und wird beim Erstellen einer neuen Ausschreibung erzeugt.
+ * Die Klasse enthält eine Liste von Schlüsselwörtern, die für den Bewerber erforderlich sind, um eine Übereinstimmung mit den Anforderungen der Stelle zu erzielen.
+ * Diese Schlüsselwörter werden im gesamten Lebenslauf des Bewerbers gesucht und abgeglichen.
+ * Auf dieser Grundlage wird dem Bewerber eine Punktzahl zugewiesen, die seine Übereinstimmung mit den geforderten Schlüsselwörtern widerspiegelt.
+ * Zusätzlich wird ein Rang zugeordnet, um die Eignung des Bewerbers zu bewerten.
+ * Die Gewichtung der Schlüsselwörter ermöglicht eine differenzierte Beurteilung basierend auf der Relevanz der Schlüsselwörter für die Position.
+ */
 public class EvaluationKeywords extends EvaluationCriterion {
 
     private List<Keyword> listOfKeywords;

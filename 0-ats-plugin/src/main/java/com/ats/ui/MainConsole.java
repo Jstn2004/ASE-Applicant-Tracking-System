@@ -62,14 +62,14 @@ public class MainConsole {
     public void startCLI() {
 
         System.out.println();
-        String header = "Start";
+        String header = "Willkommen bei ATS";
         System.out.println(line(header));
         System.out.println(header(header));
         System.out.println(line(header));
 
         System.out.println("Wählen Sie eine Option:");
         System.out.println("1: Lebensläufe");
-        System.out.println("2: Ausschreibungen");
+        System.out.println("2: Jobausschreibungen");
         System.out.println("3: Beenden");
         System.out.print("Eingabe:");
 
@@ -89,7 +89,7 @@ public class MainConsole {
                     running = false;
                     break;
                 default:
-                    System.out.println("Ungültige Eingabe, bitte versuchen Sie es erneut.");
+                    System.out.println("\u001B[31mUngültige Eingabe, bitte versuchen Sie es erneut.\u001B[0m");
                     startCLI();
             }
         }
@@ -105,8 +105,8 @@ public class MainConsole {
         System.out.println(line(header));
 
         System.out.println("Wählen Sie eine Option:");
-        System.out.println("1: Neue Ausschreibung");
-        System.out.println("2: Alle Ausschreibung");
+        System.out.println("1: Neue Jobausschreibung");
+        System.out.println("2: Alle Jobausschreibung");
         System.out.println("3: Zurück");
         System.out.println("4: Beenden");
         System.out.print("Eingabe:");
@@ -117,7 +117,7 @@ public class MainConsole {
                     newJobAdvertismentCLI();
                     break;
                 case "2":
-                    allJobAdvertisment();
+                    allJobAdvertismentCLI();
                     break;
                 case "3":
                     startCLI();
@@ -127,7 +127,7 @@ public class MainConsole {
                     running = false;
                     break;
                 default:
-                    System.out.println("Ungültige Eingabe, bitte versuchen Sie es erneut.");
+                    System.out.println("\u001B[31mUngültige Eingabe, bitte versuchen Sie es erneut.\u001B[0m");
                     jobAdvertismentCLI();
             }
         }
@@ -138,7 +138,7 @@ public class MainConsole {
     public void newJobAdvertismentCLI() {
         System.out.println();
 
-        String header = "Neue Ausschreibung";
+        String header = "Neue Jobausschreibung";
         System.out.println(line(header));
         System.out.println(header(header));
         System.out.println(line(header));
@@ -270,9 +270,9 @@ public class MainConsole {
         return evaluationCriterionArguments;
     }
 
-    public void allJobAdvertisment() {
+    public void allJobAdvertismentCLI() {
         System.out.println();
-        String header = "Alle Ausschreibungen";
+        String header = "Alle Jobausschreibungen";
         System.out.println(line(header));
         System.out.println(header(header));
         System.out.println(line(header));
@@ -303,7 +303,7 @@ public class MainConsole {
         );
 
         System.out.println("Wählen Sie eine Option:");
-        System.out.println("1: Ausschreibung Löschen");
+        System.out.println("1: Jobausschreibung Löschen");
         System.out.println("2: Zurück");
         System.out.print("Eingabe:");
         while (running) {
@@ -316,8 +316,8 @@ public class MainConsole {
                     jobAdvertismentCLI();
                     break;
                 default:
-                    System.out.println("Ungültige Eingabe, bitte versuchen Sie es erneut.");
-                    allJobAdvertisment();
+                    System.out.println("\u001B[31mUngültige Eingabe, bitte versuchen Sie es erneut.\u001B[0m");
+                    allJobAdvertismentCLI();
             }
         }
 
@@ -325,11 +325,16 @@ public class MainConsole {
 
     public void deleteActiveJobAdvertisment() {
         System.out.println();
-        System.out.println("== Ausschreibung löschen == ");
+
+        String header = "Jobausschreibung löschen";
+        System.out.println(line(header));
+        System.out.println(header(header));
+        System.out.println(line(header));
+
         System.out.println("Zum Löschen die ID der Ausschreibung eingeben");
         String idToDelete = scanner.next();
         jobAdvertismentController.deleteJobAdvertisementById(idToDelete);
-        allJobAdvertisment();
+        allJobAdvertismentCLI();
 
 
     }

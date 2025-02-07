@@ -16,12 +16,12 @@ import java.util.logging.Logger;
 
 public class JobAdvertisementController {
 
-    private Logger logger;
-    private JobAdvertisementDeleter jobAdvertisementDeleter;
-    private JobAdvertisementCreater jobAdvertisementCreater;
-    private JobAdvertisementLoader jobAdvertisementLoader;
-    private JobAdvertisementParser jobAdvertisementParser;
-    private EvaluationCriteriaCreater evaluationCriteriaCreater;
+    private final Logger logger;
+    private final JobAdvertisementDeleter jobAdvertisementDeleter;
+    private final JobAdvertisementCreater jobAdvertisementCreater;
+    private final JobAdvertisementLoader jobAdvertisementLoader;
+    private final JobAdvertisementParser jobAdvertisementParser;
+    private final EvaluationCriteriaCreater evaluationCriteriaCreater;
 
     private int pointsInt = 0;
     private int weightingInt  = 0;

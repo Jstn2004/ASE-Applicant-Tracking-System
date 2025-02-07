@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 public class JobAdvertisementParser {
 
-    private Logger logger ;
+    private final Logger logger ;
 
     public JobAdvertisementParser(Logger logger) {
         this.logger = logger;
@@ -47,7 +47,7 @@ public class JobAdvertisementParser {
         while (abilitiesMatcher.find()) {
             String name = abilitiesMatcher.group(1).trim();
             String listOfAbilitiesStr = abilitiesMatcher.group(2).trim();
-            List<String> abilities = Arrays.asList(listOfAbilitiesStr.split(",\\s*"));
+            String[] abilities = listOfAbilitiesStr.split(",\\s*");
 
             int weighting = Integer.parseInt(abilitiesMatcher.group(3).trim());
 
@@ -72,7 +72,7 @@ public class JobAdvertisementParser {
         while (keywordsMatcher.find()) {
             String name = keywordsMatcher.group(1).trim();
             String listOfKeywordsStr = keywordsMatcher.group(2).trim();
-            List<String> keywords = Arrays.asList(listOfKeywordsStr.split(",\\s*"));
+            String[] keywords = listOfKeywordsStr.split(",\\s*");
 
             int weighting = Integer.parseInt(keywordsMatcher.group(3).trim());
 

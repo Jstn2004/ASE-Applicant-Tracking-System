@@ -6,14 +6,12 @@ import com.ats.entities.criteria.EvaluationKeywords;
 import com.ats.vo.Ability;
 import com.ats.vo.Keyword;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
 public class EvaluationCriteriaCreater {
 
-    private Logger logger;
+    private final Logger logger;
 
     public EvaluationCriteriaCreater(Logger logger) {
         this.logger = logger;
