@@ -4,21 +4,29 @@ import com.ats.entities.EvaluationCriterion;
 import com.ats.entities.JobAdvertisement;
 import com.ats.entities.criteria.EvaluationAbilities;
 import com.ats.entities.criteria.EvaluationExperience;
+import com.ats.entities.criteria.EvaluationKeywords;
 import com.ats.vo.Ability;
+import com.ats.vo.Keyword;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class JobAdvertisementParser {
 
-    public JobAdvertisement parseTenderString(String tenderString) {
+    private Logger logger ;
+
+    public JobAdvertisementParser(Logger logger) {
+        this.logger = logger;
+    }
+
+    public JobAdvertisement parseJobAdvertisementString(String jobAdvertisementString) {
         String regex = "JobAdvertisement\\{id='([\\w-]+)',\\s*titel='([^']*)',\\s*description='([^']*)',\\s*criteria=\\[(.*)\\]\\}";
         java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
-        java.util.regex.Matcher matcher = pattern.matcher(tenderString);
+        java.util.regex.Matcher matcher = pattern.matcher(jobAdvertisementString);
 
         if (matcher.find()) {
             String id = matcher.group(1);
@@ -33,21 +41,53 @@ public class JobAdvertisementParser {
     public static List<EvaluationCriterion> parseCriteria(String input) {
         ArrayList<EvaluationCriterion> criteria = new ArrayList<>();
 
-        // Regex für EvaluationAbilities
-        Pattern abilitiesPattern = Pattern.compile("EvaluationAbilities\\{name=([^,]+), points=(\\d+), listOfAbilities=\\[(.*?)\\], weighting=(\\d+)\\}");
+        Pattern abilitiesPattern = Pattern.compile("EvaluationAbilities\\{name=([^,]+), listOfAbilities=\\[(.*?)\\], weighting=(\\d+)\\}");
         Matcher abilitiesMatcher = abilitiesPattern.matcher(input);
 
         while (abilitiesMatcher.find()) {
             String name = abilitiesMatcher.group(1).trim();
-            int points = Integer.parseInt(abilitiesMatcher.group(2));
-            List<String> abilities = Arrays.asList(abilitiesMatcher.group(3).split(",\\s*"));
-            List<Ability> abilityList = new ArrayList<>();
-            abilities.forEach(ability -> {
-                abilityList.add(new Ability(ability));
-            });
-            int weighting = Integer.parseInt(abilitiesMatcher.group(4));
+            String listOfAbilitiesStr = abilitiesMatcher.group(2).trim();
+            List<String> abilities = Arrays.asList(listOfAbilitiesStr.split(",\\s*"));
 
-            criteria.add(new EvaluationAbilities(name, points, abilityList, weighting));
+            int weighting = Integer.parseInt(abilitiesMatcher.group(3).trim());
+
+            List<Ability> abilityList = new ArrayList<>();
+
+            for (String abilityStr : abilities) {
+                Pattern abilityPattern = Pattern.compile("\\(([^;]+);\\s*(\\d+)\\)");
+                Matcher abilityMatcher = abilityPattern.matcher(abilityStr);
+                if (abilityMatcher.find()) {
+                    String abilityName = abilityMatcher.group(1).trim();
+                    int points = Integer.parseInt(abilityMatcher.group(2).trim());
+                    abilityList.add(new Ability(abilityName, points));
+                }
+            }
+            criteria.add(new EvaluationAbilities(name, 1, abilityList, weighting));
+        }
+
+        // Regex für EvaluationKeywords
+        Pattern keywordsPattern = Pattern.compile("EvaluationKeywords\\{name=([^,]+), listOfKeywords=\\[(.*?)\\], weighting=(\\d+)\\}");
+        Matcher keywordsMatcher = keywordsPattern.matcher(input);
+
+        while (keywordsMatcher.find()) {
+            String name = keywordsMatcher.group(1).trim();
+            String listOfKeywordsStr = keywordsMatcher.group(2).trim();
+            List<String> keywords = Arrays.asList(listOfKeywordsStr.split(",\\s*"));
+
+            int weighting = Integer.parseInt(keywordsMatcher.group(3).trim());
+
+            List<Keyword> keywordList = new ArrayList<>();
+
+            for (String keywordsStr : keywords) {
+                Pattern keywordPattern = Pattern.compile("\\(([^;]+);\\s*(\\d+)\\)");
+                Matcher keywordMatcher = keywordPattern.matcher(keywordsStr);
+                if (keywordMatcher.find()) {
+                    String keyword = keywordMatcher.group(1).trim();
+                    int points = Integer.parseInt(keywordMatcher.group(2).trim());
+                    keywordList.add(new Keyword(keyword, points));
+                }
+            }
+            criteria.add(new EvaluationKeywords(name, 1, keywordList, weighting));
         }
 
         // Regex für EvaluationExperience

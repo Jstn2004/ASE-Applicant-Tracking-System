@@ -2,16 +2,18 @@ package com.ats.ui;
 
 import com.ats.JobAdvertisementController;
 import com.ats.JobAdvertisementValidationController;
-import com.ats.database.JobAdvertisementRepositoryImpl;
-import com.ats.database.DatabaseConfigurationImpl;
 import com.ats.entities.EvaluationCriterion;
 import com.ats.entities.criteria.EvaluationAbilities;
 import com.ats.entities.criteria.EvaluationExperience;
+import com.ats.entities.criteria.EvaluationKeywords;
 import com.ats.interfaces.DatabaseConfiguration;
 import com.ats.jobadvertisementService.*;
 import com.ats.repositories.JobAdvertisementRepository;
 import com.ats.validation.JobAdvertismentValidation;
+import com.ats.vo.Ability;
+import com.ats.vo.Keyword;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,24 +22,41 @@ import java.util.logging.Logger;
 public class MainConsole {
     private final Scanner scanner = new Scanner(System.in);
     private boolean running = true;
-    private Logger logger;
-    DatabaseConfiguration databaseConfiguration = new DatabaseConfigurationImpl();
-    JobAdvertisementRepository jobAdvertisementRepository = new JobAdvertisementRepositoryImpl(databaseConfiguration.getDatabaseFilePath());
-    JobAdvertisementCreater jobAdvertisementCreater = new JobAdvertisementCreater(jobAdvertisementRepository);
-    JobAdvertisementLoader jobAdvertisementLoader = new JobAdvertisementLoader(jobAdvertisementRepository);
-    JobAdvertisementDeleter jobAdvertisementDeleter = new JobAdvertisementDeleter(jobAdvertisementRepository);
-    JobAdvertisementParser jobAdvertisementParser = new JobAdvertisementParser();
-    EvaluationCriteriaCreater evaluationCriteriaCreater = new EvaluationCriteriaCreater();
-    JobAdvertismentValidation jobAdvertismentValidation = new JobAdvertismentValidation();
-    JobAdvertisementController jobAdvertismentController;
-    JobAdvertisementValidationController jobAdvertisementValidationController;
+    private final Logger logger;
+    private final DatabaseConfiguration databaseConfiguration;
+    private final JobAdvertisementRepository jobAdvertisementRepository;
+    private final JobAdvertisementCreater jobAdvertisementCreater;
+    private final JobAdvertisementLoader jobAdvertisementLoader;
+    private final JobAdvertisementDeleter jobAdvertisementDeleter;
+    private final JobAdvertisementParser jobAdvertisementParser;
+    private final EvaluationCriteriaCreater evaluationCriteriaCreater;
+    private final JobAdvertismentValidation jobAdvertismentValidation;
+    private final JobAdvertisementController jobAdvertismentController;
+    private final JobAdvertisementValidationController jobAdvertisementValidationController;
 
 
-
-    public MainConsole(Logger logger) {
+    public MainConsole(Logger logger,
+                       DatabaseConfiguration databaseConfiguration,
+                       JobAdvertisementRepository jobAdvertisementRepository,
+                       JobAdvertisementCreater jobAdvertisementCreater,
+                       JobAdvertisementLoader jobAdvertisementLoader,
+                       JobAdvertisementDeleter jobAdvertisementDeleter,
+                       JobAdvertisementParser jobAdvertisementParser,
+                       EvaluationCriteriaCreater evaluationCriteriaCreater,
+                       JobAdvertismentValidation jobAdvertismentValidation,
+                       JobAdvertisementController jobAdvertismentController,
+                       JobAdvertisementValidationController jobAdvertisementValidationController) {
         this.logger = logger;
-        jobAdvertismentController = new JobAdvertisementController(logger, jobAdvertisementDeleter, jobAdvertisementCreater, jobAdvertisementLoader, jobAdvertisementParser, evaluationCriteriaCreater);
-        jobAdvertisementValidationController = new JobAdvertisementValidationController(jobAdvertismentValidation);
+        this.databaseConfiguration = databaseConfiguration;
+        this.jobAdvertisementRepository = jobAdvertisementRepository;
+        this.jobAdvertisementCreater = jobAdvertisementCreater;
+        this.jobAdvertisementLoader = jobAdvertisementLoader;
+        this.jobAdvertisementDeleter = jobAdvertisementDeleter;
+        this.jobAdvertisementParser = jobAdvertisementParser;
+        this.evaluationCriteriaCreater = evaluationCriteriaCreater;
+        this.jobAdvertismentValidation = jobAdvertismentValidation;
+        this.jobAdvertismentController = jobAdvertismentController;
+        this.jobAdvertisementValidationController = jobAdvertisementValidationController;
     }
 
     public void startCLI() {
@@ -152,20 +171,22 @@ public class MainConsole {
 
         EvaluationExperience evaluationExperience = createEvaluationExperienceCLI();
         evaluationCriterionIterable.add(evaluationExperience);
+
+        EvaluationKeywords evaluationKeywords = createEvaluationKeywordCLI();
+        evaluationCriterionIterable.add(evaluationKeywords);
         return evaluationCriterionIterable;
     }
 
     public EvaluationAbilities createEvaluationAbilitiesCLI() {
         System.out.println("Fähigkeiten");
         List<String> evaluationedCriterionArguments= evaluationCriterionCLI();
-        System.out.print("Fähigkeit (jeweils mit \",\" trennen): ");
-        String abilities = scanner.nextLine();
+        List<Ability> abilities = createAbilitieCLI();
 
         return jobAdvertismentController.createEvaluationAbilities(evaluationedCriterionArguments, abilities);
     }
 
     public EvaluationExperience createEvaluationExperienceCLI() {
-        System.out.println("Erfahrungen");
+        System.out.println("Erfahrungen(jeweils mit \",\" trennen)");
         List<String> evaluationedCriterionArguments= evaluationCriterionCLI();
         String experience;
         do{
@@ -175,6 +196,57 @@ public class MainConsole {
 
         return jobAdvertismentController.createEvaluationExperience(evaluationedCriterionArguments, experience);
     }
+
+    public EvaluationKeywords createEvaluationKeywordCLI() {
+        System.out.println("Schlüsselwörter");
+        List<String> evaluationedCriterionArguments= evaluationCriterionCLI();
+        List<Keyword> keywords = createKeywordCLI();
+
+        return jobAdvertismentController.createEvaluationKeywords(evaluationedCriterionArguments, keywords);
+    }
+
+    public List<Ability> createAbilitieCLI()
+    {
+        List<Ability> abilityString = new ArrayList<>();
+        String abilities;
+        do{
+            do {
+                System.out.println("Fähigkeit: (format: Name;Punkte) ('end' zum Beenden)");
+                abilities = scanner.nextLine();
+                if (abilities.equalsIgnoreCase("end")) {
+                    break;
+                }
+            }while (!jobAdvertisementValidationController.startAbilitiesValidationOrKeyword(abilities));
+            if(abilities.equalsIgnoreCase("end")) {
+                break;
+            }
+            abilityString.add(jobAdvertismentController.createAbility(abilities));
+        }while (!abilities.equalsIgnoreCase("end"));
+        return abilityString;
+
+    }
+
+    public List<Keyword> createKeywordCLI()
+    {
+        List<Keyword> keywordStrings = new ArrayList<>();
+        String keywords;
+        do{
+            do {
+                System.out.println("Schlüsselwörter: (format: Schlüsselwort;Punkte) ('end' zum Beenden)");
+                keywords = scanner.nextLine();
+                if (keywords.equalsIgnoreCase("end")) {
+                    break;
+                }
+            }while (!jobAdvertisementValidationController.startAbilitiesValidationOrKeyword(keywords));
+            if(keywords.equalsIgnoreCase("end")) {
+                break;
+            }
+            keywordStrings.add(jobAdvertismentController.createKeyword(keywords));
+        }while (!keywords.equalsIgnoreCase("end"));
+        return keywordStrings;
+
+    }
+
 
     public List<String> evaluationCriterionCLI(){
         List<String> evaluationCriterionArguments= new LinkedList<>();
@@ -206,21 +278,24 @@ public class MainConsole {
         System.out.println(line(header));
         jobAdvertismentController.loadAllJobAdvertisement().forEach(item ->
                 {
-                    System.out.printf("ID:            %s%n", item.getId());
-                    System.out.printf("Title:         %s%n", item.getTitel());
-                    System.out.printf("Beschreibung:  %s%n", item.getDescription());
+                    System.out.printf("ID:             %s%n", item.getId());
+                    System.out.printf("Title:          %s%n", item.getTitel());
+                    System.out.printf("Beschreibung:   %s%n", item.getDescription());
                     System.out.println("Bewertungskriterien:");
                     item.getCriteria().forEach(criteria ->
                     {
                         System.out.println("  " + criteria.getClass().getSimpleName());
-                        System.out.printf("     Name:           %s%n", criteria.getName());
-                        System.out.printf("     Punkte:         %d%n", criteria.getPoints());
-                        System.out.printf("     Gewichtung:     %d%n", criteria.getWeighting());
+                        System.out.printf("     Name:            %s%n", criteria.getName());
+                        System.out.printf("     Punkte:          %d%n", criteria.getPoints());
+                        System.out.printf("     Gewichtung:      %d%n", criteria.getWeighting());
                         if (criteria instanceof EvaluationAbilities) {
-                            System.out.printf("     Fähigkeiten:    %s%n", ((EvaluationAbilities) criteria).getListOfAbilities());                        }
+                            System.out.printf("     Fähigkeiten:     %s%n", ((EvaluationAbilities) criteria).getListOfAbilities());}
 
                         if (criteria instanceof EvaluationExperience) {
-                            System.out.printf("     Erfahrung:      %d%n", ((EvaluationExperience) criteria).getExperienceInYears());                        }
+                            System.out.printf("     Erfahrung:       %d%n", ((EvaluationExperience) criteria).getExperienceInYears());}
+
+                        if (criteria instanceof EvaluationKeywords) {
+                            System.out.printf("     Schlüsselwörter: %s%n", ((EvaluationKeywords) criteria).getListOfKeywords());}
 
                     });
                     System.out.println(line(header));
@@ -254,7 +329,6 @@ public class MainConsole {
         System.out.println("Zum Löschen die ID der Ausschreibung eingeben");
         String idToDelete = scanner.next();
         jobAdvertismentController.deleteJobAdvertisementById(idToDelete);
-        System.out.println("Ausschreibung wurde gelöscht");
         allJobAdvertisment();
 
 

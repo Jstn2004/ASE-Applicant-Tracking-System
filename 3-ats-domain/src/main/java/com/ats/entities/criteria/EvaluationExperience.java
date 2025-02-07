@@ -7,14 +7,21 @@ import java.util.Objects;
 public class EvaluationExperience extends EvaluationCriterion {
     private int experienceInYears;
 
-    public EvaluationExperience(String name, int punkte, int experienceInYears, int weighting) {
-        super(name, punkte, weighting);
+    public EvaluationExperience(String name, int points, int experienceInYears, int weighting) {
+        super(name, points, weighting);
+        if(points < 1 || points > 100 ){
+            throw new IllegalArgumentException("Points must be between 1 and 100");
+        }
+        if(weighting < 1 || weighting > 10){
+            throw new IllegalArgumentException("Weighting must be between 1 and 10");
+        }
         this.experienceInYears = experienceInYears;
     }
 
     public int getExperienceInYears() {
         return experienceInYears;
     }
+
     public void setExperienceInYears(int experienceInYears) {
         this.experienceInYears = experienceInYears;
     }

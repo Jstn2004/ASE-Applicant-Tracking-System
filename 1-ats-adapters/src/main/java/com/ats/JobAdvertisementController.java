@@ -5,8 +5,10 @@ import com.ats.entities.EvaluationCriterion;
 import com.ats.entities.JobAdvertisement;
 import com.ats.entities.criteria.EvaluationAbilities;
 import com.ats.entities.criteria.EvaluationExperience;
+import com.ats.entities.criteria.EvaluationKeywords;
 import com.ats.jobadvertisementService.*;
 import com.ats.vo.Ability;
+import com.ats.vo.Keyword;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +47,7 @@ public class JobAdvertisementController {
     public List<JobAdvertisement> loadAllJobAdvertisement()
     {
         List<JobAdvertisement> jobAdvertisementsList = new ArrayList<>();
-        jobAdvertisementLoader.loadAllTenders().forEach(item-> jobAdvertisementsList.add(jobAdvertisementParser.parseTenderString(item)));
+        jobAdvertisementLoader.loadAllJobAdvertisement().forEach(item-> jobAdvertisementsList.add(jobAdvertisementParser.parseJobAdvertisementString(item)));
         return jobAdvertisementsList;
     }
 
@@ -54,18 +56,32 @@ public class JobAdvertisementController {
         jobAdvertisementDeleter.deleteTender(id);
     }
 
-    public EvaluationAbilities createEvaluationAbilities(List<String> evaluationCriterionArguments, String abilities)
+    public Ability createAbility(String input)
     {
-        logger.info("Creating Evaluation Abilities");
-        logger.info(abilities);
-       parseStringtoInterges(evaluationCriterionArguments.get(1), evaluationCriterionArguments.getLast());
-       return evaluationCriteriaCreater.generateEvaluationAbilityCriteria(evaluationCriterionArguments.getFirst(), pointsInt, abilities, weightingInt);
+        logger.info("Creating Ability");
+        return evaluationCriteriaCreater.generateAbility(input);
     }
+
+    public Keyword createKeyword(String input)
+    {
+        logger.info("Creating Keyword");
+        return evaluationCriteriaCreater.generateKeyword(input);
+
+    }
+
 
     public void parseStringtoInterges(String points, String weighting)
     {
         pointsInt = Integer.parseInt(points);
         weightingInt = Integer.parseInt(weighting);
+    }
+
+    public EvaluationAbilities createEvaluationAbilities(List<String> evaluationCriterionArguments, List<Ability> abilities)
+    {
+        logger.info("Creating Evaluation Abilities");
+        logger.info(abilities.toString());
+        parseStringtoInterges(evaluationCriterionArguments.get(1), evaluationCriterionArguments.getLast());
+        return evaluationCriteriaCreater.generateEvaluationAbilityCriteria(evaluationCriterionArguments.getFirst(), abilities, weightingInt);
     }
 
     public EvaluationExperience createEvaluationExperience(List<String> evaluationCriterionArguments, String experience)
@@ -75,6 +91,13 @@ public class JobAdvertisementController {
         parseStringtoInterges(evaluationCriterionArguments.get(1), evaluationCriterionArguments.getLast());
         int experienceInt = Integer.parseInt(experience);
         return evaluationCriteriaCreater.generateEvaluationExperienceCriteria(evaluationCriterionArguments.getFirst(), pointsInt,experienceInt, weightingInt);
+    }
+
+    public EvaluationKeywords createEvaluationKeywords(List<String> evaluationCriterionArguments, List<Keyword> keywords)
+    {
+        logger.info("Creating EvaluationKeywords");
+        parseStringtoInterges(evaluationCriterionArguments.get(1), evaluationCriterionArguments.getLast());
+        return evaluationCriteriaCreater.generateEvaluationKeywordCriteria(evaluationCriterionArguments.getFirst(), keywords, weightingInt);
     }
 
 

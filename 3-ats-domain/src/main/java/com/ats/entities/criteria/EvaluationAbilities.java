@@ -33,6 +33,7 @@ public class EvaluationAbilities extends EvaluationCriterion {
     }
 
     public List<Ability> getListOfAbilities() {
+
         return listOfAbilities;
     }
 
@@ -56,7 +57,6 @@ public class EvaluationAbilities extends EvaluationCriterion {
     public String toString() {
         return "EvaluationAbilities{" +
                 "name=" + super.getName() +
-                ", points=" + super.getPoints() +
                 ", listOfAbilities=" + listOfAbilities +
                 ", weighting=" + super.getWeighting() +
                 '}';

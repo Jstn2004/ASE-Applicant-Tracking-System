@@ -6,10 +6,10 @@ import java.util.UUID;
 public class Leaderboard {
     private final UUID id;
     private String name;
-    private Iterable<Applicants> bewerber;
+    private Iterable<Applicant> bewerber;
     private JobAdvertisement jobAdvertisement;
 
-    public Leaderboard(String name, Iterable<Applicants> bewerber, JobAdvertisement jobAdvertisement) {
+    public Leaderboard(String name, Iterable<Applicant> bewerber, JobAdvertisement jobAdvertisement) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.bewerber = bewerber;
@@ -28,11 +28,11 @@ public class Leaderboard {
         this.name = name;
     }
 
-    public Iterable<Applicants> getBewerber() {
+    public Iterable<Applicant> getBewerber() {
         return bewerber;
     }
 
-    public void setBewerber(Iterable<Applicants> bewerber) {
+    public void setBewerber(Iterable<Applicant> bewerber) {
         this.bewerber = bewerber;
     }
 

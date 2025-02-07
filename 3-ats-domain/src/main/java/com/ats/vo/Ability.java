@@ -3,29 +3,31 @@ package com.ats.vo;
 import java.util.Objects;
 
 public final class Ability {
-    private final String name;
+    private final String ability;
+    private final int points;
 
-    public Ability( String name) {
-        this.name = name;
+    public Ability(String ability, int points) {
+        this.ability = ability;
+        this.points = points;
     }
 
-    public String getName() {
-        return name;
+    public String getAbility() {
+        return ability;
     }
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Ability ability)) return false;
-        return Objects.equals(name, ability.name);
+        return Objects.equals(this.ability, ability.ability);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(name);
+        return Objects.hashCode(ability);
     }
 
     @Override
     public String toString() {
-        return  name ;
+        return "(" + ability + "; " + points + ")";
     }
 }

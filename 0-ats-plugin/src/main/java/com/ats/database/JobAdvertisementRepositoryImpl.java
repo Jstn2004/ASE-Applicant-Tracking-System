@@ -6,6 +6,7 @@ import com.ats.repositories.JobAdvertisementRepository;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,15 +46,17 @@ public class JobAdvertisementRepositoryImpl implements JobAdvertisementRepositor
         }
     }
 
-    public void deleteTenderById(String tenderId) {
+    public void deleteTenderById(String id) {
         try {
             List<String> lines = Files.readAllLines(Paths.get(filePath));
             List<String> updatedLines = lines.stream()
-                    .filter(line -> !line.contains("id=" + tenderId))
+                    .filter(line -> !line.contains("id='" + id + "'"))
                     .collect(Collectors.toList());
-            Files.write(Paths.get(filePath), updatedLines);
+            Files.write(Paths.get(filePath), updatedLines, StandardOpenOption.TRUNCATE_EXISTING);
+            System.out.println("Ausschreibung wurde gelöscht");
         } catch (IOException e) {
-            throw new RuntimeException("Fehler bei löschen eines Tenders", e);
+            System.out.println("Fehler bei löschen einer Jobausschreibung");
+            throw new RuntimeException("Fehler bei löschen einer Jobausschreibung", e);
         }
     }
 
