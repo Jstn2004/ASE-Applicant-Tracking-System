@@ -1,0 +1,8 @@
+
+JobAdvertisement{id='e4b82da1-7199-4bab-827f-6caa686f704c', titel='Test', description='Test', criteria=[EvaluationAbilities{name=test, listOfAbilities=[(Test; 1), (Test; 1)], weighting=3}, EvaluationExperience{name=Halloi, points=4, experienceInYear=3, weighting=3}]}
+
+JobAdvertisement{id='b99b3cfd-6c01-4da9-b40d-a8dd6243890d', titel='test', description='Te', criteria=[EvaluationAbilities{name=Re, listOfAbilities=[(Test; 2)], weighting=3}, EvaluationExperience{name=2, points=3, experienceInYear=2, weighting=2}]}
+
+JobAdvertisement{id='7919cb8f-acd9-49c9-8dfe-82396d2f9e41', titel='Test', description='Test', criteria=[EvaluationAbilities{name=Test, listOfAbilities=[(Test; 3)], weighting=3}, EvaluationExperience{name=Tre, points=3, experienceInYear=3, weighting=4}, EvaluationKeywords{listOfKeywords=[com.ats.vo.Keyword@80669350, com.ats.vo.Keyword@80669350]}]}
+
+

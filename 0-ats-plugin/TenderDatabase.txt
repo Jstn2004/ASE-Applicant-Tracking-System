@@ -1,4 +1,0 @@
-
-JobAdvertisement{id=eb96a3c9-a33c-4869-ada2-b4d9eb20b11c, titel='Test', description='Test'}
-
-

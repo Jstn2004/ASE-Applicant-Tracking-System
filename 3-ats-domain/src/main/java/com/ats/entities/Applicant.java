@@ -6,18 +6,16 @@ import com.ats.vo.Rank;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Applicants {
+public class Applicant {
     private final UUID id;
     private String name;
     private String email;
-    private Resume resume;
     private Rank rank;
 
-    public Applicants(String name, String email, Resume resume) {
+    public Applicant(String name, String email) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.email = email;
-        this.resume = resume;
         this.rank = null;
     }
 
@@ -41,14 +39,6 @@ public class Applicants {
         this.email = email;
     }
 
-    public Resume getLebenslaufPfad() {
-        return resume;
-    }
-
-    public void setLebenslaufPfad(Resume resume) {
-        this.resume = resume;
-    }
-
     public Rank getRang() {
         return rank;
     }
@@ -60,7 +50,7 @@ public class Applicants {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Applicants applicants = (Applicants) o;
+        Applicant applicants = (Applicant) o;
         return id.equals(applicants.id);
     }
 
