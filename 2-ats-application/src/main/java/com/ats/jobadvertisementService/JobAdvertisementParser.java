@@ -65,6 +65,19 @@ public class JobAdvertisementParser {
             criteria.add(new EvaluationAbilities(name, 1, abilityList, weighting));
         }
 
+        // Regex für EvaluationExperience
+        Pattern experiencePattern = Pattern.compile("EvaluationExperience\\{name=([^,]+), points=(\\d+), experienceInYear=(\\d+), weighting=(\\d+)\\}");
+        Matcher experienceMatcher = experiencePattern.matcher(input);
+
+        while (experienceMatcher.find()) {
+            String name = experienceMatcher.group(1).trim();
+            int points = Integer.parseInt(experienceMatcher.group(2));
+            int experienceInYear = Integer.parseInt(experienceMatcher.group(3));
+            int weighting = Integer.parseInt(experienceMatcher.group(4));
+
+            criteria.add(new EvaluationExperience(name, points, experienceInYear, weighting));
+        }
+
         // Regex für EvaluationKeywords
         Pattern keywordsPattern = Pattern.compile("EvaluationKeywords\\{name=([^,]+), listOfKeywords=\\[(.*?)\\], weighting=(\\d+)\\}");
         Matcher keywordsMatcher = keywordsPattern.matcher(input);
@@ -88,19 +101,6 @@ public class JobAdvertisementParser {
                 }
             }
             criteria.add(new EvaluationKeywords(name, 1, keywordList, weighting));
-        }
-
-        // Regex für EvaluationExperience
-        Pattern experiencePattern = Pattern.compile("EvaluationExperience\\{name=([^,]+), points=(\\d+), experienceInYear=(\\d+), weighting=(\\d+)\\}");
-        Matcher experienceMatcher = experiencePattern.matcher(input);
-
-        while (experienceMatcher.find()) {
-            String name = experienceMatcher.group(1).trim();
-            int points = Integer.parseInt(experienceMatcher.group(2));
-            int experienceInYear = Integer.parseInt(experienceMatcher.group(3));
-            int weighting = Integer.parseInt(experienceMatcher.group(4));
-
-            criteria.add(new EvaluationExperience(name, points, experienceInYear, weighting));
         }
 
         return criteria;

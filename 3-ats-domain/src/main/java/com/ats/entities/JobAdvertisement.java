@@ -60,6 +60,7 @@ public class JobAdvertisement {
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (!(o instanceof JobAdvertisement that)) return false;
         return Objects.equals(id, that.id) &&
                 Objects.equals(titel, that.titel) &&

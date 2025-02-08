@@ -53,7 +53,7 @@ public class JobAdvertisementController {
 
     public void deleteJobAdvertisementById(String id)
     {
-        jobAdvertisementDeleter.deleteTender(id);
+        jobAdvertisementDeleter.deleteJobAdvertisement(id);
     }
 
     public Ability createAbility(String input)

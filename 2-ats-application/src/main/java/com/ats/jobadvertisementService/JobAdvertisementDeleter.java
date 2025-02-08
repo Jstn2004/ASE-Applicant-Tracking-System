@@ -14,7 +14,7 @@ public class JobAdvertisementDeleter {
         this.logger = logger;
     }
 
-    public void deleteTender(String id) {
+    public void deleteJobAdvertisement(String id) {
         jobAdvertisementRepository.deleteTenderById(id);
     }
 

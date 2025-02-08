@@ -35,8 +35,6 @@ public class EvaluationCriteriaCreater {
         return keyword;
     }
 
-
-
     public EvaluationAbilities generateEvaluationAbilityCriteria(String name,  List<Ability> abilityList, int weighting) {
         int points = 1;
         EvaluationAbilities evaluationAbilities = new EvaluationAbilities(name, points, abilityList, weighting);
