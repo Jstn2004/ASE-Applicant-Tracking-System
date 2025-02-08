@@ -34,8 +34,6 @@ public class JobAdvertismentValidation {
     public boolean validateAbilitieOrKeyword(String input) {
         logger.info("Validate Abilities Or Keyword: " + input);
         boolean result = Pattern.matches("^.*;\\d+$", input);
-        System.out.println(result);
-        System.out.println(input);
         if(result)
         {
             return true;

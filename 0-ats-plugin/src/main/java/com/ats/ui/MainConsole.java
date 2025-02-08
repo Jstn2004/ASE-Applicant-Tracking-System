@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 public class MainConsole {
     private final Scanner scanner = new Scanner(System.in);
     private boolean running = true;
+    private String stop;
     private final Logger logger;
     private final DatabaseConfiguration databaseConfiguration;
     private final JobAdvertisementRepository jobAdvertisementRepository;
@@ -166,8 +167,14 @@ public class MainConsole {
         System.out.println(header(header));
         System.out.println(line(header));
 
-        EvaluationAbilities evaluationAbilities = createEvaluationAbilitiesCLI();
-        evaluationCriterionIterable.add(evaluationAbilities);
+        String input;
+        do {
+            EvaluationAbilities evaluationAbilities = createEvaluationAbilitiesCLI();
+            evaluationCriterionIterable.add(evaluationAbilities);
+            System.out.println("\u001B[90mWeiter Fähigkeiten festlegen? ('y' zum Beenden 'n' zum Fortsetzen)\u001B[0m");
+            input = scanner.nextLine();
+        }while (input.equals("y"));
+
 
         EvaluationExperience evaluationExperience = createEvaluationExperienceCLI();
         evaluationCriterionIterable.add(evaluationExperience);
@@ -178,7 +185,7 @@ public class MainConsole {
     }
 
     public EvaluationAbilities createEvaluationAbilitiesCLI() {
-        System.out.println("Fähigkeiten");
+        System.out.println(header("Fähigkeiten"));
         List<String> evaluationedCriterionArguments= evaluationCriterionCLI();
         List<Ability> abilities = createAbilitieCLI();
 
@@ -186,7 +193,7 @@ public class MainConsole {
     }
 
     public EvaluationExperience createEvaluationExperienceCLI() {
-        System.out.println("Erfahrungen(jeweils mit \",\" trennen)");
+        System.out.println(header("Erfahrungen(jeweils mit \",\" trennen)"));
         List<String> evaluationedCriterionArguments= evaluationCriterionCLI();
         String experience;
         do{
@@ -198,7 +205,7 @@ public class MainConsole {
     }
 
     public EvaluationKeywords createEvaluationKeywordCLI() {
-        System.out.println("Schlüsselwörter");
+        System.out.println(header("Schlüsselwörter"));
         List<String> evaluationedCriterionArguments= evaluationCriterionCLI();
         List<Keyword> keywords = createKeywordCLI();
 
@@ -255,11 +262,6 @@ public class MainConsole {
         // Punkte
         String points;
         evaluationCriterionArguments.add(name);
-        do{
-            System.out.print("Punkte (Zahl von 1 bis 100): ");
-            points = scanner.nextLine();
-        }while (!jobAdvertisementValidationController.startPointsValidation(points));
-        evaluationCriterionArguments.add(points);
         // Gewichtung
         String weighting;
         do {
@@ -357,6 +359,7 @@ public class MainConsole {
         String line = "-".repeat(header(headertext).length());
         return line;
     }
+
 
 
 }

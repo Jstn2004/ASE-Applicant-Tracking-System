@@ -404,3 +404,151 @@ Feb. 04, 2025 4:29:14 PM com.ats.JobAdvertisementController createJobAdvertiseme
 INFORMATION: Creating Job Advertisement
 Feb. 04, 2025 4:29:14 PM com.ats.JobAdvertisementController createJobAdvertisement
 INFORMATION: [EvaluationAbilities{name=resr, listOfAbilities=[(tes; 1)], weighting=2}, EvaluationExperience{name=#test, points=34, experienceInYear=8, weighting=1}, EvaluationKeywords{name=H, listOfKeywords=[(test; 1)], weighting=5}]
+Feb. 08, 2025 2:11:14 PM com.ats.validation.JobAdvertismentValidation validatePoints
+INFORMATION: Validate: 1
+Feb. 08, 2025 2:11:14 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 1
+Feb. 08, 2025 2:11:19 PM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 2
+Feb. 08, 2025 2:11:19 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 2
+Feb. 08, 2025 2:11:55 PM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: Hallo;12
+Feb. 08, 2025 2:11:55 PM com.ats.JobAdvertisementController createAbility
+INFORMATION: Creating Ability
+Feb. 08, 2025 2:12:04 PM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: Test;22
+Feb. 08, 2025 2:12:04 PM com.ats.JobAdvertisementController createAbility
+INFORMATION: Creating Ability
+Feb. 08, 2025 2:12:05 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Feb. 08, 2025 2:12:05 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: [(Hallo; 12), (Test; 22)]
+Feb. 08, 2025 2:19:14 PM com.ats.validation.JobAdvertismentValidation validatePoints
+INFORMATION: Validate: 12
+Feb. 08, 2025 2:19:14 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 12
+Feb. 08, 2025 2:19:16 PM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 12
+Feb. 08, 2025 2:19:16 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 12
+Feb. 08, 2025 2:19:23 PM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 3
+Feb. 08, 2025 2:19:23 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 3
+Feb. 08, 2025 2:19:27 PM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: Hallo;4
+Feb. 08, 2025 2:19:27 PM com.ats.JobAdvertisementController createAbility
+INFORMATION: Creating Ability
+Feb. 08, 2025 2:19:28 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Feb. 08, 2025 2:19:28 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: [(Hallo; 4)]
+Feb. 08, 2025 2:19:42 PM com.ats.validation.JobAdvertismentValidation validatePoints
+INFORMATION: Validate: 3
+Feb. 08, 2025 2:19:42 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 3
+Feb. 08, 2025 2:19:43 PM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 12
+Feb. 08, 2025 2:19:43 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 12
+Feb. 08, 2025 2:19:44 PM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 2
+Feb. 08, 2025 2:19:44 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 2
+Feb. 08, 2025 2:19:47 PM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: Test;3
+Feb. 08, 2025 2:19:47 PM com.ats.JobAdvertisementController createAbility
+INFORMATION: Creating Ability
+Feb. 08, 2025 2:19:49 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Feb. 08, 2025 2:19:49 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: [(Test; 3)]
+Feb. 08, 2025 2:20:42 PM com.ats.validation.JobAdvertismentValidation validatePoints
+INFORMATION: Validate: 4
+Feb. 08, 2025 2:20:42 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 4
+Feb. 08, 2025 2:20:43 PM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 2
+Feb. 08, 2025 2:20:43 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 2
+Feb. 08, 2025 2:20:44 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 3
+Feb. 08, 2025 2:20:44 PM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: Creating EvaluationExperience
+Feb. 08, 2025 2:20:44 PM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: 3
+Feb. 08, 2025 2:20:48 PM com.ats.validation.JobAdvertismentValidation validatePoints
+INFORMATION: Validate: 3
+Feb. 08, 2025 2:20:48 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 3
+Feb. 08, 2025 2:20:49 PM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 2
+Feb. 08, 2025 2:20:49 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 2
+Feb. 08, 2025 2:20:52 PM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: Hallo;3
+Feb. 08, 2025 2:20:52 PM com.ats.JobAdvertisementController createKeyword
+INFORMATION: Creating Keyword
+Feb. 08, 2025 2:20:53 PM com.ats.JobAdvertisementController createEvaluationKeywords
+INFORMATION: Creating EvaluationKeywords
+Feb. 08, 2025 2:20:53 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: Creating Job Advertisement
+Feb. 08, 2025 2:20:54 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: [EvaluationAbilities{name=TEst, listOfAbilities=[(Hallo; 4)], weighting=3}, EvaluationAbilities{name=Test 2, listOfAbilities=[(Test; 3)], weighting=2}, EvaluationExperience{name=Hallo, points=4, experienceInYear=3, weighting=2}, EvaluationKeywords{name=Hallo, listOfKeywords=[(Hallo; 3)], weighting=2}]
+Feb. 08, 2025 2:30:10 PM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 5
+Feb. 08, 2025 2:30:10 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 5
+Feb. 08, 2025 2:30:27 PM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: c#;100
+Feb. 08, 2025 2:30:27 PM com.ats.JobAdvertisementController createAbility
+INFORMATION: Creating Ability
+Feb. 08, 2025 2:30:39 PM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: Docker;50
+Feb. 08, 2025 2:30:39 PM com.ats.JobAdvertisementController createAbility
+INFORMATION: Creating Ability
+Feb. 08, 2025 2:30:39 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Feb. 08, 2025 2:30:40 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: [(c#; 100), (Docker; 50)]
+Feb. 08, 2025 2:30:57 PM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 3
+Feb. 08, 2025 2:30:57 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 3
+Feb. 08, 2025 2:31:02 PM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: Englisch;50
+Feb. 08, 2025 2:31:02 PM com.ats.JobAdvertisementController createAbility
+INFORMATION: Creating Ability
+Feb. 08, 2025 2:31:07 PM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: Deutsch;100
+Feb. 08, 2025 2:31:07 PM com.ats.JobAdvertisementController createAbility
+INFORMATION: Creating Ability
+Feb. 08, 2025 2:31:08 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Feb. 08, 2025 2:31:08 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: [(Englisch; 50), (Deutsch; 100)]
+Feb. 08, 2025 2:31:30 PM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 8
+Feb. 08, 2025 2:31:30 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 8
+Feb. 08, 2025 2:31:33 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 10
+Feb. 08, 2025 2:31:33 PM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: Creating EvaluationExperience
+Feb. 08, 2025 2:31:33 PM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: 10
+Feb. 08, 2025 2:31:58 PM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 8
+Feb. 08, 2025 2:31:58 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 8
+Feb. 08, 2025 2:32:06 PM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: fleißig;10
+Feb. 08, 2025 2:32:06 PM com.ats.JobAdvertisementController createKeyword
+INFORMATION: Creating Keyword
+Feb. 08, 2025 2:32:21 PM com.ats.JobAdvertisementController createEvaluationKeywords
+INFORMATION: Creating EvaluationKeywords
+Feb. 08, 2025 2:32:21 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: Creating Job Advertisement
+Feb. 08, 2025 2:32:21 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: [EvaluationAbilities{name=Programmiersprache, listOfAbilities=[(c#; 100), (Docker; 50)], weighting=5}, EvaluationAbilities{name=Sprachen, listOfAbilities=[(Englisch; 50), (Deutsch; 100)], weighting=3}, EvaluationExperience{name=Berufserfahrungen, points=8, experienceInYear=10, weighting=8}, EvaluationKeywords{name=Schlüsselwörter, listOfKeywords=[(fleißig; 10)], weighting=8}]
