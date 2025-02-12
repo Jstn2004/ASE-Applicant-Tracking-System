@@ -16,7 +16,6 @@ public class ResumeLoader {
 
     public List<String> loadAllResumes()
     {
-        System.out.println(fileManager.loadResumeFiles());
         return fileManager.loadResumeFiles();
     }
 }

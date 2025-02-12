@@ -55,13 +55,15 @@ public class Main {
         ResumeLoader resumeLoader = new ResumeLoader(logger, fileManager);
         ResumeController resumeController = new ResumeController(logger, resumeLoader);
 
-        // UI-Komponenten zuerst erstellen
-        ResumeUI resumeUI = new ResumeUI(null,resumeController);
-        JobAdvertisementUI jobAdvertisementUI = new JobAdvertisementUI(jobAdvertisementValidationController, jobAdvertisementController, null);
+        ResumeUI resumeUI = new ResumeUI(null,resumeController, null);
+        JobAdvertisementUI jobAdvertisementUI = new JobAdvertisementUI(jobAdvertisementValidationController, jobAdvertisementController, null,null);
 
         MainConsole appKonsole = new MainConsole(logger,resumeUI, jobAdvertisementUI);
 
         jobAdvertisementUI.setMainConsole(appKonsole);
+        jobAdvertisementUI.setResumeUI(resumeUI);
+        resumeUI.setMainConsole(appKonsole);
+        resumeUI.setJobAdvertisementUI(jobAdvertisementUI);
 
         appKonsole.startCLI();
     }

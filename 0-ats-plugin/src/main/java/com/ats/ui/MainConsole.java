@@ -54,8 +54,7 @@ public class MainConsole {
             String input = scanner.next();
             switch (input) {
                 case "1":
-                    System.out.println("Lebensläufe");
-                    resumeUI.loadAllResumes();
+                    resumeUI.resumeCLI();
                     break;
                 case "2":
                     System.out.println();
