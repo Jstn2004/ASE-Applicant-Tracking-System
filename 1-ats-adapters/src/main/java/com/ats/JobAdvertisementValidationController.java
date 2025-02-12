@@ -22,6 +22,11 @@ public class JobAdvertisementValidationController {
         return jobAdvertismentValidation.validateWeighting(weighting);
     }
 
+    public boolean startBlankInputValidation(String input)
+    {
+        return jobAdvertismentValidation.validateBlankInput(input);
+    }
+
     public boolean startAbilitiesValidationOrKeyword(String ability) {
         return jobAdvertismentValidation.validateAbilitieOrKeyword(ability);
     }

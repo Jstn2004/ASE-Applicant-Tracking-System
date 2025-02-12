@@ -10,3 +10,5 @@ JobAdvertisement{id='6e5abcd8-9cef-4bd8-b415-06f4ebc400c2', titel='Test', descri
 
 JobAdvertisement{id='835b78e1-a303-452f-90ec-f268c8d0b68e', titel='Softwareentwickler', description='Ein guter bitte', criteria=[EvaluationAbilities{name=Programmiersprache, listOfAbilities=[(c#; 100), (Docker; 50)], weighting=5}, EvaluationAbilities{name=Sprachen, listOfAbilities=[(Englisch; 50), (Deutsch; 100)], weighting=3}, EvaluationExperience{name=Berufserfahrungen, points=8, experienceInYear=10, weighting=8}, EvaluationKeywords{name=Schlüsselwörter, listOfKeywords=[(fleißig; 10)], weighting=8}]}
 
+JobAdvertisement{id='43278671-dde2-4e5a-9923-8c0f8c2d3110', titel='Test', description='TEst', criteria=[EvaluationAbilities{name=Test, listOfAbilities=[(Test; 3)], weighting=4}, EvaluationExperience{name=Test, points=5, experienceInYear=7, weighting=3}, EvaluationKeywords{name=Test, listOfKeywords=[(23; 6)], weighting=4}]}
+

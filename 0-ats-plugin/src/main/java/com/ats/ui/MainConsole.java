@@ -115,7 +115,7 @@ public class MainConsole {
             String input = scanner.next();
             switch (input) {
                 case "1":
-                    newJobAdvertismentCLI();
+                    newJobAdvertisementCLI();
                     break;
                 case "2":
                     allJobAdvertismentCLI();
@@ -136,7 +136,7 @@ public class MainConsole {
 
     }
 
-    public void newJobAdvertismentCLI() {
+    public void newJobAdvertisementCLI() {
         System.out.println();
 
         String header = "Neue Jobausschreibung";
@@ -146,11 +146,13 @@ public class MainConsole {
 
         System.out.print("Titel: ");
         String title = scanner.nextLine();
-
         title = scanner.nextLine();
 
-        System.out.print("Beschreibung: ");
-        String description = scanner.nextLine();
+        String description;
+        do {
+            System.out.print("Beschreibung: ");
+            description = scanner.nextLine();
+        }while (!jobAdvertisementValidationController.startBlankInputValidation(description));
 
         Iterable<EvaluationCriterion> evaluationCriterionIterable = createEvaluationCriteriaCLI();
         jobAdvertismentController.createJobAdvertisement(title, description, evaluationCriterionIterable);
@@ -186,15 +188,15 @@ public class MainConsole {
 
     public EvaluationAbilities createEvaluationAbilitiesCLI() {
         System.out.println(header("Fähigkeiten"));
-        List<String> evaluationedCriterionArguments= evaluationCriterionCLI();
+        List<String> evaluationedCriterionArguments= evaluationCriterionCLI(false);
         List<Ability> abilities = createAbilitieCLI();
 
         return jobAdvertismentController.createEvaluationAbilities(evaluationedCriterionArguments, abilities);
     }
 
     public EvaluationExperience createEvaluationExperienceCLI() {
-        System.out.println(header("Erfahrungen(jeweils mit \",\" trennen)"));
-        List<String> evaluationedCriterionArguments= evaluationCriterionCLI();
+        System.out.println(header("Erfahrungen"));
+        List<String> evaluationedCriterionArguments= evaluationCriterionCLI(true);
         String experience;
         do{
             System.out.print("Erfahrungen (In Jahren angeben): ");
@@ -206,7 +208,7 @@ public class MainConsole {
 
     public EvaluationKeywords createEvaluationKeywordCLI() {
         System.out.println(header("Schlüsselwörter"));
-        List<String> evaluationedCriterionArguments= evaluationCriterionCLI();
+        List<String> evaluationedCriterionArguments= evaluationCriterionCLI(false);
         List<Keyword> keywords = createKeywordCLI();
 
         return jobAdvertismentController.createEvaluationKeywords(evaluationedCriterionArguments, keywords);
@@ -255,13 +257,27 @@ public class MainConsole {
     }
 
 
-    public List<String> evaluationCriterionCLI(){
+    public List<String> evaluationCriterionCLI(boolean pointsNeeded){
         List<String> evaluationCriterionArguments= new LinkedList<>();
-        System.out.print("Name: ");
-        String name = scanner.nextLine();
-        // Punkte
-        String points;
+
+        String name;
+        do {
+            System.out.print("Name: ");
+            name= scanner.nextLine();
+        }while (!jobAdvertisementValidationController.startBlankInputValidation(name));
         evaluationCriterionArguments.add(name);
+
+        // Punkte
+        if (pointsNeeded) {
+            String points;
+            do {
+                System.out.print("Punkte (Zahl von 1 bis 100): ");
+                points = scanner.nextLine();
+            }while (!jobAdvertisementValidationController.startPointsValidation(points));
+            evaluationCriterionArguments.add(points);
+        }
+
+
         // Gewichtung
         String weighting;
         do {

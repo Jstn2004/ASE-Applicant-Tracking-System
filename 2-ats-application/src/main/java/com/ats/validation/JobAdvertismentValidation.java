@@ -65,6 +65,19 @@ public class JobAdvertismentValidation {
         }
     }
 
+    public boolean validateBlankInput(String input)
+    {
+        logger.info("Validate Blank Input: " + input);
+        if(!input.isBlank())
+        {
+            return true;
+        }
+        else{
+            System.out.println("\u001B[31mPflichfeld. Bitte gebe einen Werte ein\u001B[0m");
+            return false;
+        }
+    }
+
     public boolean isValidNumber(String input) {
         logger.info("Validate Number: " + input);
         try {
