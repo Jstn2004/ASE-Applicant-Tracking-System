@@ -552,3 +552,259 @@ Feb. 08, 2025 2:32:21 PM com.ats.JobAdvertisementController createJobAdvertiseme
 INFORMATION: Creating Job Advertisement
 Feb. 08, 2025 2:32:21 PM com.ats.JobAdvertisementController createJobAdvertisement
 INFORMATION: [EvaluationAbilities{name=Programmiersprache, listOfAbilities=[(c#; 100), (Docker; 50)], weighting=5}, EvaluationAbilities{name=Sprachen, listOfAbilities=[(Englisch; 50), (Deutsch; 100)], weighting=3}, EvaluationExperience{name=Berufserfahrungen, points=8, experienceInYear=10, weighting=8}, EvaluationKeywords{name=Schlüsselwörter, listOfKeywords=[(fleißig; 10)], weighting=8}]
+Feb. 12, 2025 9:13:56 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 2
+Feb. 12, 2025 9:13:56 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 2
+Feb. 12, 2025 9:14:01 AM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: hallo,2
+Feb. 12, 2025 9:14:05 AM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: hallo;1
+Feb. 12, 2025 9:14:05 AM com.ats.JobAdvertisementController createAbility
+INFORMATION: Creating Ability
+Feb. 12, 2025 9:14:07 AM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Feb. 12, 2025 9:14:07 AM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: [(hallo; 1)]
+Feb. 12, 2025 9:14:22 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: s
+Feb. 12, 2025 9:14:22 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: s
+Feb. 12, 2025 9:14:26 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 3
+Feb. 12, 2025 9:14:26 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 3
+Feb. 12, 2025 9:14:27 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 3
+Feb. 12, 2025 9:14:27 AM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: Creating EvaluationExperience
+Feb. 12, 2025 9:14:27 AM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: 3
+Feb. 12, 2025 9:17:31 AM com.ats.validation.JobAdvertismentValidation validatePoints
+INFORMATION: Validate: 4
+Feb. 12, 2025 9:17:31 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 4
+Feb. 12, 2025 9:17:31 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 4
+Feb. 12, 2025 9:17:31 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 4
+Feb. 12, 2025 9:17:34 AM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Feb. 12, 2025 9:17:34 AM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: []
+Feb. 12, 2025 9:17:40 AM com.ats.validation.JobAdvertismentValidation validatePoints
+INFORMATION: Validate: 4
+Feb. 12, 2025 9:17:40 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 4
+Feb. 12, 2025 9:17:41 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 2
+Feb. 12, 2025 9:17:41 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 2
+Feb. 12, 2025 9:17:43 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 7
+Feb. 12, 2025 9:17:43 AM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: Creating EvaluationExperience
+Feb. 12, 2025 9:17:43 AM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: 7
+Feb. 12, 2025 9:17:49 AM com.ats.validation.JobAdvertismentValidation validatePoints
+INFORMATION: Validate: 4
+Feb. 12, 2025 9:17:49 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 4
+Feb. 12, 2025 9:17:50 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 2
+Feb. 12, 2025 9:17:50 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 2
+Feb. 12, 2025 9:19:13 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 4
+Feb. 12, 2025 9:19:13 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 4
+Feb. 12, 2025 9:19:16 AM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: Test;3
+Feb. 12, 2025 9:19:16 AM com.ats.JobAdvertisementController createAbility
+INFORMATION: Creating Ability
+Feb. 12, 2025 9:19:18 AM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Feb. 12, 2025 9:19:18 AM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: [(Test; 3)]
+Feb. 12, 2025 9:19:27 AM com.ats.validation.JobAdvertismentValidation validatePoints
+INFORMATION: Validate: 5
+Feb. 12, 2025 9:19:27 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 5
+Feb. 12, 2025 9:19:28 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 13
+Feb. 12, 2025 9:19:28 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 13
+Feb. 12, 2025 9:19:30 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 3
+Feb. 12, 2025 9:19:30 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 3
+Feb. 12, 2025 9:19:31 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 7
+Feb. 12, 2025 9:19:31 AM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: Creating EvaluationExperience
+Feb. 12, 2025 9:19:31 AM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: 7
+Feb. 12, 2025 9:19:35 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 4
+Feb. 12, 2025 9:19:35 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 4
+Feb. 12, 2025 9:19:38 AM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: 23;6
+Feb. 12, 2025 9:19:38 AM com.ats.JobAdvertisementController createKeyword
+INFORMATION: Creating Keyword
+Feb. 12, 2025 9:19:40 AM com.ats.JobAdvertisementController createEvaluationKeywords
+INFORMATION: Creating EvaluationKeywords
+Feb. 12, 2025 9:19:40 AM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: Creating Job Advertisement
+Feb. 12, 2025 9:19:40 AM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: [EvaluationAbilities{name=Test, listOfAbilities=[(Test; 3)], weighting=4}, EvaluationExperience{name=Test, points=5, experienceInYear=7, weighting=3}, EvaluationKeywords{name=Test, listOfKeywords=[(23; 6)], weighting=4}]
+Feb. 12, 2025 9:28:14 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:28:15 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:28:51 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:28:55 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:28:55 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:28:55 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 
+Feb. 12, 2025 9:28:55 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 
+Feb. 12, 2025 9:28:55 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 
+Feb. 12, 2025 9:28:55 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 
+Feb. 12, 2025 9:28:55 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 
+Feb. 12, 2025 9:28:55 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 
+Feb. 12, 2025 9:28:55 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 
+Feb. 12, 2025 9:28:55 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 
+Feb. 12, 2025 9:28:56 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 
+Feb. 12, 2025 9:28:56 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 
+Feb. 12, 2025 9:28:56 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 
+Feb. 12, 2025 9:28:56 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 
+Feb. 12, 2025 9:28:56 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 
+Feb. 12, 2025 9:28:56 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 
+Feb. 12, 2025 9:28:56 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 
+Feb. 12, 2025 9:28:56 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 
+Feb. 12, 2025 9:30:13 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:06 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:09 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:10 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:10 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:11 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:12 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:12 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:13 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:13 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:13 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:14 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:14 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:14 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:14 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:14 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:15 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:15 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:15 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:15 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:15 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:16 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:16 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:16 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:16 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:16 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:17 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:17 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:17 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:17 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:17 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:17 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:17 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:18 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:18 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:32:19 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: f
+Feb. 12, 2025 9:33:07 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:33:12 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:33:13 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:33:14 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:33:15 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:33:15 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:33:15 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:33:15 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:33:15 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:33:15 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:33:16 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:33:18 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: test
+Feb. 12, 2025 9:34:02 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:34:08 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: test
+Feb. 12, 2025 9:34:10 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: test
+Feb. 12, 2025 9:34:15 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 9:34:18 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: test
+Feb. 12, 2025 9:38:04 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: 
