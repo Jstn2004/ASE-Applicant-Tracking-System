@@ -2,6 +2,7 @@ package com.ats.ui;
 
 import com.ats.JobAdvertisementController;
 import com.ats.JobAdvertisementValidationController;
+import com.ats.ResumeController;
 import com.ats.entities.EvaluationCriterion;
 import com.ats.entities.criteria.EvaluationAbilities;
 import com.ats.entities.criteria.EvaluationExperience;
@@ -33,6 +34,7 @@ public class MainConsole {
     private final EvaluationCriteriaCreater evaluationCriteriaCreater;
     private final JobAdvertismentValidation jobAdvertismentValidation;
     private final JobAdvertisementController jobAdvertismentController;
+    private final ResumeController resumeController;
     private final JobAdvertisementValidationController jobAdvertisementValidationController;
 
 
@@ -45,7 +47,7 @@ public class MainConsole {
                        JobAdvertisementParser jobAdvertisementParser,
                        EvaluationCriteriaCreater evaluationCriteriaCreater,
                        JobAdvertismentValidation jobAdvertismentValidation,
-                       JobAdvertisementController jobAdvertismentController,
+                       JobAdvertisementController jobAdvertismentController, ResumeController resumeController,
                        JobAdvertisementValidationController jobAdvertisementValidationController) {
         this.logger = logger;
         this.databaseConfiguration = databaseConfiguration;
@@ -57,6 +59,7 @@ public class MainConsole {
         this.evaluationCriteriaCreater = evaluationCriteriaCreater;
         this.jobAdvertismentValidation = jobAdvertismentValidation;
         this.jobAdvertismentController = jobAdvertismentController;
+        this.resumeController = resumeController;
         this.jobAdvertisementValidationController = jobAdvertisementValidationController;
     }
 
@@ -80,6 +83,7 @@ public class MainConsole {
             switch (input) {
                 case "1":
                     System.out.println("Lebensläufe");
+                    loadallResumes();
                     break;
                 case "2":
                     System.out.println();
@@ -95,6 +99,11 @@ public class MainConsole {
             }
         }
         scanner.close();
+    }
+
+    public void loadallResumes()
+    {
+        resumeController.loadAllResumes();
     }
 
     public void jobAdvertismentCLI() {
