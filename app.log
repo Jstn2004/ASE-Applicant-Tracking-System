@@ -808,3 +808,51 @@ Feb. 12, 2025 9:34:18 AM com.ats.validation.JobAdvertismentValidation validateBl
 INFORMATION: Validate Blank Input: test
 Feb. 12, 2025 9:38:04 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
 INFORMATION: Validate Blank Input: 
+Feb. 12, 2025 11:40:07 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: Hallo
+Feb. 12, 2025 11:40:09 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: Test
+Feb. 12, 2025 11:40:10 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 5
+Feb. 12, 2025 11:40:10 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 5
+Feb. 12, 2025 11:40:14 AM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: Hallo;3
+Feb. 12, 2025 11:40:14 AM com.ats.JobAdvertisementController createAbility
+INFORMATION: Creating Ability
+Feb. 12, 2025 11:40:16 AM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Feb. 12, 2025 11:40:16 AM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: [(Hallo; 3)]
+Feb. 12, 2025 11:40:19 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: Hallio
+Feb. 12, 2025 11:40:20 AM com.ats.validation.JobAdvertismentValidation validatePoints
+INFORMATION: Validate: 5
+Feb. 12, 2025 11:40:20 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 5
+Feb. 12, 2025 11:40:21 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 2
+Feb. 12, 2025 11:40:21 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 2
+Feb. 12, 2025 11:40:23 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 10
+Feb. 12, 2025 11:40:23 AM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: Creating EvaluationExperience
+Feb. 12, 2025 11:40:23 AM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: 10
+Feb. 12, 2025 11:40:29 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: Tets
+Feb. 12, 2025 11:40:30 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 5
+Feb. 12, 2025 11:40:30 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 5
+Feb. 12, 2025 11:40:34 AM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: hallo;90
+Feb. 12, 2025 11:40:34 AM com.ats.JobAdvertisementController createKeyword
+INFORMATION: Creating Keyword
+Feb. 12, 2025 11:40:35 AM com.ats.JobAdvertisementController createEvaluationKeywords
+INFORMATION: Creating EvaluationKeywords
+Feb. 12, 2025 11:40:35 AM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: Creating Job Advertisement
+Feb. 12, 2025 11:40:35 AM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: [EvaluationAbilities{name=Test, listOfAbilities=[(Hallo; 3)], weighting=5}, EvaluationExperience{name=Hallio, points=5, experienceInYear=10, weighting=2}, EvaluationKeywords{name=Tets, listOfKeywords=[(hallo; 90)], weighting=5}]

@@ -12,3 +12,5 @@ JobAdvertisement{id='835b78e1-a303-452f-90ec-f268c8d0b68e', titel='Softwareentwi
 
 JobAdvertisement{id='43278671-dde2-4e5a-9923-8c0f8c2d3110', titel='Test', description='TEst', criteria=[EvaluationAbilities{name=Test, listOfAbilities=[(Test; 3)], weighting=4}, EvaluationExperience{name=Test, points=5, experienceInYear=7, weighting=3}, EvaluationKeywords{name=Test, listOfKeywords=[(23; 6)], weighting=4}]}
 
+JobAdvertisement{id='de420b05-d799-4e2b-82a9-8c3788c82dbc', titel='Test', description='Hallo', criteria=[EvaluationAbilities{name=Test, listOfAbilities=[(Hallo; 3)], weighting=5}, EvaluationExperience{name=Hallio, points=5, experienceInYear=10, weighting=2}, EvaluationKeywords{name=Tets, listOfKeywords=[(hallo; 90)], weighting=5}]}
+

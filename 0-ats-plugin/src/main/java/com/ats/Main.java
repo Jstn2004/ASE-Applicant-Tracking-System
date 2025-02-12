@@ -10,7 +10,9 @@ import com.ats.repositories.JobAdvertisementRepository;
 import com.ats.resumeService.ResumeLoader;
 import com.ats.resumes.FileManagerConfigurationImpl;
 import com.ats.resumes.FileManagerImpl;
+import com.ats.ui.JobAdvertisementUI;
 import com.ats.ui.MainConsole;
+import com.ats.ui.ResumeUI;
 import com.ats.validation.JobAdvertismentValidation;
 
 import java.io.IOException;
@@ -47,15 +49,20 @@ public class Main {
         JobAdvertisementController jobAdvertisementController = new JobAdvertisementController(logger, jobAdvertisementDeleter, jobAdvertisementCreater, jobAdvertisementLoader, jobAdvertisementParser, evaluationCriteriaCreater);
         JobAdvertisementValidationController jobAdvertisementValidationController = new JobAdvertisementValidationController(jobAdvertismentValidation, logger);
 
+
         FileManagerConfiguration fileManagerConfiguration = new FileManagerConfigurationImpl();
         FileManager fileManager = new FileManagerImpl(fileManagerConfiguration.getInputFolderPath());
         ResumeLoader resumeLoader = new ResumeLoader(logger, fileManager);
         ResumeController resumeController = new ResumeController(logger, resumeLoader);
 
-        MainConsole appKonsole = new MainConsole(logger, databaseConfiguration, jobAdvertisementRepository, jobAdvertisementCreater,
-                jobAdvertisementLoader, jobAdvertisementDeleter, jobAdvertisementParser,
-                evaluationCriteriaCreater, jobAdvertismentValidation, jobAdvertisementController,resumeController,
-                jobAdvertisementValidationController);
+        // UI-Komponenten zuerst erstellen
+        ResumeUI resumeUI = new ResumeUI(null,resumeController);
+        JobAdvertisementUI jobAdvertisementUI = new JobAdvertisementUI(jobAdvertisementValidationController, jobAdvertisementController, null);
+
+        MainConsole appKonsole = new MainConsole(logger,resumeUI, jobAdvertisementUI);
+
+        jobAdvertisementUI.setMainConsole(appKonsole);
+
         appKonsole.startCLI();
     }
 }
