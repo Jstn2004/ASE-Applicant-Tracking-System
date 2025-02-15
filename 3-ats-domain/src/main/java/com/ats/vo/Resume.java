@@ -7,20 +7,15 @@ import java.util.Objects;
 
 public final class Resume {
     private final String path;
-    private final Applicant application;
 
-    public Resume(String pfad, Applicant application) {
+    public Resume(String pfad) {
         this.path = pfad;
-        this.application = application;
     }
 
     public String getPath() {
         return path;
     }
 
-    public Applicant getApplication() {
-        return application;
-    }
 
 
     @Override

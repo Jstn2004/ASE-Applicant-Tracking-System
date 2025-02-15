@@ -11,8 +11,15 @@ public class Applicant {
     private String name;
     private String email;
     private Rank rank;
+    private String phoneNumber;
+    private String address;
+    private Resume resume;
 
-    public Applicant(String name, String email) {
+
+    public Applicant(String name, String email, String phoneNumber, String address, Resume resume) {
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.resume = resume;
         this.id = UUID.randomUUID();
         this.name = name;
         this.email = email;
@@ -46,6 +53,39 @@ public class Applicant {
     public void setRang(Rank rank) {
         this.rank = rank;
     }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public void setRank(Rank rank) {
+        this.rank = rank;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Resume getResume() {
+        return resume;
+    }
+
+    public void setResume(Resume resume) {
+        this.resume = resume;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,4 +98,5 @@ public class Applicant {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }

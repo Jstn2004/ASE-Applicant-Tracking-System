@@ -1,22 +1,5 @@
 package com.ats.ui;
 
-import com.ats.JobAdvertisementController;
-import com.ats.JobAdvertisementValidationController;
-import com.ats.ResumeController;
-import com.ats.entities.EvaluationCriterion;
-import com.ats.entities.criteria.EvaluationAbilities;
-import com.ats.entities.criteria.EvaluationExperience;
-import com.ats.entities.criteria.EvaluationKeywords;
-import com.ats.interfaces.DatabaseConfiguration;
-import com.ats.jobadvertisementService.*;
-import com.ats.repositories.JobAdvertisementRepository;
-import com.ats.validation.JobAdvertismentValidation;
-import com.ats.vo.Ability;
-import com.ats.vo.Keyword;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 

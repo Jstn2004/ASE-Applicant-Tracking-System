@@ -29,12 +29,16 @@ public class ResumeUI {
         System.out.println(mainConsole.line(header));
 
         System.out.printf("Vorhandene Lebensläufe:   \u001B[93m%d\u001B[0m%n", resumeController.numberOfResumes);
-        System.out.println();
+
+        if(resumeController.getActiveJobAdvertisement() != null) {
+            System.out.printf("Ausgewähltes Jobangebot: \u001B[93m%s%n\u001B[0m%n", resumeController.getActiveJobAdvertisement().getTitel());
+        }
 
         System.out.println("Wählen Sie eine Option:");
         System.out.println("1: Jobausschreibung auswählen");
-        System.out.println("2: Zurück");
-        System.out.println("3: Beenden");
+        System.out.println("2: Lebenslaufanalyse starten");
+        System.out.println("3: Zurück");
+        System.out.println("4: Beenden");
         System.out.print("Eingabe:");
         while (running) {
             String input = scanner.next();
@@ -43,9 +47,11 @@ public class ResumeUI {
                     jobAdvertisementUI.allJobAdvertismentCLI(true);
                     break;
                 case "2":
-                    mainConsole.startCLI();
                     break;
                 case "3":
+                    mainConsole.startCLI();
+                    break;
+                case "4":
                     System.out.println("Beenden");
                     running = false;
                     break;

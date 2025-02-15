@@ -60,4 +60,23 @@ public class JobAdvertisementRepositoryImpl implements JobAdvertisementRepositor
         }
     }
 
+    public String getJobAdvertisementById(String id) {
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            String result = lines.stream()
+                    .filter(line -> line.contains("id='" + id + "'"))
+                    .collect(Collectors.joining("\n"));
+            if (result.isEmpty()) {
+                System.out.println("\u001B[31mKeine Jobausschreibung mit der ID gefunden: " + id + "\u001B[0m");
+                return null;
+            }
+
+            return result;
+
+        } catch (IOException e) {
+            System.out.println("Fehler beim Lesen der Jobausschreibungen");
+            throw new RuntimeException("Fehler beim Lesen der Jobausschreibungen", e);
+        }
+    }
+
 }

@@ -20,12 +20,14 @@ public class JobAdvertisementUI {
     private boolean running = true;
     private final JobAdvertisementValidationController jobAdvertisementValidationController;
     private final JobAdvertisementController jobAdvertismentController;
+    private final ResumeController resumeController;
     private MainConsole mainConsole;
     private ResumeUI resumeUI;
 
-    public JobAdvertisementUI(JobAdvertisementValidationController jobAdvertisementValidationController, JobAdvertisementController jobAdvertismentController, MainConsole mainConsole, ResumeUI resumeUI) {
+    public JobAdvertisementUI(JobAdvertisementValidationController jobAdvertisementValidationController, JobAdvertisementController jobAdvertismentController, ResumeController resumeController, MainConsole mainConsole, ResumeUI resumeUI) {
         this.jobAdvertisementValidationController = jobAdvertisementValidationController;
         this.jobAdvertismentController = jobAdvertismentController;
+        this.resumeController = resumeController;
         this.mainConsole = mainConsole;
         this.resumeUI = resumeUI;
     }
@@ -336,9 +338,9 @@ public class JobAdvertisementUI {
         System.out.println(mainConsole.line(header));
 
         System.out.println("Zum Auswählen die ID der Ausschreibung eingeben");
-        String idToDelete = scanner.next();
-        jobAdvertismentController.deleteJobAdvertisementById(idToDelete);
-        allJobAdvertismentCLI(false);
+        String id = scanner.next();
+        String result = resumeController.selectedResume(id);
+        resumeUI.resumeCLI();
 
     }
 

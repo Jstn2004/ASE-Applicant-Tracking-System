@@ -8,4 +8,5 @@ public interface JobAdvertisementRepository {
         void saveJobAdvertisement(JobAdvertisement jobAdvertisement);
         List<String> loadTender();
         void deleteTenderById(String tenderId);
+        String getJobAdvertisementById(String id);
 }

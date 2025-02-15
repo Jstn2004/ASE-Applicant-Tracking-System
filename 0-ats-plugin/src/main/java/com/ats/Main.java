@@ -7,7 +7,7 @@ import com.ats.interfaces.FileManager;
 import com.ats.interfaces.FileManagerConfiguration;
 import com.ats.jobadvertisementService.*;
 import com.ats.repositories.JobAdvertisementRepository;
-import com.ats.resumeService.ResumeLoader;
+import com.ats.resumeService.ResumeService;
 import com.ats.resumes.FileManagerConfigurationImpl;
 import com.ats.resumes.FileManagerImpl;
 import com.ats.ui.JobAdvertisementUI;
@@ -52,11 +52,11 @@ public class Main {
 
         FileManagerConfiguration fileManagerConfiguration = new FileManagerConfigurationImpl();
         FileManager fileManager = new FileManagerImpl(fileManagerConfiguration.getInputFolderPath());
-        ResumeLoader resumeLoader = new ResumeLoader(logger, fileManager);
+        ResumeService resumeLoader = new ResumeService(logger, fileManager, jobAdvertisementRepository, jobAdvertisementParser);
         ResumeController resumeController = new ResumeController(logger, resumeLoader);
 
         ResumeUI resumeUI = new ResumeUI(null,resumeController, null);
-        JobAdvertisementUI jobAdvertisementUI = new JobAdvertisementUI(jobAdvertisementValidationController, jobAdvertisementController, null,null);
+        JobAdvertisementUI jobAdvertisementUI = new JobAdvertisementUI(jobAdvertisementValidationController, jobAdvertisementController, resumeController,null,null);
 
         MainConsole appKonsole = new MainConsole(logger,resumeUI, jobAdvertisementUI);
 
