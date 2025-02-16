@@ -37,7 +37,7 @@ public class JobAdvertisementController {
         this.evaluationCriteriaCreater = evaluationCriteriaCreater;
     }
 
-    public void createJobAdvertisement(String title, String description, Iterable<EvaluationCriterion> criteria)
+    public void createJobAdvertisement(String title, String description, List<EvaluationCriterion> criteria)
     {
         this.logger.info("Creating Job Advertisement");
         this.logger.info(criteria.toString());

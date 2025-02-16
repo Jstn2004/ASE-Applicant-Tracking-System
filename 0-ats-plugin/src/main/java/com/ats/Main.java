@@ -68,7 +68,7 @@ public class Main {
 
     private static ResumeController getResumeController(JobAdvertisementRepository jobAdvertisementRepository, JobAdvertisementParser jobAdvertisementParser) {
         ApplicantCreater applicantCreater = new ApplicantCreater();
-        ResumeAnalyser resumeAnalyser = new ResumeAnalyser();
+        ResumeAnalyser resumeAnalyser = new ResumeAnalyser(logger);
 
         FileManagerConfiguration fileManagerConfiguration = new FileManagerConfigurationImpl();
         FileManager fileManager = new FileManagerImpl(fileManagerConfiguration.getInputFolderPath());

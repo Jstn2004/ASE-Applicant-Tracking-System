@@ -47,7 +47,8 @@ public class ResumeUI {
                     jobAdvertisementUI.allJobAdvertismentCLI(true);
                     break;
                 case "2":
-                    resumeController.startResumeAnalyse();
+                    boolean result = resumeController.startResumeAnalyse();
+                    if(result) loader();
                     break;
                 case "3":
                     mainConsole.startCLI();
@@ -65,7 +66,28 @@ public class ResumeUI {
 
     }
 
+    private static final String YELLOW = "\u001B[33m";
+    private static final String RESET = "\u001B[0m";
 
+    public static void loader() {
+        String[] animation = { "|", "/", "-", "\\" };
+        final String message = "Lebensläufe werden analysiert: ";
+
+        System.out.print(YELLOW + message + RESET);
+
+        int i = 0;
+        while (true) {
+            try {
+                System.out.print("\r" + YELLOW + message + animation[i % animation.length] + RESET);
+                Thread.sleep(200);
+                i++;
+            } catch (InterruptedException e) {
+                System.err.println("\nLadevorgang unterbrochen!");
+                Thread.currentThread().interrupt();
+                break;
+            }
+        }
+    }
     public void setMainConsole(MainConsole mainConsole) {
         this.mainConsole = mainConsole;
     }

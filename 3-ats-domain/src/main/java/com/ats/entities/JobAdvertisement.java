@@ -1,6 +1,7 @@
 package com.ats.entities;
 
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -20,10 +21,10 @@ public class JobAdvertisement {
     private final String id;
     private String titel;
     private String description;
-    private Iterable<EvaluationCriterion> criteria;
+    private List<EvaluationCriterion> criteria;
 
 
-    public JobAdvertisement(String id, String titel, String description, Iterable<EvaluationCriterion> criteria) {
+    public JobAdvertisement(String id, String titel, String description, List<EvaluationCriterion> criteria) {
         this.id = id;
         this.titel = titel;
         this.description = description;
@@ -38,11 +39,11 @@ public class JobAdvertisement {
         this.description = description;
     }
 
-    public void setCriteria(Iterable<EvaluationCriterion> criteria) {
+    public void setCriteria(List<EvaluationCriterion> criteria) {
         this.criteria = criteria;
     }
 
-    public Iterable<EvaluationCriterion> getCriteria() {
+    public List<EvaluationCriterion> getCriteria() {
         return criteria;
     }
 

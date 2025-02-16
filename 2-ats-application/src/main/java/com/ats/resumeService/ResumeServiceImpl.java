@@ -48,16 +48,18 @@ public class ResumeServiceImpl implements ResumeService {
         return selectedJobAdvertisement.getTitel();
     }
 
-    public void startResumeAnalysing()
+    public boolean startResumeAnalysing()
     {
         if(selectedJobAdvertisement != null)
         {
             logger.info("Starting resume analysing");
             List<Applicant> listofApplicants = applicantCreater.getApplicantFromResume(loadedResumes);
             resumeAnalyser.analyseResume(listofApplicants, selectedJobAdvertisement);
+            return true;
         }else
         {
             System.out.println("\033[0;31mBitte wähle zuerst ein Jobangebot an\033[0m");
+            return false;
         }
 
     };

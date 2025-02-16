@@ -31,8 +31,8 @@ public class ResumeController {
         return resumeService.selectedJobAdvertisement;
     }
 
-    public void startResumeAnalyse()
+    public boolean startResumeAnalyse()
     {
-        resumeService.startResumeAnalysing();
+        return resumeService.startResumeAnalysing();
     }
 }

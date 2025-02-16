@@ -97,14 +97,14 @@ public class JobAdvertisementUI {
             description = scanner.nextLine();
         }while (!jobAdvertisementValidationController.startBlankInputValidation(description));
 
-        Iterable<EvaluationCriterion> evaluationCriterionIterable = createEvaluationCriteriaCLI();
+        List<EvaluationCriterion> evaluationCriterionIterable = createEvaluationCriteriaCLI();
         jobAdvertismentController.createJobAdvertisement(title, description, evaluationCriterionIterable);
 
         jobAdvertismentCLI();
         //kriterienCLI();
     }
 
-    public Iterable<EvaluationCriterion> createEvaluationCriteriaCLI() {
+    public List<EvaluationCriterion> createEvaluationCriteriaCLI() {
         LinkedList<EvaluationCriterion> evaluationCriterionIterable = new LinkedList<>();
         //Erstellen von Fähigkeits Bewertungen
         String header = "Bewertungskriterien festlegen ";

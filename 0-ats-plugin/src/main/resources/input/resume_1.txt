@@ -3,15 +3,11 @@ E-Mail: max.mustermann@email.com
 Telefon: +49 170 1234567
 Adresse: Musterstraße 1, 12345 Musterstadt, Deutschland
 
----
-
 ## Fähigkeiten
 
 - Programmiersprachen: Python, Java, C++
 - Sprachen: Deutsch, Englisch
 - Sonstige: Teamfähigkeit, Problemlösung, schnelles Lernen
-
----
 
 ## Erfahrung
 
@@ -21,8 +17,6 @@ Adresse: Musterstraße 1, 12345 Musterstadt, Deutschland
 - Praktikum IT-Support bei ITSolutions (2021 - 2022)
   - Fehleranalyse und Behebung technischer Probleme
   - Kundenberatung und Unterstützung
-
----
 
 ## Hobbys & Interessen
 

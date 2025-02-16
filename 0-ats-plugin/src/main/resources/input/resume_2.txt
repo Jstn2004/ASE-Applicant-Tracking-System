@@ -3,7 +3,6 @@ E-Mail: max.mustermann@email.com
 Telefon: +49 170 1234567
 Adresse: Musterstraße 1, 12345 Musterstadt, Deutschland
 
----
 
 ## Fähigkeiten
 
@@ -11,7 +10,6 @@ Adresse: Musterstraße 1, 12345 Musterstadt, Deutschland
 - Sprachen: Deutsch, Englisch, Spanish
 - Sonstige: Teamfähigkeit, Eigenständig, schnelles Lernen
 
----
 
 ## Erfahrung
 
@@ -19,7 +17,6 @@ Adresse: Musterstraße 1, 12345 Musterstadt, Deutschland
   - Entwicklung und Wartung von Webanwendungen
   - Optimierung bestehender Codebasis
 
----
 
 ## Hobbys & Interessen
 
