@@ -1,17 +1,17 @@
 package com.ats;
 
 import com.ats.entities.JobAdvertisement;
-import com.ats.resumeService.ResumeService;
+import com.ats.resumeService.ResumeServiceImpl;
 
 import java.util.logging.Logger;
 
 public class ResumeController {
 
     private final Logger logger;
-    private final ResumeService resumeService;
+    private final ResumeServiceImpl resumeService;
     public int numberOfResumes = 0;
 
-    public ResumeController(Logger logger, ResumeService resumeLoader) {
+    public ResumeController(Logger logger, ResumeServiceImpl resumeLoader) {
         this.logger = logger;
         this.resumeService = resumeLoader;
     }
@@ -29,5 +29,10 @@ public class ResumeController {
     public JobAdvertisement getActiveJobAdvertisement()
     {
         return resumeService.selectedJobAdvertisement;
+    }
+
+    public void startResumeAnalyse()
+    {
+        resumeService.startResumeAnalysing();
     }
 }

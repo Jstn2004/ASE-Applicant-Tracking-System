@@ -99,4 +99,16 @@ public class Applicant {
         return Objects.hash(id);
     }
 
+    @Override
+    public String toString() {
+        return "Applicant{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", rank=" + rank +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", resume=" + resume +
+                '}';
+    }
 }

@@ -1,5 +1,7 @@
 Name: Max Mustermann
 E-Mail: max.mustermann@email.com
+Telefon: +49 170 1234567
+Adresse: Musterstraße 1, 12345 Musterstadt, Deutschland
 
 ---
 

@@ -1,27 +1,35 @@
 package com.ats.resumeService;
 
+import com.ats.entities.Applicant;
 import com.ats.entities.JobAdvertisement;
 import com.ats.interfaces.FileManager;
+import com.ats.interfaces.ResumeService;
 import com.ats.jobadvertisementService.JobAdvertisementParser;
 import com.ats.repositories.JobAdvertisementRepository;
+import com.ats.services.ApplicantCreater;
+import com.ats.services.ResumeAnalyser;
 
 import java.util.List;
 import java.util.logging.Logger;
 
-public class ResumeService {
+public class ResumeServiceImpl implements ResumeService {
     private final Logger logger;
     private final FileManager fileManager;
     private final JobAdvertisementRepository jobAdvertisementRepository;
     private final JobAdvertisementParser jobAdvertisementParser;
+    private final ApplicantCreater applicantCreater;
+    private final ResumeAnalyser resumeAnalyser;
 
     public List<String> loadedResumes;
     public JobAdvertisement selectedJobAdvertisement = null;
 
-    public ResumeService(Logger logger, FileManager fileManager, JobAdvertisementRepository jobAdvertisementRepository, JobAdvertisementParser jobAdvertisementParser) {
+    public ResumeServiceImpl(Logger logger, FileManager fileManager, JobAdvertisementRepository jobAdvertisementRepository, JobAdvertisementParser jobAdvertisementParser, ApplicantCreater applicantCreater, ResumeAnalyser resumeAnalyser) {
         this.logger = logger;
         this.fileManager = fileManager;
         this.jobAdvertisementRepository = jobAdvertisementRepository;
         this.jobAdvertisementParser = jobAdvertisementParser;
+        this.applicantCreater = applicantCreater;
+        this.resumeAnalyser = resumeAnalyser;
     }
 
     public List<String> loadAllResumes()
@@ -38,8 +46,24 @@ public class ResumeService {
         logger.info("Selected resume: " + selectedResumes);
         selectedJobAdvertisement = jobAdvertisementParser.parseJobAdvertisementString(selectedResumes);
         return selectedJobAdvertisement.getTitel();
-
-
     }
+
+    public void startResumeAnalysing()
+    {
+        if(selectedJobAdvertisement != null)
+        {
+            logger.info("Starting resume analysing");
+            List<Applicant> listofApplicants = applicantCreater.getApplicantFromResume(loadedResumes);
+            resumeAnalyser.analyseResume(listofApplicants, selectedJobAdvertisement);
+        }else
+        {
+            System.out.println("\033[0;31mBitte wähle zuerst ein Jobangebot an\033[0m");
+        }
+
+    };
+
+
+
+
 
 }

@@ -7,9 +7,11 @@ import com.ats.interfaces.FileManager;
 import com.ats.interfaces.FileManagerConfiguration;
 import com.ats.jobadvertisementService.*;
 import com.ats.repositories.JobAdvertisementRepository;
-import com.ats.resumeService.ResumeService;
+import com.ats.resumeService.ResumeServiceImpl;
 import com.ats.resumes.FileManagerConfigurationImpl;
 import com.ats.resumes.FileManagerImpl;
+import com.ats.services.ApplicantCreater;
+import com.ats.services.ResumeAnalyser;
 import com.ats.ui.JobAdvertisementUI;
 import com.ats.ui.MainConsole;
 import com.ats.ui.ResumeUI;
@@ -49,11 +51,7 @@ public class Main {
         JobAdvertisementController jobAdvertisementController = new JobAdvertisementController(logger, jobAdvertisementDeleter, jobAdvertisementCreater, jobAdvertisementLoader, jobAdvertisementParser, evaluationCriteriaCreater);
         JobAdvertisementValidationController jobAdvertisementValidationController = new JobAdvertisementValidationController(jobAdvertismentValidation, logger);
 
-
-        FileManagerConfiguration fileManagerConfiguration = new FileManagerConfigurationImpl();
-        FileManager fileManager = new FileManagerImpl(fileManagerConfiguration.getInputFolderPath());
-        ResumeService resumeLoader = new ResumeService(logger, fileManager, jobAdvertisementRepository, jobAdvertisementParser);
-        ResumeController resumeController = new ResumeController(logger, resumeLoader);
+        ResumeController resumeController = getResumeController(jobAdvertisementRepository, jobAdvertisementParser);
 
         ResumeUI resumeUI = new ResumeUI(null,resumeController, null);
         JobAdvertisementUI jobAdvertisementUI = new JobAdvertisementUI(jobAdvertisementValidationController, jobAdvertisementController, resumeController,null,null);
@@ -66,5 +64,16 @@ public class Main {
         resumeUI.setJobAdvertisementUI(jobAdvertisementUI);
 
         appKonsole.startCLI();
+    }
+
+    private static ResumeController getResumeController(JobAdvertisementRepository jobAdvertisementRepository, JobAdvertisementParser jobAdvertisementParser) {
+        ApplicantCreater applicantCreater = new ApplicantCreater();
+        ResumeAnalyser resumeAnalyser = new ResumeAnalyser();
+
+        FileManagerConfiguration fileManagerConfiguration = new FileManagerConfigurationImpl();
+        FileManager fileManager = new FileManagerImpl(fileManagerConfiguration.getInputFolderPath());
+        ResumeServiceImpl resumeLoader = new ResumeServiceImpl(logger, fileManager, jobAdvertisementRepository, jobAdvertisementParser, applicantCreater, resumeAnalyser);
+        ResumeController resumeController = new ResumeController(logger, resumeLoader);
+        return resumeController;
     }
 }

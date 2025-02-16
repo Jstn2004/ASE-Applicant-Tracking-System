@@ -47,6 +47,7 @@ public class ResumeUI {
                     jobAdvertisementUI.allJobAdvertismentCLI(true);
                     break;
                 case "2":
+                    resumeController.startResumeAnalyse();
                     break;
                 case "3":
                     mainConsole.startCLI();
@@ -64,10 +65,6 @@ public class ResumeUI {
 
     }
 
-    public void loadAllResumes()
-    {
-        resumeController.loadAllResumes();
-    }
 
     public void setMainConsole(MainConsole mainConsole) {
         this.mainConsole = mainConsole;
