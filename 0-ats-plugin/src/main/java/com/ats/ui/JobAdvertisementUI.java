@@ -288,7 +288,7 @@ public class JobAdvertisementUI {
                     break;
                 default:
                     System.out.println("\u001B[31mUngültige Eingabe, bitte versuchen Sie es erneut.\u001B[0m");
-                    allJobAdvertismentCLI(false);
+                    allJobAdvertismentCLI(true);
             }
         }
     }

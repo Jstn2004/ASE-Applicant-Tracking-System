@@ -15,6 +15,8 @@ public final class Ability {
         return ability;
     }
 
+    public int getPoints() {return points;}
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Ability ability)) return false;

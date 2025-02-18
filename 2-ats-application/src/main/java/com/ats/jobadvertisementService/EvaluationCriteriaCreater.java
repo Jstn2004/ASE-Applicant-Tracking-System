@@ -22,7 +22,7 @@ public class EvaluationCriteriaCreater {
             return null;
         }
         String[] abilities = input.split(";");
-        Ability ability = new Ability(abilities[0], Integer.parseInt(abilities[1].replaceAll("\\s+", "")));
+        Ability ability = new Ability(abilities[0].toLowerCase(), Integer.parseInt(abilities[1].replaceAll("\\s+", "")));
         return ability;
     }
 

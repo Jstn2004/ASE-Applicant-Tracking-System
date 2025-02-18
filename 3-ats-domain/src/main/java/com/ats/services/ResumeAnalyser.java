@@ -6,6 +6,7 @@ import com.ats.entities.JobAdvertisement;
 import com.ats.entities.criteria.EvaluationAbilities;
 import com.ats.entities.criteria.EvaluationExperience;
 import com.ats.entities.criteria.EvaluationKeywords;
+import com.ats.vo.Ability;
 import com.ats.vo.Resume;
 
 import java.util.*;
@@ -17,11 +18,13 @@ import java.util.stream.Collectors;
 public class ResumeAnalyser {
 
     private final Logger logger;
+    private int points;
 
     public ResumeAnalyser(Logger logger) {
         this.logger = logger;
     }
 
+    //Soll eine Liste an Bewerbern zurückgeben, die dann für die Erstellung des Leaderboards verwendet werden sollen.
     public void analyseResume(List<Applicant> applicantList, JobAdvertisement selectedJobAdvertisement) {
 
         logger.info("Analysing Resume for " + selectedJobAdvertisement);
@@ -31,6 +34,7 @@ public class ResumeAnalyser {
 
 
         applicantList.forEach(applicant -> {
+            this.points = 0;
             Matcher matcher = pattern.matcher(applicant.getResume().getContant());
             List<String[]> sections = new ArrayList<>();
 
@@ -40,7 +44,7 @@ public class ResumeAnalyser {
                 sections.add(new String[] {title, content});
             }
 
-            analyseAbilitiesInResume(sections.get(0)[0], sections.get(0)[1], getEvaluationCriterionType(selectedJobAdvertisement.getCriteria(),"ABILITIES"));
+            analyseAbilitiesInResume(sections.get(0)[0], sections.get(0)[1], getEvaluationCriterionType(selectedJobAdvertisement.getCriteria(),"ABILITIES"), applicant);
             //analyseExperienceInResume(sections.get(1)[0], sections.get(1)[1]);
             //analyseKeywordsInResume(sections.get(2)[0], sections.get(2)[1]);
 
@@ -62,20 +66,30 @@ public class ResumeAnalyser {
         };
     }
 
-    public void analyseAbilitiesInResume(String title, String content, List<EvaluationCriterion> evaluationAbilities)
+    public void analyseAbilitiesInResume(String title, String content, List<EvaluationCriterion> evaluationAbilities, Applicant applicant)
     {
         logger.info("Start analysing Abilities");
         logger.info("Title: " + title);
         logger.info("Content: " + content);
         logger.info("Evaluation Abilities: " + evaluationAbilities);
         Map<String, List<String>> result = parseAbilitieContant(content);
-        result.forEach((key, values) ->
-                System.out.println("Name: " + key + " | Werte: " + values)
-        );
 
-
-
-
+        evaluationAbilities.forEach(evaluationability -> {
+            if (evaluationability instanceof EvaluationAbilities) {
+                List<Ability> abilitiesList = ((EvaluationAbilities) evaluationability).getListOfAbilities();
+                if (result.containsKey(evaluationability.getName())) {
+                    List<String> resultList = result.get(evaluationability.getName());
+                    abilitiesList.forEach(ability -> {
+                        if (resultList.contains(ability.getAbility())) {
+                            this.points += ability.getPoints();
+                        }
+                    });
+                }
+            }
+        });
+        applicant.setPoints(this.points);
+        System.out.println(applicant.getName());
+        System.out.println(points);
     }
 
     public static Map<String, List<String>> parseAbilitieContant(String input) {
@@ -95,6 +109,7 @@ public class ResumeAnalyser {
             String name = parts[0].trim();
             List<String> values = Arrays.stream(parts[1].split(","))
                     .map(String::trim)
+                    .map(String::toLowerCase)
                     .toList();
             result.put(name, values);
         }

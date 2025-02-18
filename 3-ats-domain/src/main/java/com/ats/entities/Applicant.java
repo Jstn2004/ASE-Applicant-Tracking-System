@@ -10,20 +10,20 @@ public class Applicant {
     private final UUID id;
     private String name;
     private String email;
-    private Rank rank;
     private String phoneNumber;
     private String address;
     private Resume resume;
+    private int points;
 
 
-    public Applicant(String name, String email, String phoneNumber, String address, Resume resume) {
+    public Applicant(String name, String email, String phoneNumber, String address, Resume resume, int points) {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.resume = resume;
+        this.points = points;
         this.id = UUID.randomUUID();
         this.name = name;
         this.email = email;
-        this.rank = null;
     }
 
     public UUID getId() {
@@ -46,20 +46,12 @@ public class Applicant {
         this.email = email;
     }
 
-    public Rank getRang() {
-        return rank;
+    public int getPoints() {
+        return points;
     }
 
-    public void setRang(Rank rank) {
-        this.rank = rank;
-    }
-
-    public Rank getRank() {
-        return rank;
-    }
-
-    public void setRank(Rank rank) {
-        this.rank = rank;
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     public String getPhoneNumber() {
@@ -105,7 +97,7 @@ public class Applicant {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", rank=" + rank +
+                ", points" + points +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
                 ", resume=" + resume +

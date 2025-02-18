@@ -25,7 +25,7 @@ public class ApplicantCreater {
             String phone = extractData(resume, phoneRegex);
             String address = extractData(resume, addressRegex);
             Resume resume1 = new Resume(resume);
-            Applicant applicant = new Applicant(name,email,phone,address,resume1);
+            Applicant applicant = new Applicant(name,email,phone,address,resume1, 0);
             applicants.add(applicant);
         });
 
