@@ -20,9 +20,6 @@ public class EvaluationAbilities extends EvaluationCriterion {
 
     public EvaluationAbilities(String name, int points, List<Ability> listOfAbilities, int weighting) {
         super(name, points, weighting);
-        if (points < 1 || points > 100) {
-            throw new IllegalArgumentException("Points must be between 1 and 100");
-        }
         if (weighting < 1 || weighting > 10) {
             throw new IllegalArgumentException("Weighting must be between 1 and 10");
         }

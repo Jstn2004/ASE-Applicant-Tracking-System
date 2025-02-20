@@ -5,8 +5,8 @@ import java.util.Objects;
 public final class Resume {
     private final String contant;
 
-    public Resume(String pfad) {
-        this.contant = pfad;
+    public Resume(String contant) {
+        this.contant = contant;
     }
 
     public String getContant() {

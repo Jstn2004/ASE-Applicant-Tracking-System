@@ -37,14 +37,14 @@ public class JobAdvertisementCreaterTest {
 
     @Test
     public void testCreateNewJobAdvertisement() {
-        Iterable<EvaluationCriterion> criteria = List.of(new EvaluationCriterion("Experience", 50, 1));
+        List<EvaluationCriterion> criteria = List.of(new EvaluationCriterion("Experience", 50, 1));
         jobAdvertisementCreater.createNewJobAdvertisement(title, description, criteria);
         verify(jobAdvertisementRepositoryMock).saveJobAdvertisement(any(JobAdvertisement.class));
     }
 
     @Test
     public void testJobAdvertisementHasId() {
-        Iterable<EvaluationCriterion> criteria = new ArrayList<>();
+        List<EvaluationCriterion> criteria = new ArrayList<>();
         jobAdvertisementCreater.createNewJobAdvertisement(title, description, criteria);
 
         ArgumentCaptor<JobAdvertisement> argumentCaptor = ArgumentCaptor.forClass(JobAdvertisement.class);

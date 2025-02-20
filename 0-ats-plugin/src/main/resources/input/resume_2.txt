@@ -13,7 +13,7 @@ Adresse: Musterstraße 1, 12345 Musterstadt, Deutschland
 
 ## Erfahrung
 
-- Softwareentwicklung bei Google (2012 - 2023)
+- Softwareentwicklung bei Google (2012 - 2022)
   - Entwicklung und Wartung von Webanwendungen
   - Optimierung bestehender Codebasis
 

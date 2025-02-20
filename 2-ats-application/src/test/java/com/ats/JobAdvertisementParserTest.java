@@ -21,7 +21,6 @@ public class JobAdvertisementParserTest {
 
     private JobAdvertisementParser jobAdvertisementParser;
     private JobAdvertisement expectetjobAdvertisement;
-    private String jobAdvertisementString;
 
     @BeforeEach
     public void setUp() {
@@ -41,8 +40,8 @@ public class JobAdvertisementParserTest {
 
     @Test
     public void testParseJobAdvertisement() {
-        this.jobAdvertisementString = expectetjobAdvertisement.toString();
-        JobAdvertisement result = jobAdvertisementParser.parseJobAdvertisementString(this.jobAdvertisementString);
+        String jobAdvertisementString = expectetjobAdvertisement.toString();
+        JobAdvertisement result = jobAdvertisementParser.parseJobAdvertisementString(jobAdvertisementString);
 
         assertNotNull(result, "Parser gibt null zurück");
         assertEquals(expectetjobAdvertisement.hashCode(), result.hashCode());

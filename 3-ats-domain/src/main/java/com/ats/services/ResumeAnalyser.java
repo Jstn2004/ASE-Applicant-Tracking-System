@@ -7,9 +7,10 @@ import com.ats.entities.criteria.EvaluationAbilities;
 import com.ats.entities.criteria.EvaluationExperience;
 import com.ats.entities.criteria.EvaluationKeywords;
 import com.ats.vo.Ability;
-import com.ats.vo.Resume;
+import com.ats.vo.Keyword;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,7 +26,7 @@ public class ResumeAnalyser {
     }
 
     //Soll eine Liste an Bewerbern zurückgeben, die dann für die Erstellung des Leaderboards verwendet werden sollen.
-    public void analyseResume(List<Applicant> applicantList, JobAdvertisement selectedJobAdvertisement) {
+    public List<Applicant> analyseResume(List<Applicant> applicantList, JobAdvertisement selectedJobAdvertisement) {
 
         logger.info("Analysing Resume for " + selectedJobAdvertisement);
         logger.info("Applicant list: " + applicantList);
@@ -34,7 +35,7 @@ public class ResumeAnalyser {
 
 
         applicantList.forEach(applicant -> {
-            this.points = 0;
+            int points = 0;
             Matcher matcher = pattern.matcher(applicant.getResume().getContant());
             List<String[]> sections = new ArrayList<>();
 
@@ -44,11 +45,12 @@ public class ResumeAnalyser {
                 sections.add(new String[] {title, content});
             }
 
-            analyseAbilitiesInResume(sections.get(0)[0], sections.get(0)[1], getEvaluationCriterionType(selectedJobAdvertisement.getCriteria(),"ABILITIES"), applicant);
-            //analyseExperienceInResume(sections.get(1)[0], sections.get(1)[1]);
-            //analyseKeywordsInResume(sections.get(2)[0], sections.get(2)[1]);
-
+            points += analyseAbilitiesInResume(sections.get(0)[1], getEvaluationCriterionType(selectedJobAdvertisement.getCriteria(),"ABILITIES"), applicant);
+            points += analyseExperienceInResume( sections.get(1)[1], getEvaluationCriterionType(selectedJobAdvertisement.getCriteria(),"EXPERIENCE"));
+            points += analyseKeywordsInResume( sections.get(2)[1], getEvaluationCriterionType(selectedJobAdvertisement.getCriteria(),"KEYWORDS"));
+            applicant.setPoints(points);
         });
+        return applicantList;
     }
 
     public List<EvaluationCriterion> getEvaluationCriterionType(List<EvaluationCriterion> evaluationCriterions, String evaluationCriterionType) {
@@ -66,34 +68,8 @@ public class ResumeAnalyser {
         };
     }
 
-    public void analyseAbilitiesInResume(String title, String content, List<EvaluationCriterion> evaluationAbilities, Applicant applicant)
-    {
-        logger.info("Start analysing Abilities");
-        logger.info("Title: " + title);
-        logger.info("Content: " + content);
-        logger.info("Evaluation Abilities: " + evaluationAbilities);
-        Map<String, List<String>> result = parseAbilitieContant(content);
-
-        evaluationAbilities.forEach(evaluationability -> {
-            if (evaluationability instanceof EvaluationAbilities) {
-                List<Ability> abilitiesList = ((EvaluationAbilities) evaluationability).getListOfAbilities();
-                if (result.containsKey(evaluationability.getName())) {
-                    List<String> resultList = result.get(evaluationability.getName());
-                    abilitiesList.forEach(ability -> {
-                        if (resultList.contains(ability.getAbility())) {
-                            this.points += ability.getPoints();
-                        }
-                    });
-                }
-            }
-        });
-        applicant.setPoints(this.points);
-        System.out.println(applicant.getName());
-        System.out.println(points);
-    }
-
     public static Map<String, List<String>> parseAbilitieContant(String input) {
-        List<String> lines = Arrays.asList(input.split("\\R"));
+        String[] lines = input.split("\\R");
 
         Map<String, List<String>> result = new LinkedHashMap<>();
 
@@ -111,20 +87,99 @@ public class ResumeAnalyser {
                     .map(String::trim)
                     .map(String::toLowerCase)
                     .toList();
-            result.put(name, values);
+            result.put(name.toLowerCase(), values);
         }
         return result;
     }
 
-    public void analyseExperienceInResume(String title, String content)
+    //TODO: Remove Applicant
+    public int analyseAbilitiesInResume( String content, List<EvaluationCriterion> evaluationAbilities, Applicant applicant)
     {
-        System.out.println("Title: " + title);
-        System.out.println("Content: " + content);
+        logger.info("Start analysing Abilities");
+        logger.info("Content: " + content);
+        logger.info("Evaluation Abilities: " + evaluationAbilities);
+        AtomicInteger points = new AtomicInteger();
+        Map<String, List<String>> result = parseAbilitieContant(content);
+        System.out.println("Abilities");
+        evaluationAbilities.forEach(evaluationability -> {
+            AtomicInteger tempPoints = new AtomicInteger();
+            if (evaluationability instanceof EvaluationAbilities) {
+                List<Ability> abilitiesList = ((EvaluationAbilities) evaluationability).getListOfAbilities();
+                int weighting = evaluationability.getWeighting();
+                if (result.containsKey(evaluationability.getName().toLowerCase())) {
+                    List<String> resultList = result.get(evaluationability.getName().toLowerCase());
+                    abilitiesList.forEach(ability -> {
+                        if (resultList.contains(ability.getAbility().toLowerCase())) {
+                            tempPoints.addAndGet(ability.getPoints());
+                        }
+                    });
+                }
+                tempPoints.accumulateAndGet(weighting, (a, b) -> a * b);
+                points.addAndGet(tempPoints.get());
+            }
+        });
+        logger.info("Name: " + applicant.getName());
+        logger.info("Points: " + points.get());
+        return points.get() ;
     }
 
-    public void analyseKeywordsInResume(String title, String content)
-    {
-        System.out.println("Title: " + title);
-        System.out.println("Content: " + content);
+    public static int parseExperienceContant(String input) {
+        int totalYears = 0;
+
+        Pattern pattern = Pattern.compile("\\((\\d{4}) - (\\d{4})\\)");
+        Matcher matcher = pattern.matcher(input);
+
+        while (matcher.find()) {
+            int startYear = Integer.parseInt(matcher.group(1));
+            int endYear = Integer.parseInt(matcher.group(2));
+            totalYears += (endYear - startYear);
+        }
+
+        return totalYears;
+
     }
+
+    //TODO: Remove Applicant
+    public int analyseExperienceInResume( String content, List<EvaluationCriterion> evaluationExperience )
+    {
+        logger.info("Start analysing Experience");
+        logger.info("Content: " + content);
+
+        int points = 0;
+        int result = parseExperienceContant(content);
+        int expectedPoints = ((EvaluationExperience) evaluationExperience.get(0)).getExperienceInYears();
+        int evaluationPoints = evaluationExperience.get(0).getPoints();
+        int weighting = evaluationExperience.get(0).getWeighting();
+        if(result == expectedPoints) {
+            points += evaluationPoints * weighting;
+        }
+        return points;
+    }
+
+    public int analyseKeywordsInResume(String content, List<EvaluationCriterion> evaluationKeywords)
+    {
+        logger.info("Start analysing Keywords");
+        logger.info("Content: " + content);
+        logger.info("Evaluation Keywords: " + evaluationKeywords);
+        AtomicInteger points = new AtomicInteger();
+        evaluationKeywords.forEach(evaluationKeyword -> {
+            AtomicInteger tempPoints = new AtomicInteger();
+            int weighting = evaluationKeyword.getWeighting();
+            if (evaluationKeyword instanceof EvaluationKeywords) {
+                List<Keyword> keywords = ((EvaluationKeywords) evaluationKeyword).getListOfKeywords();
+                keywords.forEach(keyword -> {
+                    if (content.toLowerCase().contains(keyword.getKeyword().toLowerCase())) {
+                        tempPoints.addAndGet(keyword.getPoints());
+                    }
+
+                });
+            }
+            tempPoints.accumulateAndGet(weighting, (a, b) -> a * b);
+            points.addAndGet(tempPoints.get());
+        });
+
+        return points.get();
+    }
+
+
 }
