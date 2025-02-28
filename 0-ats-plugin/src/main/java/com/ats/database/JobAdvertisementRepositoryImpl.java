@@ -30,7 +30,7 @@ public class JobAdvertisementRepositoryImpl implements JobAdvertisementRepositor
         }
     }
 
-    public List<String> loadTender() {
+    public List<String> loadJobAdvertisement() {
         List<String> tenders = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -46,7 +46,7 @@ public class JobAdvertisementRepositoryImpl implements JobAdvertisementRepositor
         }
     }
 
-    public void deleteTenderById(String id) {
+    public void deleteJobAdvertisementById(String id) {
         try {
             List<String> lines = Files.readAllLines(Paths.get(filePath));
             List<String> updatedLines = lines.stream()

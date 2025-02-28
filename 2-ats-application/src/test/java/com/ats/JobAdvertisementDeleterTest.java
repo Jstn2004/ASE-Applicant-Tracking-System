@@ -30,7 +30,7 @@ public class JobAdvertisementDeleterTest {
     public void testJobAdvertisementgetDeleted() {
         this.id = UUID.randomUUID().toString();
         jobAdvertisementDeleter.deleteJobAdvertisement(this.id);
-        verify(jobAdvertisementRepositoryMock).deleteTenderById(this.id);
+        verify(jobAdvertisementRepositoryMock).deleteJobAdvertisementById(this.id);
     }
 
 }

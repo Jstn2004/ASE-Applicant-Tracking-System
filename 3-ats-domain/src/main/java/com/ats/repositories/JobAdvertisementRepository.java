@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface JobAdvertisementRepository {
         void saveJobAdvertisement(JobAdvertisement jobAdvertisement);
-        List<String> loadTender();
-        void deleteTenderById(String tenderId);
+        List<String> loadJobAdvertisement();
+        void deleteJobAdvertisementById(String tenderId);
         String getJobAdvertisementById(String id);
 }

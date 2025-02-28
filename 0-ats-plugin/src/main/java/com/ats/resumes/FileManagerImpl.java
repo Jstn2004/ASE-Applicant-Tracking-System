@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-
+//Für das lesen und erzeugen von txt datein den Erbauer anschauen.
+//Vlt das lesen auslagern, das meisten gleich.
 public class FileManagerImpl implements FileManager {
 
     private final String directoryPath;
@@ -25,7 +26,7 @@ public class FileManagerImpl implements FileManager {
             throw new IllegalArgumentException("Der angegebene Pfad ist kein gültiges Verzeichnis: " + directoryPath);
         }
 
-        File[] files = folder.listFiles((dir, name) -> name.endsWith(".txt"));
+        File[] files = folder.listFiles((_, name) -> name.endsWith(".txt"));
         if (files == null) {
             return fileContents;
         }
