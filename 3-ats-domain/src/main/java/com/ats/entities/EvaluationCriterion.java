@@ -5,9 +5,9 @@ import java.util.UUID;
 
 public class EvaluationCriterion {
     private final UUID id;
-    private String name;
-    private int points;
-    private int weighting;
+    private final String name;
+    private final int points;
+    private final int weighting;
 
     public EvaluationCriterion(String name, int points, int weighting) {
         this.weighting = weighting;
@@ -19,29 +19,14 @@ public class EvaluationCriterion {
     public UUID getId() {
         return id;
     }
-
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getPoints() {
         return points;
     }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
     public int getWeighting() {
         return weighting;
-    }
-
-    public void setWeighting(int weighting) {
-        this.weighting = weighting;
     }
 
     @Override

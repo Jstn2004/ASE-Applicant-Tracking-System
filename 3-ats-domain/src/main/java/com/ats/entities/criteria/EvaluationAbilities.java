@@ -26,21 +26,9 @@ public class EvaluationAbilities extends EvaluationCriterion {
         this.listOfAbilities = listOfAbilities;
     }
 
-    public void addAbility(Ability ability) {
-        listOfAbilities.add(ability);
-    }
-
-    public void removeAbility(Ability ability) {
-        listOfAbilities.remove(ability);
-    }
-
     public List<Ability> getListOfAbilities() {
 
         return listOfAbilities;
-    }
-
-    public void setListOfAbilities(List<Ability> listOfAbilities) {
-        this.listOfAbilities = listOfAbilities;
     }
 
     @Override

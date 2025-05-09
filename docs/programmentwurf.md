@@ -62,7 +62,7 @@ aufgebaut ist.
 
 ## Analyse der Dependency Rule 
 
-### Positiv Beispiel 1
+### Positivbeispiel 1
 **JobAdvertisementController**
 ```mermaid
 classDiagram
@@ -162,22 +162,22 @@ Der JobAdvertisementController greift auf fünf Klassen in der inneren Applicati
 Die UI ruft den Controller nicht direkt auf, sondern wird durch den Controller aufgerufen, 
 wodurch die Einhaltung der Abhängigkeitsregel sichergestellt wird.
 
-### Positiv Beispiel 2
+### Positivbeispiel 2
 **ResumeAnalyser**
 ```mermaid
 classDiagram
-direction BT
-class ResumeAnalyser {
-  - Logger logger
-  - int points
-  + parseAbilitieContant(String) Map~String, List~String~~
-  + parseExperienceContant(String) int
-  + analyseKeywordsInResume(String, List~EvaluationCriterion~) int
-  + getEvaluationCriterionType(List~EvaluationCriterion~, String) List~EvaluationCriterion~
-  + analyseResume(List~Applicant~, JobAdvertisement) List~Applicant~
-  + analyseAbilitiesInResume(String, List~EvaluationCriterion~, Applicant) int
-  + analyseExperienceInResume(String, List~EvaluationCriterion~) int
-}
+  direction BT
+  class ResumeAnalyser {
+    - Logger logger
+    - int points
+    + parseAbilitieContant(String) Map~String, List~String~~
+    + parseExperienceContant(String) int
+    + analyseKeywordsInResume(String, List~EvaluationCriterion~) int
+    + getEvaluationCriterionType(List~EvaluationCriterion~, String) List~EvaluationCriterion~
+    + analyseResume(List~Applicant~, JobAdvertisement) List~Applicant~
+    + analyseAbilitiesInResume(String, List~EvaluationCriterion~, Applicant) int
+    + analyseExperienceInResume(String, List~EvaluationCriterion~) int
+  }
 ```
 Die Klasse ResumeAnalyser befindet sich innerhalb der Domain Schicht, und enthält keine 
 Abhängigkeiten. So ist zu sehen, dass die Dependency Regeln der Clean Architekture berücksichtigt werden. 
@@ -342,30 +342,140 @@ Die Klasse kann in drei weiter Klassen aufgeteilt werden. Dazu enstehen die folg
 ## Analyse Open-Closed-Principle (OCP)
 
 ### Positivbeispiel
+```mermaid
+classDiagram
+direction BT
+class EvaluationAbilitiesFactory {
+  + createCriterion(String, List~?~, int) EvaluationCriterion
+}
+class EvaluationCriteriaCreater {
+  - Logger logger
+  + createEvaluationCriterion(EvaluationCriterionFactory, String, List~?~, int) EvaluationCriterion
+  + generateKeyword(String) Keyword
+  + generateAbility(String) Ability
+}
+class EvaluationCriterionFactory {
+<<Interface>>
+  + createCriterion(String, List~?~, int) EvaluationCriterion
+}
+class EvaluationExperienceFactory {
+  + createCriterion(String, List~?~, int) EvaluationCriterion
+}
+class EvaluationKeywordsFactory {
+  + createCriterion(String, List~?~, int) EvaluationCriterion
+}
+
+EvaluationAbilitiesFactory  ..>  EvaluationCriterionFactory 
+EvaluationExperienceFactory  ..>  EvaluationCriterionFactory 
+EvaluationKeywordsFactory  ..>  EvaluationCriterionFactory
+```
+Das folgende UML-Diagramm zeigt das Design zur Erstellung von Bewertungskriterien für Jobangebote. Hierbei existiert das Interface EvaluationCriterionFactory, das die Methode createCriterion definiert. Diese Methode wird verwendet, um verschiedene Bewertungskriterien zu erstellen. Die Methode nimmt einen String für den Namen des Kriteriums und eine Liste mit generischen Werten entgegen, um unterschiedliche Werte für jedes Kriterium zu verarbeiten.
+Für jedes Bewertungskriterium wird eine separate Klasse erstellt, die die spezifische Implementierung für dieses Kriterium enthält. Soll ein neues Kriterium hinzukommen, wird einfach eine neue Klasse hinzugefügt, ohne dass Änderungen an der EvaluationCriteriaCreater-Klasse vorgenommen werden müssen. Dies stellt sicher, dass das System offen für Erweiterungen, aber geschlossen für Änderungen bleibt, was den Prinzipien der Softwareentwicklung entspricht.
 
 ### Negativbeispiel
+```mermaid
+classDiagram
+direction BT
+class ResumeAnalyser {
+  - int points
+  - Logger logger
+  + analyseAbilitiesInResume(String, List~EvaluationCriterion~, Applicant) int
+  + parseAbilitieContant(String) Map~String, List~String~~
+  + analyseExperienceInResume(String, List~EvaluationCriterion~) int
+  + parseExperienceContant(String) int
+  + analyseResume(List~Applicant~, JobAdvertisement) List~Applicant~
+  + analyseKeywordsInResume(String, List~EvaluationCriterion~) int
+  + getEvaluationCriterionType(List~EvaluationCriterion~, String) List~EvaluationCriterion~
+}
+```
+Das UML-Diagramm zeigt die Klasse ResumeAnalyser, die für jeden Kriterientyp eine eigene
+Methode zur Analyse definiert. Dies führt dazu, dass bei einer Erweiterung der Klasse
+– beispielsweise durch das Hinzufügen eines neuen Kriteriums – 
+sowohl eine neue Methode zur Analyse dieses Kriteriums als auch ein
+zusätzlicher case-Zweig in der Methode getEvaluationCriterionType() 
+ergänzt werden muss. Dadurch verstößt die aktuelle Implementierung gegen
+das Open-Closed-Principle (OCP), da sie nicht ohne Änderungen erweitert werden kann.
+#### Verbesserungsvorschlag
+![Verbesserung_OCP.png](image/Verbesserung_OCP.png)
+Neue Bewertungskriterien können problemlos erweitert werden, indem eine neue Klasse implementiert wird, die die EvaluationStrategy-Schnittstelle erfüllt, ohne dass die bestehende Klasse verändert werden muss.
+## Analyse Dependency-Inversion-Principle (DIP), Interface-Segreggation-Principle (ISP), Liskov-Substitution-Principle (LSP)
+In diesem Kapitel wird das Dependency-Inversion-Principle (DIP) Analysiert.
+### Positivbeispiel 1
+````mermaid
+classDiagram
+direction BT
+class JobAdvertisementCreater {
+  - JobAdvertisementRepository jobAdvertisementRepository
+  - Logger logger
+  + createNewJobAdvertisement(String, String, List~EvaluationCriterion~) void
+}
+class JobAdvertisementRepository {
+<<Interface>>
+  + saveJobAdvertisement(JobAdvertisement) void
+  + deleteJobAdvertisementById(String) void
+  + loadJobAdvertisement() List~String~
+  + getJobAdvertisementById(String) String
+}
+class JobAdvertisementRepositoryImpl {
+  - String filePath
+  + deleteJobAdvertisementById(String) void
+  + loadJobAdvertisement() List~String~
+  + getJobAdvertisementById(String) String
+  + saveJobAdvertisement(JobAdvertisement) void
+}
 
-## Analyse Liskov-Substitution- (LSP)
+JobAdvertisementRepositoryImpl  ..>  JobAdvertisementRepository
+````
+Das zu sehende UML-Diagramm zeigt einen korrekten Einsatz des Dependency Inversion Principle (DIP). Zu sehen sind zwei Klassen: JobAdvertisementCreator in der Application-Schicht und JobAdvertisementRepositoryImpl in der Plugin-Schicht.
 
-### Positivbeispiel
+Das Problem besteht darin, dass die Klasse JobAdvertisementCreator Methoden aus JobAdvertisementRepositoryImpl benötigt. Da sich diese jedoch in einer tieferliegenden Schicht befindet, darf der Creator gemäß der Dependency Rule keine direkte Referenz darauf haben.
 
-### Negativbeispiel
+Aus diesem Grund wird nur das Interface angesprochen, das von JobAdvertisementRepositoryImpl implementiert wird. So werden die Methoden der Implementierung nutzbar gemacht, ohne die Abhängigkeitsregeln zu verletzen.
 
-## Interface-Segreggation- (ISP)
+### Positivbeispiel 2
+```mermaid
+classDiagram
+direction BT
+class FileManager {
+<<Interface>>
+  + saveLeaderboardFile(String, String) void
+  + loadResumeFiles() List~String~
+}
+class FileManagerImpl {
+  - String directoryPath
+  + loadResumeFiles() List~String~
+  + saveLeaderboardFile(String, String) void
+}
+class ResumeService {
+<<Interface>>
+  + setSelectedJobAdvertisement(String) String
+  + loadAllResumes() List~String~
+}
+class ResumeServiceImpl {
+  - FileManager fileManager
+  - ApplicantCreater applicantCreater
+  - Logger logger
+  - JobAdvertisementParser jobAdvertisementParser
+  - JobAdvertisementRepository jobAdvertisementRepository
+  - ResumeAnalyser resumeAnalyser
+  + JobAdvertisement selectedJobAdvertisement
+  + List~String~ loadedResumes
+  + startResumeAnalysing() boolean
+  + loadAllResumes() List~String~
+  + setSelectedJobAdvertisement(String) String
+}
 
-### Positivbeispiel
+FileManagerImpl  ..>  FileManager 
+ResumeServiceImpl  ..>  ResumeService
+```
+Die UML zeigt ein weiteres Beispiel für das Dependency Inversion Principle (DIP). Dabei muss die Klasse ResumeServiceImpl auf die Klasse FileManager zugreifen, da sie Methoden enthält, die in ResumeServiceImpl benötigt werden.
 
-### Negativbeispiel
-
-## Dependency-Inversion-Principle (DIP)
-
-### Positivbeispiel
-
-### Negativbeispiel
+Statt jedoch direkt auf die konkrete Implementierung von FileManager zuzugreifen, verwendet ResumeServiceImpl lediglich das Interface von FileManager. Dadurch bleibt die Abhängigkeit abstrakt und die Architekturregeln werden eingehalten.
 
 # Weitere Prinzipien
 
 ## Analyse GRASP: Geringe Kopplung
+
 
 ### Positivbeispiel
 
@@ -381,25 +491,34 @@ Die Klasse kann in drei weiter Klassen aufgeteilt werden. Dazu enstehen die folg
 
 # Unit Tests
 
-| **Unit Test**                          | **Beschreibung** |
-|----------------------------------------|-----------------|
-| `testAnalyseAbilityContant()`          | Testet die Analyse der Fähigkeiten eines Lebenslaufs eines Bewerbers. Hierbei wird der Abschnitt „Fähigkeiten“ aus dem Lebenslauf als Inhalt verwendet und Mock-Bewertungskriterien für die Bewerberfähigkeiten erstellt. Die Methode wird aufgerufen und überprüft, ob die korrekte Punktzahl für die Fähigkeiten berechnet wird. |
-| `testAnalyseExperienceContant()`       |                 |
-| `testCreateNewJobAdvertisement()`      |                 |
-| `testJobAdvertisementHasId()`          |                 |
-| `testJobAdvertisementgetDeleted()`     |                 |
-| `testLoadJobAdvertisement()`           |                 |
-| `testParseJobAdvertisement()`          |                 |
+| **Unit Test**                          | **Beschreibung**                                                                                                                                                                                                                                                                                                                                  |
+|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `testAnalyseAbilityContant()`          | Testet die Analyse der Fähigkeiten eines Lebenslaufs eines Bewerbers. Hierbei wird der Abschnitt „Fähigkeiten“ aus dem Lebenslauf als Inhalt verwendet und Mock-Bewertungskriterien für die Bewerberfähigkeiten erstellt. Die Methode wird aufgerufen und überprüft, ob die korrekte Punktzahl für die Fähigkeiten berechnet wird.                |
+| `testAnalyseExperienceContant()`       | Testet die Analyse der Erfahrung die ein Bewerber in seinem Lebenslauf angegebene hat. Erstell zunächst eine Liste an EvaluationCriterions, wie sie auch in der Dantebnalne enthalten sind. Weiter wird ein Ausschnit aus einem Lebenslauf genommen und die Analye durchgeführt. Zum Schluss wird geprüft ob die Methode auch korrekt rechnet     |
+| `testCreateNewJobAdvertisement()`      | Testet ob das erzeugen von einem neuen JobAdvertisement auch korrket <br/>erfolgt. Dazu wird ein Beipsiel Kriterium erstellt, die Methode createNewJobAdvertisement mit den Werten aus dem SetUp ausfüllt, und geprüft, on ein passenden JibADvertisment Objekt zurück hgegebn wird                                                               |
+| `testJobAdvertisementHasId()`          | Prüft, ob das erzeuget JobAdvertisment auch korrekt mit einer gültigen ID erzeugt wird,                                                                                                                                                                                                                                                           |
+| `testJobAdvertisementgetDeleted()`     | Prüft, ob das löschen von bestehenden JobAdvertisment anhan der der ID korrket funktioniert.                                                                                                                                                                                                                                                      |
+| `testLoadJobAdvertisement()`           | Prüft, ob das laden der Daten erfolgreich erfolgt                                                                                                                                                                                                                                                                                                 |
+| `testParseJobAdvertisement()`          | Prüft, on das Parsen von JobAdvertisment aus der Datenbank korrket dumktioneir. Dazu wird ein JobAdvertisment Objekt und daraus ein String JiobAdverisment erstellt, welche in der Datenbank so vorligen. Diese String wird geparst und es werden mehrer asserts durchgeführt um zu Prüfen, das die Objket und das Geparste Objekt identisch sind |
 
 ## ATRIP
 
 ### Automatic
+Für die automatische Testausfürhung, dazu wird das Surefire-Plugin  verwendet, was
+Standartmäßig von Maven bereitgestellt wird. Das einzige auf das geachtet werden 
+muss ist das die Testklassen korrekt benannt werden, damit die Testklassen automatisch erkannt werden
+In Unser Projekt sind die TEstklasse jeweils mit dem Namen der Klasse die getestte wird + Test. Um alle test
+auszuführen muss einfach nur der Befehl mvn clean test ausgeführt werden im Terminal
 
 ### Thorough
 
 ### Professional
 
 ## Code Coverage
+Für die Analyse des Code Coverage des Projektes wurde das Plugin jacoco verwendet. 
+Dabei wird für jede Schicht des Anwendung ein Report erstellt welche alle notwendugn Daten anzeigt. 
+
+
 
 ## Fakes und Mocks
 
