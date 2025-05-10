@@ -100,7 +100,6 @@ public class ResumeAnalyser {
         logger.info("Evaluation Abilities: " + evaluationAbilities);
         AtomicInteger points = new AtomicInteger();
         Map<String, List<String>> result = parseAbilitieContant(content);
-        System.out.println("Abilities");
         evaluationAbilities.forEach(evaluationability -> {
             AtomicInteger tempPoints = new AtomicInteger();
             if (evaluationability instanceof EvaluationAbilities) {

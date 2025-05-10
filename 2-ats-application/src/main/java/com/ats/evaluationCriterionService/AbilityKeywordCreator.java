@@ -1,20 +1,17 @@
-package com.ats.jobadvertisementService.EvaluationCriterionCreater;
+package com.ats.evaluationCriterionService;
 
 import com.ats.entities.EvaluationCriterion;
-import com.ats.entities.criteria.EvaluationAbilities;
-import com.ats.entities.criteria.EvaluationExperience;
-import com.ats.entities.criteria.EvaluationKeywords;
 import com.ats.vo.Ability;
 import com.ats.vo.Keyword;
 
 import java.util.List;
 import java.util.logging.Logger;
 
-public class EvaluationCriteriaCreater {
+public class AbilityKeywordCreator {
 
     private final Logger logger;
 
-    public EvaluationCriteriaCreater(Logger logger) {
+    public AbilityKeywordCreator(Logger logger) {
         this.logger = logger;
     }
 

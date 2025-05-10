@@ -1,4 +1,4 @@
-package com.ats.jobadvertisementService.EvaluationCriterionCreater;
+package com.ats.evaluationCriterionService;
 
 import com.ats.entities.EvaluationCriterion;
 import com.ats.entities.criteria.EvaluationAbilities;
@@ -8,7 +8,7 @@ import java.util.List;
 
 public class EvaluationAbilitiesFactory implements EvaluationCriterionFactory {
     @Override
-    public EvaluationCriterion createCriterion(String name, List<?> abilities, int weighting) {
+    public EvaluationAbilities createCriterion(String name, List<?> abilities, int weighting) {
         return new EvaluationAbilities(name, 1, (List<Ability>) abilities, weighting);
     }
 }

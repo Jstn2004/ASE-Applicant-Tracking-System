@@ -2,6 +2,10 @@ package com.ats;
 
 import com.ats.database.DatabaseConfigurationImpl;
 import com.ats.database.JobAdvertisementRepositoryImpl;
+import com.ats.evaluationCriterionService.AbilityKeywordCreator;
+import com.ats.evaluationCriterionService.EvaluationAbilitiesFactory;
+import com.ats.evaluationCriterionService.EvaluationExperienceFactory;
+import com.ats.evaluationCriterionService.EvaluationKeywordsFactory;
 import com.ats.interfaces.DatabaseConfiguration;
 import com.ats.interfaces.FileManager;
 import com.ats.interfaces.FileManagerConfiguration;
@@ -46,10 +50,17 @@ public class Main {
         JobAdvertisementLoader jobAdvertisementLoader = new JobAdvertisementLoader(jobAdvertisementRepository, logger);
         JobAdvertisementDeleter jobAdvertisementDeleter = new JobAdvertisementDeleter(jobAdvertisementRepository, logger);
         JobAdvertisementParser jobAdvertisementParser = new JobAdvertisementParser(logger);
-        EvaluationCriteriaCreater evaluationCriteriaCreater = new EvaluationCriteriaCreater(logger);
         JobAdvertismentValidation jobAdvertismentValidation = new JobAdvertismentValidation(logger);
-        JobAdvertisementController jobAdvertisementController = new JobAdvertisementController(logger, jobAdvertisementDeleter, jobAdvertisementCreater, jobAdvertisementLoader, jobAdvertisementParser, evaluationCriteriaCreater);
+
+        EvaluationCriteriaCreater evaluationCriteriaCreater = new EvaluationCriteriaCreater(logger);
+        AbilityKeywordCreator abilityKeywordCreator = new AbilityKeywordCreator(logger);
+        EvaluationAbilitiesFactory evaluationAbilitiesFactory = new EvaluationAbilitiesFactory();
+        EvaluationExperienceFactory evaluationExperienceFactory = new EvaluationExperienceFactory();
+        EvaluationKeywordsFactory evaluationKeywordsFactory = new EvaluationKeywordsFactory();
+
+        JobAdvertisementController jobAdvertisementController = new JobAdvertisementController(logger, jobAdvertisementDeleter, jobAdvertisementCreater, jobAdvertisementLoader, jobAdvertisementParser, abilityKeywordCreator,evaluationKeywordsFactory, evaluationAbilitiesFactory, evaluationExperienceFactory, evaluationCriteriaCreater);
         JobAdvertisementValidationController jobAdvertisementValidationController = new JobAdvertisementValidationController(jobAdvertismentValidation, logger);
+
 
         ResumeController resumeController = getResumeController(jobAdvertisementRepository, jobAdvertisementParser);
 

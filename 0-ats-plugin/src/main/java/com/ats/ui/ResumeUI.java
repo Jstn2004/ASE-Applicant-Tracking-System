@@ -48,7 +48,10 @@ public class ResumeUI {
                     break;
                 case "2":
                     boolean result = resumeController.startResumeAnalyse();
-                    if(result) loader();
+                    if(result) {
+                        analyseinformation();
+                        resumeCLI();
+                    }
                     break;
                 case "3":
                     mainConsole.startCLI();
@@ -66,27 +69,24 @@ public class ResumeUI {
 
     }
 
+    private static final String GREEN = "\u001B[32m";
     private static final String YELLOW = "\u001B[33m";
     private static final String RESET = "\u001B[0m";
 
-    public static void loader() {
-        String[] animation = { "|", "/", "-", "\\" };
-        final String message = "Lebensläufe werden analysiert: ";
+    public static void analyseinformation() {
+        final String successmessage = "Lebensläufe wurden analysiert";
+        final String loadingmessage = "Lebensläufe werden analysiert";
 
-        System.out.print(YELLOW + message + RESET);
-
-        int i = 0;
-        while (true) {
-            try {
-                System.out.print("\r" + YELLOW + message + animation[i % animation.length] + RESET);
-                Thread.sleep(200);
-                i++;
-            } catch (InterruptedException e) {
-                System.err.println("\nLadevorgang unterbrochen!");
-                Thread.currentThread().interrupt();
-                break;
-            }
+        System.out.println(YELLOW + loadingmessage + RESET);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.out.println("Wartevorgang unterbrochen");
         }
+
+        System.out.print(GREEN + successmessage + RESET);
+
     }
     public void setMainConsole(MainConsole mainConsole) {
         this.mainConsole = mainConsole;

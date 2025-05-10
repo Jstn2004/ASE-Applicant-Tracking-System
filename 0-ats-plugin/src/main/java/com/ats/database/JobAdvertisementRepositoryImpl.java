@@ -24,6 +24,7 @@ public class JobAdvertisementRepositoryImpl implements JobAdvertisementRepositor
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(jobAdvertisement.toString());
             writer.write("\n\n");
+            System.out.println(jobAdvertisement.toString());
             System.out.println("Ausschreibung wurde gespeichert.");
         } catch (IOException e) {
             System.err.println("Fehler beim Speichern der Ausschreibung: " + e.getMessage());
