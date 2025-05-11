@@ -20,6 +20,10 @@ public class ResumeUI {
         resumeController.loadAllResumes();
     }
 
+    private static final String GREEN = "\u001B[32m";
+    private static final String YELLOW = "\u001B[33m";
+    private static final String RESET = "\u001B[0m";
+
     public void resumeCLI() {
         System.out.println();
 
@@ -47,9 +51,13 @@ public class ResumeUI {
                     jobAdvertisementUI.allJobAdvertismentCLI(true);
                     break;
                 case "2":
+                    System.out.println(YELLOW + "Lebensläufe werden analysiert" + RESET);
                     boolean result = resumeController.startResumeAnalyse();
                     if(result) {
                         analyseinformation();
+                        resumeCLI();
+                    }
+                    else {
                         resumeCLI();
                     }
                     break;
@@ -69,15 +77,11 @@ public class ResumeUI {
 
     }
 
-    private static final String GREEN = "\u001B[32m";
-    private static final String YELLOW = "\u001B[33m";
-    private static final String RESET = "\u001B[0m";
+
 
     public static void analyseinformation() {
         final String successmessage = "Lebensläufe wurden analysiert";
-        final String loadingmessage = "Lebensläufe werden analysiert";
 
-        System.out.println(YELLOW + loadingmessage + RESET);
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

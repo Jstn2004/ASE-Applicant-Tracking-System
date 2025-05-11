@@ -45,15 +45,15 @@ public class FileManagerImpl implements FileManager {
     }
 
     @Override
-    public void saveLeaderboardFile(List<String> lines) {
+    public void saveLeaderboardFile(String jobTitle, List<String> lines) {
         String timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new java.util.Date());
-        String filename = "Leaderboard_" + timestamp + ".txt";
+        String filename = "Leaderboard_" + jobTitle  + "_" + timestamp + ".txt";
 
         File file = new File(outputPath, filename);
 
         try {
             Files.write(file.toPath(), lines);
-            System.out.println("Datei gespeichert als: " + file.getAbsolutePath());
+            System.out.println("\u001B[37mDatei gespeichert als: " + file.getAbsolutePath() + "\u001B[0m");
         } catch (IOException e) {
             System.err.println("Fehler beim Speichern der Datei: " + e.getMessage());
         }
