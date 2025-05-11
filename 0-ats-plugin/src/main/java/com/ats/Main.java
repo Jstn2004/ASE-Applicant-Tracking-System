@@ -82,9 +82,9 @@ public class Main {
         ResumeAnalyser resumeAnalyser = new ResumeAnalyser(logger);
 
         FileManagerConfiguration fileManagerConfiguration = new FileManagerConfigurationImpl();
-        FileManager fileManager = new FileManagerImpl(fileManagerConfiguration.getInputFolderPath());
+        FileManager fileManager = new FileManagerImpl(fileManagerConfiguration.getInputFolderPath(), fileManagerConfiguration.getOutputFolderPath());
         ResumeServiceImpl resumeLoader = new ResumeServiceImpl(logger, fileManager, jobAdvertisementRepository, jobAdvertisementParser, applicantCreater, resumeAnalyser);
-        ResumeController resumeController = new ResumeController(logger, resumeLoader);
+        ResumeController resumeController = new ResumeController(logger, fileManager, resumeLoader);
         return resumeController;
     }
 }

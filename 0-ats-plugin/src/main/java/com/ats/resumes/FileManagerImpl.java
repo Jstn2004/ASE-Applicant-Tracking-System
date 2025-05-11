@@ -7,23 +7,25 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-//Für das lesen und erzeugen von txt datein den Erbauer anschauen.
-//Vlt das lesen auslagern, das meisten gleich.
+
+
 public class FileManagerImpl implements FileManager {
 
-    private final String directoryPath;
+    private final String inputPath;
+    private final String outputPath;
 
-    public FileManagerImpl(String directoryPath) {
-        this.directoryPath = directoryPath;
+    public FileManagerImpl(String inputPath, String outputPath) {
+        this.inputPath = inputPath;
+        this.outputPath = outputPath;
     }
 
     @Override
     public List<String> loadResumeFiles() {
         List<String> fileContents = new ArrayList<>();
-        File folder = new File(directoryPath);
+        File folder = new File(inputPath);
 
         if (!folder.exists() || !folder.isDirectory()) {
-            throw new IllegalArgumentException("Der angegebene Pfad ist kein gültiges Verzeichnis: " + directoryPath);
+            throw new IllegalArgumentException("Der angegebene Pfad ist kein gültiges Verzeichnis: " + inputPath);
         }
 
         File[] files = folder.listFiles((_, name) -> name.endsWith(".txt"));
@@ -43,7 +45,18 @@ public class FileManagerImpl implements FileManager {
     }
 
     @Override
-    public void saveLeaderboardFile(String path, String content) {
+    public void saveLeaderboardFile(List<String> lines) {
+        String timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new java.util.Date());
+        String filename = "Leaderboard_" + timestamp + ".txt";
 
+        File file = new File(outputPath, filename);
+
+        try {
+            Files.write(file.toPath(), lines);
+            System.out.println("Datei gespeichert als: " + file.getAbsolutePath());
+        } catch (IOException e) {
+            System.err.println("Fehler beim Speichern der Datei: " + e.getMessage());
+        }
     }
+
 }
