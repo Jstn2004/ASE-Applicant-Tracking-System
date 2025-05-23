@@ -9,6 +9,7 @@ import com.ats.repositories.JobAdvertisementRepository;
 import com.ats.services.ApplicantCreater;
 import com.ats.services.ResumeAnalyser;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -21,6 +22,7 @@ public class ResumeServiceImpl implements ResumeService {
     private final ResumeAnalyser resumeAnalyser;
 
     public List<String> loadedResumes;
+    private List<Applicant> analysedApplicants = new ArrayList<>();
     public JobAdvertisement selectedJobAdvertisement = null;
 
     public ResumeServiceImpl(Logger logger, FileManager fileManager, JobAdvertisementRepository jobAdvertisementRepository, JobAdvertisementParser jobAdvertisementParser, ApplicantCreater applicantCreater, ResumeAnalyser resumeAnalyser) {
@@ -52,17 +54,21 @@ public class ResumeServiceImpl implements ResumeService {
     {
         if(selectedJobAdvertisement != null)
         {
+            List<Applicant> analyseResult = new ArrayList<>();
             logger.info("Starting resume analysing");
-            List<Applicant> listofApplicants = applicantCreater.getApplicantFromResume(loadedResumes);
-            resumeAnalyser.analyseResume(listofApplicants, selectedJobAdvertisement);
+            List<Applicant> listOfApplicants = applicantCreater.getApplicantFromResume(loadedResumes);
+            this.analysedApplicants = resumeAnalyser.analyseResume(listOfApplicants, selectedJobAdvertisement);
             return true;
         }else
         {
-            System.out.println("\033[0;31mBitte wähle zuerst ein Jobangebot an\033[0m");
+            System.out.println("\033[0;31mBitte wähle zuerst ein Jobangebot aus\033[0m");
             return false;
         }
-
     };
+
+    public List<Applicant> getAnalysedApplicants() {
+        return analysedApplicants;
+    }
 
 
 

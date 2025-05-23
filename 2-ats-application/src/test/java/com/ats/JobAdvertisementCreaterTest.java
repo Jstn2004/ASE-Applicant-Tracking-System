@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -53,5 +52,21 @@ public class JobAdvertisementCreaterTest {
         JobAdvertisement capturedJobAdvertisement = argumentCaptor.getValue();
         assertNotNull(capturedJobAdvertisement.getId());
         assertFalse(capturedJobAdvertisement.getId().isEmpty());
+    }
+
+    @Test
+    public void testSavedJobAdvertisementContainsCorrectData() {
+        List<EvaluationCriterion> criteria = List.of(new EvaluationCriterion("Experience", 80, 2));
+        jobAdvertisementCreater.createNewJobAdvertisement(title, description, criteria);
+
+        ArgumentCaptor<JobAdvertisement> captor = ArgumentCaptor.forClass(JobAdvertisement.class);
+        verify(jobAdvertisementRepositoryMock).saveJobAdvertisement(captor.capture());
+
+        JobAdvertisement jobAd = captor.getValue();
+
+        assertEquals(title, jobAd.getTitel());
+        assertEquals(description, jobAd.getDescription());
+        assertEquals(1, jobAd.getCriteria().size());
+        assertEquals("Experience", jobAd.getCriteria().get(0).getName());
     }
 }

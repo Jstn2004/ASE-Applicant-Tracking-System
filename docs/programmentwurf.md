@@ -476,18 +476,62 @@ Statt jedoch direkt auf die konkrete Implementierung von FileManager zuzugreifen
 
 ## Analyse GRASP: Geringe Kopplung
 
-
 ### Positivbeispiel
+```mermaid
+classDiagram
+direction BT
+class JobAdvertismentValidation {
+  - Logger logger
+  + validateAbilitieOrKeyword(String) boolean
+  + isValidNumber(String) boolean
+  + validatePoints(String) boolean
+  + validateBlankInput(String) boolean
+  + validateWeighting(String) boolean
+}
+```
+Die Klasse JobAdvertismentValidation ist für die Validierung der Nutzereingaben zuständig. Zu diesem Zweck implementiert sie mehrere Methoden zur Überprüfung verschiedener Eingabetypen.
+Die Klasse weist eine geringe Kopplung auf: Sie hängt ausschließlich von Logger und System.out. Es bestehen keine 
+Abhängigkeiten zu anderen benutzerdefinierten Klassen oder externen Modulen.
+Zudem ist die Klasse ausschließlich für Validierungszwecke zuständig und enthält keine Geschäftslogik, Persistenz- oder UI-Komponenten. Ein weiterer positiver Aspekt ist, dass der Logger über den Konstruktor injiziert wird, was die Testbarkeit der Klasse verbessert.
+
+Ein Verbesserungsvorschlag wäre, dass sich die Klasse ausschließlich auf die Validierung konzentriert und keine direkte Ausgaben mittels System.out.println vornimmt. 
 
 ### Negativbeispiel
+```mermaid
+classDiagram
+direction BT
+class ResumeController {
+  - FileManager fileManager
+  + int numberOfResumes
+  - Logger logger
+  - ResumeServiceImpl resumeService
+  + getActiveJobAdvertisement() JobAdvertisement
+  + loadAllResumes() void
+  + selectedResume(String) String
+  + startResumeAnalyse() boolean
+  + transformApplicants(List~Applicant~) List~String~
+}
+```
+Die Klasse ResumeController steuert die Verarbeitung und Analyse von Bewerbungsunterlagen im System. Sie koordiniert den Ablauf zwischen dem Lebenslauf-Dienst (ResumeServiceImpl) und dem Speichern von Ergebnissen über den FileManager.
+
+Ein zentraler Punkt ist die direkte Abhängigkeit von der konkreten Implementierung ResumeServiceImpl. Um eine lose Kopplung zu erreichen und die Austauschbarkeit der Komponenten zu verbessern, sollte stattdessen auf ein Interface (z. B. ResumeService) gesetzt werden.
+Zudem greift der Controller direkt auf das öffentliche Feld selectedJobAdvertisement im ResumeServiceImpl zu. Das stellt eine enge Kopplung an die interne Struktur der Service-Klasse dar.
 
 ## Analyse GRASP: Hohe Kohäsion
-
-### Positivbeispiel
-
-### Negativbeispiel
+```mermaid
+classDiagram
+direction BT
+class AbilityKeywordCreator {
+  - Logger logger
+  + createEvaluationCriterion(EvaluationCriterionFactory, String, List~?~, int) EvaluationCriterion
+  + generateAbility(String) Ability
+  + generateKeyword(String) Keyword
+}
+```
+Die Klasse AbilityKeywordCreator weist eine hohe Kohäsion auf, da alle ihre Methoden eine klar zusammenhängende Aufgabe erfüllen: Sie ist ausschließlich dafür zuständig, Objekte zur Bewertung von Fähigkeiten und Schlüsselwörtern zu erzeugen. Die Methoden generateAbility() und generateKeyword() erstellen jeweils entsprechende Objekte aus Texteingaben, während createEvaluationCriterion() ein generisches Bewertungskriterium erzeugt. Alle Methoden stehen somit thematisch in engem Zusammenhang und unterstützen ein gemeinsames Ziel – die Verarbeitung und Erzeugung von Bewertungselementen im Bewerbungssystem. Durch diese thematische Einheitlichkeit ist die Klasse übersichtlich, leicht wartbar und gut wiederverwendbar.
 
 ## Don’t Repeat Yourself (DRY)
+
 
 # Unit Tests
 
@@ -512,7 +556,72 @@ auszuführen muss einfach nur der Befehl mvn clean test ausgeführt werden im Te
 
 ### Thorough
 
+### Positiv Beispiel
+```java
+@Test
+    public void testSavedJobAdvertisementContainsCorrectData() {
+        List<EvaluationCriterion> criteria = List.of(new EvaluationCriterion("Experience", 80, 2));
+        jobAdvertisementCreater.createNewJobAdvertisement(title, description, criteria);
+
+        ArgumentCaptor<JobAdvertisement> captor = ArgumentCaptor.forClass(JobAdvertisement.class);
+        verify(jobAdvertisementRepositoryMock).saveJobAdvertisement(captor.capture());
+
+        JobAdvertisement jobAd = captor.getValue();
+
+        assertEquals(title, jobAd.getTitel());
+        assertEquals(description, jobAd.getDescription());
+        assertEquals(1, jobAd.getCriteria().size());
+        assertEquals("Experience", jobAd.getCriteria().get(0).getName());
+    }
+```
+Die Testmethode testSavedJobAdvertisementContainsCorrectData() ist gründlich (Thorough), da sie nicht nur prüft, ob die Methode aufgerufen wurde, sondern auch den Inhalt des gespeicherten Objekts validiert. Sie stellt sicher, dass Titel, Beschreibung und Kriterien korrekt gesetzt wurden, wodurch nicht nur der Aufruf, sondern auch die inhaltliche Richtigkeit der Objektgenerierung getestet wird.
+
+#### Negativ Beispiel
+```java
+@Test
+    public void testAnalyseExperienceContant() {
+        List<EvaluationCriterion> experience = List.of(new EvaluationExperience(
+                "Berufserfahrungen",
+                80,
+                2,
+                8
+        ));
+
+        String contant = " - Werkstudent Softwareentwicklung bei TechCorp (2022 - 2023)\n" +
+                "  - Entwicklung und Wartung von Webanwendungen\n" +
+                "  - Optimierung bestehender Codebasis\n" +
+                "- Praktikum IT-Support bei ITSolutions (2021 - 2022)\n" +
+                "  - Fehleranalyse und Behebung technischer Probleme\n" +
+                "  - Kundenberatung und Unterstützung";
+
+        int result = this.analyser.analyseExperienceInResume(contant, experience);
+        assertEquals(640, result);
+    }
+```
+
+Die Testmethode testAnalyseAbilityContant() erfüllt zentrale Anforderungen an die Gründlichkeit, da sie verschiedene Kriteriengruppen und relevante sowie irrelevante Begriffe berücksichtigt. Dadurch geht sie über den einfachen Standardfall hinaus und prüft, ob die Methode relevante Fähigkeiten korrekt erkennt und bewertet.
+
+Allerdings könnten zusätzliche Testfälle die Gründlichkeit noch deutlich verbessern. Der Test enthält keine negativen Szenarien, etwa einen Lebenslauf ohne zutreffende Fähigkeiten oder mit Duplikaten. Auch Grenzfälle wie eine leere Kriterienliste, unvollständige Abschnitte oder falsch formatierte Eingaben werden nicht berücksichtigt.
+
+
 ### Professional
+
+#### Positiv Beispiel
+
+Die Testmethode testSavedJobAdvertisementContainsCorrectData() (siehe Thorough Positiv Beispiel) ist professionell 
+geschrieben,
+da 
+sie 
+klar 
+strukturiert und leicht verständlich ist. Die verwendeten Namen sind sprechend, es wird mit einem ArgumentCaptor gearbeitet, um den tatsächlichen Inhalt zu prüfen, und die Assertions sind gezielt auf die wichtigsten Datenfelder ausgerichtet. Der Test ist kompakt, vollständig nachvollziehbar.
+
+#### Negativ Beispiel
+
+Die Testmethode testAnalyseExperienceContant() (siehe Thorough Negativ Beispiel) wirkt im Vergleich weniger 
+professionell.
+Es fehlt eine 
+klare 
+Kommentierung oder nachvollziehbare Aufschlüsselung der erwarteten Punktzahl, sodass unklar bleibt, warum genau 640 erwartet werden. Zudem ist der Name der Textvariablen (contant) fehlerhaft geschrieben, was die Lesbarkeit und Wartbarkeit beeinträchtigt. Die Methode testet zwar korrekt, wirkt aber im Aufbau eher technisch als sauber dokumentiert oder selbsterklärend, was in professionellen Projekten entscheidend ist.
 
 ## Code Coverage
 Für die Analyse des Code Coverage des Projektes wurde das Plugin jacoco verwendet. 
@@ -522,6 +631,33 @@ Dabei wird für jede Schicht des Anwendung ein Report erstellt welche alle notwe
 
 ## Fakes und Mocks
 
+### Beispiel 1 
+```mermaid
+classDiagram
+direction BT
+class JobAdvertisement {
+  - String id
+  - String titel
+  - String description
+  - List~EvaluationCriterion~ criteria
+  + equals(Object) boolean
+  + setCriteria(List~EvaluationCriterion~) void
+  + setTitel(String) void
+  + hashCode() int
+  + setDescription(String) void
+  + getCriteria() List~EvaluationCriterion~
+  + getId() String
+  + getTitel() String
+  + toString() String
+  + getDescription() String
+}
+```
+In den Tests wird Mockito verwendet, um das JobAdvertisementRepository zu mocken. Dadurch wird vermieden, dass echte Datenbankzugriffe stattfinden, was die Tests schnell und unabhängig von externen Systemen macht. Statt komplexem Setup kommen realistische, aber einfache Fake-Daten wie zum Beispiel title = "Software Engineer" oder eine List<EvaluationCriterion> zum Einsatz. Das sorgt für übersichtliche und gut wartbare Tests.
+
+### Beispiel 2
+```mermaid
+
+```
 # Domain Driven Design
 
 ## Ubiquitous Language
@@ -589,4 +725,94 @@ Die Punktzahl eines Bewerbers zeigt an, wie gut dieser auf eine
 Ausschreibung passt. Die Punkte ergeben sich aus der Analyse der
 Lebensläufe.
 Punkte sind Ergebnisse der Analyse und hängen ausschließlich von
-der Bewertung ab. Sie haben keine Identität.  
+der Bewertung ab. Sie haben keine Identität. 
+
+# Refactoring
+
+## Code Smells
+Dies Code Smells werden anhanf der Klasse ResumeAnalyser.java dargestellt. Da diese
+Klasse direkt mehrer CodeSmells beinahltete.
+
+### Duplicate Code
+```java
+// In analyseAbilitiesInResume()
+tempPoints.accumulateAndGet(weighting, (a, b) -> a * b);
+points.addAndGet(tempPoints.get());
+
+// In analyseExperienceInResume()
+points += evaluationPoints * weighting;
+
+// In analyseKeywordsInResume()
+tempPoints.accumulateAndGet(weighting, (a, b) -> a * b);
+points.addAndGet(tempPoints.get());
+```
+Der Code zeigt die die Berechnung der Punkte für die Unterschiedlichen 
+Lebenslauf inhalte. Die BErechnung der von Punkten und GEwicht. wird in jeder 
+Methode Manuell wiederholt. Wenn sich die Logik ändert, muss sie an mehreren Stellen angepasst werden.
+
+#### Verbesserung
+Eine zentrale Methode für die Berechnung der Punkte und Gewichtung 
+um nur an einer Stelle Änderungen vornehemen zu müssen. 
+```java
+public int calculateWeightedPoints(int basePoints, int weighting) {
+    return basePoints * weighting;
+}
+```
+### Long Method
+```java
+   public List<Applicant> analyseResume(List<Applicant> applicantList, JobAdvertisement selectedJobAdvertisement) {
+
+  logger.info("Analysing Resume for " + selectedJobAdvertisement);
+  logger.info("Applicant list: " + applicantList);
+  String sectionRegex = "(?<=\\n|^)##\\s*([A-Za-zÄÖÜäöüß\\s&]+)\\s*(?=\\n)([\\s\\S]+?)(?=\\n##|\\z)";
+  Pattern pattern = Pattern.compile(sectionRegex);
+
+
+  applicantList.forEach(applicant -> {
+    int points = 0;
+    Matcher matcher = pattern.matcher(applicant.getResume().getContant());
+    List<String[]> sections = new ArrayList<>();
+
+    while (matcher.find()) {
+      String title = matcher.group(1).trim();
+      String content = matcher.group(2).trim();
+      sections.add(new String[] {title, content});
+    }
+
+    points += analyseAbilitiesInResume(sections.get(0)[1], getEvaluationCriterionType(selectedJobAdvertisement.getCriteria(),"ABILITIES"), applicant);
+    points += analyseExperienceInResume( sections.get(1)[1], getEvaluationCriterionType(selectedJobAdvertisement.getCriteria(),"EXPERIENCE"));
+    points += analyseKeywordsInResume( sections.get(2)[1], getEvaluationCriterionType(selectedJobAdvertisement.getCriteria(),"KEYWORDS"));
+    applicant.setPoints(points);
+  });
+  return applicantList;
+}
+```
+Die Methode analyseResume(...) in der Klasse ResumeAnalyser ist sehr lang und übernimmt zu viele Verantwortlichkeiten auf einmal.
+Die Methode enthält mehrere ineinandergeschachtelte Aufgaben:
+Sie verarbeitet den vollständigen Lebenslauftext mit einem komplexen Regex (sectionRegex), um die einzelnen Abschnitte (Abilities, Experience, Keywords) zu extrahieren.
+Danach wird über jeden Bewerber iteriert und jeweils:
+Fähigkeiten analysiert
+Berufserfahrung verglichen
+Schlagwörter gesucht
+Abschließend werden auf Basis der Analysen Punkte berechnet und direkt dem Bewerber zugewiesen.
+#### Verbesserung
+Um diese Probleme zu lösen, sollte die Methode in kleinere, klar abgegrenzte Teilmethoden zerlegt werden.
+```java
+public List<Applicant> analyseResume(List<Applicant> applicantList, JobAdvertisement selectedJobAdvertisement) {
+    foreach (applicant in applicantList) {
+        List<Section> sections = extractSections(applicant.getResume().getContent());
+        int totalPoints = calculateTotalPoints(sections, selectedJobAdvertisement);
+        assignPointsToApplicant(applicant, totalPoints);
+    }
+    return applicantList;
+}
+```
+In der Methode analyseResume wird für jeden Bewerber zunächst der Lebenslauf in thematische Abschnitte zerlegt. Anschließend werden die Inhalte dieser Abschnitte analysiert und auf Basis des gewählten Jobangebots eine Gesamtpunktzahl berechnet. Zum Schluss wird diese Punktzahl dem jeweiligen Bewerber zugewiesen.
+
+## 2 Refactorings
+
+
+
+# Entwurfsmuster
+
+

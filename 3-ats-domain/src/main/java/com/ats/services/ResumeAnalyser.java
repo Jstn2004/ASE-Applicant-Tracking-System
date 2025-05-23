@@ -25,32 +25,62 @@ public class ResumeAnalyser {
         this.logger = logger;
     }
 
-    //Soll eine Liste an Bewerbern zurückgeben, die dann für die Erstellung des Leaderboards verwendet werden sollen.
     public List<Applicant> analyseResume(List<Applicant> applicantList, JobAdvertisement selectedJobAdvertisement) {
-
         logger.info("Analysing Resume for " + selectedJobAdvertisement);
         logger.info("Applicant list: " + applicantList);
-        String sectionRegex = "(?<=\\n|^)##\\s*([A-Za-zÄÖÜäöüß\\s&]+)\\s*(?=\\n)([\\s\\S]+?)(?=\\n##|\\z)";
-        Pattern pattern = Pattern.compile(sectionRegex);
 
+        Pattern pattern = compileSectionPattern();
 
         applicantList.forEach(applicant -> {
-            int points = 0;
-            Matcher matcher = pattern.matcher(applicant.getResume().getContant());
-            List<String[]> sections = new ArrayList<>();
-
-            while (matcher.find()) {
-                String title = matcher.group(1).trim();
-                String content = matcher.group(2).trim();
-                sections.add(new String[] {title, content});
-            }
-
-            points += analyseAbilitiesInResume(sections.get(0)[1], getEvaluationCriterionType(selectedJobAdvertisement.getCriteria(),"ABILITIES"), applicant);
-            points += analyseExperienceInResume( sections.get(1)[1], getEvaluationCriterionType(selectedJobAdvertisement.getCriteria(),"EXPERIENCE"));
-            points += analyseKeywordsInResume( sections.get(2)[1], getEvaluationCriterionType(selectedJobAdvertisement.getCriteria(),"KEYWORDS"));
-            applicant.setPoints(points);
+            List<String[]> sections = extractSections(applicant.getResume().getContant(), pattern);
+            int points = calculateTotalPoints(sections, selectedJobAdvertisement, applicant);
+            assignPointsToApplicant(applicant, points);
         });
+
         return applicantList;
+    }
+
+    private Pattern compileSectionPattern() {
+        String sectionRegex = "(?<=\\n|^)##\\s*([A-Za-zÄÖÜäöüß\\s&]+)\\s*(?=\\n)([\\s\\S]+?)(?=\\n##|\\z)";
+        return Pattern.compile(sectionRegex);
+    }
+
+    private List<String[]> extractSections(String content, Pattern pattern) {
+        Matcher matcher = pattern.matcher(content);
+        List<String[]> sections = new ArrayList<>();
+
+        while (matcher.find()) {
+            String title = matcher.group(1).trim();
+            String sectionContent = matcher.group(2).trim();
+            sections.add(new String[]{title, sectionContent});
+        }
+        return sections;
+    }
+
+    private int calculateTotalPoints(List<String[]> sections, JobAdvertisement jobAd, Applicant applicant) {
+        int points = 0;
+
+        points += analyseAbilitiesInResume(
+                sections.get(0)[1],
+                getEvaluationCriterionType(jobAd.getCriteria(), "ABILITIES"),
+                applicant
+        );
+        points += analyseExperienceInResume(
+                sections.get(1)[1],
+                getEvaluationCriterionType(jobAd.getCriteria(), "EXPERIENCE")
+        );
+        points += analyseKeywordsInResume(
+                sections.get(2)[1],
+                getEvaluationCriterionType(jobAd.getCriteria(), "KEYWORDS")
+        );
+
+        return points;
+    }
+
+    private void assignPointsToApplicant(Applicant applicant, int points) {
+        applicant.setPoints(points);
+        logger.info("Name: " + applicant.getName());
+        logger.info("Points: " + points);
     }
 
     public List<EvaluationCriterion> getEvaluationCriterionType(List<EvaluationCriterion> evaluationCriterions, String evaluationCriterionType) {
@@ -92,9 +122,7 @@ public class ResumeAnalyser {
         return result;
     }
 
-    //TODO: Remove Applicant
-    public int analyseAbilitiesInResume( String content, List<EvaluationCriterion> evaluationAbilities, Applicant applicant)
-    {
+    public int analyseAbilitiesInResume(String content, List<EvaluationCriterion> evaluationAbilities, Applicant applicant) {
         logger.info("Start analysing Abilities");
         logger.info("Content: " + content);
         logger.info("Evaluation Abilities: " + evaluationAbilities);
@@ -117,9 +145,7 @@ public class ResumeAnalyser {
                 points.addAndGet(tempPoints.get());
             }
         });
-        logger.info("Name: " + applicant.getName());
-        logger.info("Points: " + points.get());
-        return points.get() ;
+        return points.get();
     }
 
     public static int parseExperienceContant(String input) {
@@ -135,12 +161,9 @@ public class ResumeAnalyser {
         }
 
         return totalYears;
-
     }
 
-    //TODO: Remove Applicant
-    public int analyseExperienceInResume( String content, List<EvaluationCriterion> evaluationExperience )
-    {
+    public int analyseExperienceInResume(String content, List<EvaluationCriterion> evaluationExperience) {
         logger.info("Start analysing Experience");
         logger.info("Content: " + content);
 
@@ -149,14 +172,13 @@ public class ResumeAnalyser {
         int expectedPoints = ((EvaluationExperience) evaluationExperience.get(0)).getExperienceInYears();
         int evaluationPoints = evaluationExperience.get(0).getPoints();
         int weighting = evaluationExperience.get(0).getWeighting();
-        if(result == expectedPoints) {
+        if (result == expectedPoints) {
             points += evaluationPoints * weighting;
         }
         return points;
     }
 
-    public int analyseKeywordsInResume(String content, List<EvaluationCriterion> evaluationKeywords)
-    {
+    public int analyseKeywordsInResume(String content, List<EvaluationCriterion> evaluationKeywords) {
         logger.info("Start analysing Keywords");
         logger.info("Content: " + content);
         logger.info("Evaluation Keywords: " + evaluationKeywords);
@@ -170,7 +192,6 @@ public class ResumeAnalyser {
                     if (content.toLowerCase().contains(keyword.getKeyword().toLowerCase())) {
                         tempPoints.addAndGet(keyword.getPoints());
                     }
-
                 });
             }
             tempPoints.accumulateAndGet(weighting, (a, b) -> a * b);
@@ -179,6 +200,4 @@ public class ResumeAnalyser {
 
         return points.get();
     }
-
-
 }
