@@ -811,6 +811,48 @@ In der Methode analyseResume wird für jeden Bewerber zunächst der Lebenslauf i
 
 ## 2 Refactorings
 
+### Extract Method
+UML vorher
+```mermaid
+classDiagram
+direction BT
+class ResumeAnalyser {
+  - int points
+  - Logger logger
+  + analyseAbilitiesInResume(String, List~EvaluationCriterion~, Applicant) int
+  + parseAbilitieContant(String) Map~String, List~String~~
+  + analyseExperienceInResume(String, List~EvaluationCriterion~) int
+  + parseExperienceContant(String) int
+  + analyseResume(List~Applicant~, JobAdvertisement) List~Applicant~
+  + analyseKeywordsInResume(String, List~EvaluationCriterion~) int
+  + getEvaluationCriterionType(List~EvaluationCriterion~, String) List~EvaluationCriterion~
+}
+```
+UML nachher
+```mermaid
+classDiagram
+direction BT
+class ResumeAnalyser {
+  - Logger logger
+  - int points
+  + analyseResume(List~Applicant~, JobAdvertisement) List~Applicant~
+  - compileSectionPattern() Pattern
+  - calculateTotalPoints(List~String[]~, JobAdvertisement, Applicant) int
+  + analyseExperienceInResume(String, List~EvaluationCriterion~) int
+  + parseAbilitieContant(String) Map~String, List~String~~
+  + analyseKeywordsInResume(String, List~EvaluationCriterion~) int
+  - extractSections(String, Pattern) List~String[]~
+  + parseExperienceContant(String) int
+  - assignPointsToApplicant(Applicant, int) void
+  + getEvaluationCriterionType(List~EvaluationCriterion~, String) List~EvaluationCriterion~
+  + analyseAbilitiesInResume(String, List~EvaluationCriterion~, Applicant) int
+}
+```
+Die Klasse und ihre Methoden waren zuvor sehr groß, unübersichtlich und enthielten duplizierten Code, was Lesbarkeit und Wartbarkeit deutlich einschränkte. Durch die Aufteilung der Methode analyseResume(...) in kleinere, klar benannte Methoden wie compileSectionPattern(), extractSections(...), calculateTotalPoints(...) und assignPointsToApplicant(...) wurde die Struktur verbessert. Jede Methode erfüllt nun eine eindeutige Aufgabe und kann leichter getestet oder wiederverwendet werden.
+
+Commit: https://github.com/Jstn2004/ASE-Applicant-Tracking-System/commit/6148ac0fb3ef30f19f3a93047b90da8b53ad997d
+
+
 
 
 # Entwurfsmuster
