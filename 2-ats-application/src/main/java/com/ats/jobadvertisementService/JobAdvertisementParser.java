@@ -36,8 +36,12 @@ public class JobAdvertisementParser {
             String title = matcher.group(2);
             String description = matcher.group(3);
             String criteria = matcher.group(4);
-            return new JobAdvertisement(id, title, description, parseCriteria(criteria));
-        }
+            return JobAdvertisement.builder()
+                    .withId(id)
+                    .withTitel(title)
+                    .withDescription(description)
+                    .withCriteria(parseCriteria(criteria))
+                    .build();        }
 
         throw new IllegalArgumentException("Ungültiges JobAdvertisement-Format: " + jobAdvertisementString);
     }

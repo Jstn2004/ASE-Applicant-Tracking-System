@@ -7091,3 +7091,69 @@ Mai 23, 2025 1:38:54 PM com.ats.services.ResumeAnalyser assignPointsToApplicant
 INFORMATION: Name: Max
 Mai 23, 2025 1:38:54 PM com.ats.services.ResumeAnalyser assignPointsToApplicant
 INFORMATION: Points: 1014
+Mai 25, 2025 11:55:52 AM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Mai 25, 2025 11:55:52 AM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Mai 25, 2025 11:56:02 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: s
+Mai 25, 2025 11:56:03 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: das
+Mai 25, 2025 11:56:04 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 4
+Mai 25, 2025 11:56:04 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 4
+Mai 25, 2025 11:56:14 AM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Mai 25, 2025 11:56:14 AM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: []
+Mai 25, 2025 11:56:17 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: s
+Mai 25, 2025 11:56:19 AM com.ats.validation.JobAdvertismentValidation validatePoints
+INFORMATION: Validate: 4
+Mai 25, 2025 11:56:19 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 4
+Mai 25, 2025 11:56:20 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 2
+Mai 25, 2025 11:56:20 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 2
+Mai 25, 2025 11:56:21 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 1
+Mai 25, 2025 11:56:21 AM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: Creating EvaluationExperience
+Mai 25, 2025 11:56:21 AM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: 1
+Mai 25, 2025 11:56:26 AM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: Ha
+Mai 25, 2025 11:56:27 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: s
+Mai 25, 2025 11:56:27 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: s
+Mai 25, 2025 11:56:28 AM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 3
+Mai 25, 2025 11:56:28 AM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 3
+Mai 25, 2025 11:56:30 AM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: 4
+Mai 25, 2025 11:56:31 AM com.ats.JobAdvertisementController createEvaluationKeywords
+INFORMATION: Creating EvaluationKeywords
+Mai 25, 2025 11:56:31 AM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: Creating Job Advertisement
+Mai 25, 2025 11:56:31 AM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: [EvaluationAbilities{name=das, listOfAbilities=[], weighting=4}, EvaluationExperience{name=s, points=2, experienceInYear=1, weighting=2}, EvaluationKeywords{name=Ha, listOfKeywords=[], weighting=3}]
+Mai 25, 2025 11:58:17 AM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Mai 25, 2025 11:58:17 AM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Mai 25, 2025 12:01:35 PM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Mai 25, 2025 12:01:35 PM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Mai 25, 2025 12:01:53 PM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Mai 25, 2025 12:01:53 PM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Mai 25, 2025 12:03:44 PM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Mai 25, 2025 12:03:44 PM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes

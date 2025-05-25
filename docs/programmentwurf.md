@@ -852,9 +852,47 @@ Die Klasse und ihre Methoden waren zuvor sehr groß, unübersichtlich und enthie
 
 Commit: https://github.com/Jstn2004/ASE-Applicant-Tracking-System/commit/6148ac0fb3ef30f19f3a93047b90da8b53ad997d
 
+### Replace ErrorCode with Exception
+```mermaid
+classDiagram
+direction BT
+class JobAdvertisementParser {
+  - Logger logger
+  - parseAbilities(String) List~EvaluationCriterion~
+  - parseKeywords(String) List~EvaluationCriterion~
+  - parsePositiveInt(String, String) int
+  + parseJobAdvertisementString(String) JobAdvertisement
+  - parseExperience(String) List~EvaluationCriterion~
+  + parseCriteria(String) List~EvaluationCriterion~
+}
+```
+Zuvor wurde bei Fehlern in der Verarbeitung lediglich null zurückgegeben oder potenzielle Fehler gar nicht erst abgefangen. Dadurch konnten Probleme unbemerkt bleiben oder zu unerwarteten Laufzeitfehlern führen. Aus diesem Grund wurde das Refactoring Replace Error Code with Exception angewendet. Anstelle von Rückgabewerten wie null werden nun gezielt aussagekräftige Exceptions geworfen, um Fehler frühzeitig zu erkennen und klar zu kommunizieren. Dadurch wird die Fehlerbehandlung robuster, nachvollziehbarer und sicherer für den weiteren Programmfluss.
 
+Commit: https://github.com/Jstn2004/ASE-Applicant-Tracking-System/commit/7d6b8e1241e12f25f367aa76e05735abe68560ba
 
 
 # Entwurfsmuster
+
+## Erbauer
+```mermaid
+classDiagram
+direction BT
+class JobAdvertisement {
+  - String id
+  - String description
+  - String titel
+  - List~EvaluationCriterion~ criteria
+  + equals(Object) boolean
+  + builder() Builder
+  + toString() String
+  + getTitel() String
+  + getId() String
+  + getCriteria() List~EvaluationCriterion~
+  + getDescription() String
+  + hashCode() int
+}
+```
+Die Klasse JobAdvertisement enthält das Entwurfsmuster des Erbauers.
+Die Klasse hatte einen sehr großen Konstruktor und enthält unterschiedliche Attribute. Diese haben den Nachteil, dass der Code sehr schnell unübersichtlich ist und nur schwer erweitert werden kann – was bei der Erstellung von Bewertungen schnell zu möglichen Änderungen führen kann. Der Erbauer ermöglicht eine schnelle und einfachere Erweiterung und bietet einen übersichtlichen Code, besonders bei der Eingabe, wenn man leicht Fehler bei der Reihenfolge macht oder die falschen Datentypen übergibt. 
 
 

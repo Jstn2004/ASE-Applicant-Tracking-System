@@ -20,7 +20,14 @@ public class JobAdvertisementCreater {
 
     public void createNewJobAdvertisement(String title, String description, List<EvaluationCriterion> criteria) {
         String id = UUID.randomUUID().toString();
-        JobAdvertisement jobAdvertisement = new JobAdvertisement(id, title, description, criteria);
+
+        JobAdvertisement jobAdvertisement = JobAdvertisement.builder()
+                .withId(id)
+                .withTitel(title)
+                .withDescription(description)
+                .withCriteria(criteria)
+                .build();
+
         jobAdvertisementRepository.saveJobAdvertisement(jobAdvertisement);
     }
 
