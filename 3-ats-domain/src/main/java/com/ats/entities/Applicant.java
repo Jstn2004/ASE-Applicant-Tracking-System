@@ -10,13 +10,20 @@ public class Applicant {
     private final UUID id;
     private String name;
     private String email;
-    private Rank rank;
+    private String phoneNumber;
+    private String address;
+    private Resume resume;
+    private int points;
 
-    public Applicant(String name, String email) {
+
+    public Applicant(String name, String email, String phoneNumber, String address, Resume resume, int points) {
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.resume = resume;
+        this.points = points;
         this.id = UUID.randomUUID();
         this.name = name;
         this.email = email;
-        this.rank = null;
     }
 
     public UUID getId() {
@@ -39,13 +46,38 @@ public class Applicant {
         this.email = email;
     }
 
-    public Rank getRang() {
-        return rank;
+    public int getPoints() {
+        return points;
     }
 
-    public void setRang(Rank rank) {
-        this.rank = rank;
+    public void setPoints(int points) {
+        this.points = points;
     }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Resume getResume() {
+        return resume;
+    }
+
+    public void setResume(Resume resume) {
+        this.resume = resume;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,5 +89,18 @@ public class Applicant {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Applicant{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", points" + points +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", resume=" + resume +
+                '}';
     }
 }

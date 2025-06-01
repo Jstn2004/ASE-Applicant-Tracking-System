@@ -24,13 +24,14 @@ public class JobAdvertisementRepositoryImpl implements JobAdvertisementRepositor
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(jobAdvertisement.toString());
             writer.write("\n\n");
+            System.out.println(jobAdvertisement.toString());
             System.out.println("Ausschreibung wurde gespeichert.");
         } catch (IOException e) {
             System.err.println("Fehler beim Speichern der Ausschreibung: " + e.getMessage());
         }
     }
 
-    public List<String> loadTender() {
+    public List<String> loadJobAdvertisement() {
         List<String> tenders = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -46,7 +47,7 @@ public class JobAdvertisementRepositoryImpl implements JobAdvertisementRepositor
         }
     }
 
-    public void deleteTenderById(String id) {
+    public void deleteJobAdvertisementById(String id) {
         try {
             List<String> lines = Files.readAllLines(Paths.get(filePath));
             List<String> updatedLines = lines.stream()
@@ -57,6 +58,25 @@ public class JobAdvertisementRepositoryImpl implements JobAdvertisementRepositor
         } catch (IOException e) {
             System.out.println("Fehler bei löschen einer Jobausschreibung");
             throw new RuntimeException("Fehler bei löschen einer Jobausschreibung", e);
+        }
+    }
+
+    public String getJobAdvertisementById(String id) {
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            String result = lines.stream()
+                    .filter(line -> line.contains("id='" + id + "'"))
+                    .collect(Collectors.joining("\n"));
+            if (result.isEmpty()) {
+                System.out.println("\u001B[31mKeine Jobausschreibung mit der ID gefunden: " + id + "\u001B[0m");
+                return null;
+            }
+
+            return result;
+
+        } catch (IOException e) {
+            System.out.println("Fehler beim Lesen der Jobausschreibungen");
+            throw new RuntimeException("Fehler beim Lesen der Jobausschreibungen", e);
         }
     }
 

@@ -26,6 +26,6 @@ public class JobAdvertisementLoaderTest {
     @Test
     public void testLoadJobAdvertisement() {
         jobAdvertisementLoader.loadAllJobAdvertisement();
-        verify(jobAdvertisementRepositoryMock).loadTender();
+        verify(jobAdvertisementRepositoryMock).loadJobAdvertisement();
     }
 }

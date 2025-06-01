@@ -1,49 +1,24 @@
 package com.ats.entities;
 
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-/**
- * Die Klasse repräsentiert eine Jobausschreibung und dient dazu, alle relevanten Informationen
- * für eine spezifische Stellenanzeige zu speichern. Diese Informationen umfassen die eindeutige ID
- * der Ausschreibung, den Titel der Stelle, die Beschreibung der Position und eine Sammlung von
- * Bewertungskriterien, die zur Evaluierung von Bewerbungen verwendet werden.
- * <p>
- * Die Jobausschreibung wird mit einer eindeutigen ID erstellt, die es ermöglicht, sie von anderen
- * Ausschreibungen zu unterscheiden. Der Titel und die Beschreibung der Stelle können bei Bedarf angepasst werden.
- * <p>
- * Die Kriterien der Ausschreibung, die aus verschiedenen Evaluierungsmaßstäben bestehen (z.B. Fähigkeiten,
- * Erfahrungen, Schlüsselwörter), werden ebenfalls in der Ausschreibung gespeichert. Diese Kriterien
- * helfen dabei, Bewerber hinsichtlich ihrer Eignung für die Position zu bewerten.
- */
 public class JobAdvertisement {
     private final String id;
-    private String titel;
-    private String description;
-    private Iterable<EvaluationCriterion> criteria;
+    private final String titel;
+    private final String description;
+    private final List<EvaluationCriterion> criteria;
 
-
-    public JobAdvertisement(String id, String titel, String description, Iterable<EvaluationCriterion> criteria) {
-        this.id = id;
-        this.titel = titel;
-        this.description = description;
-        this.criteria = criteria;
+    private JobAdvertisement(Builder builder) {
+        this.id = builder.id;
+        this.titel = builder.titel;
+        this.description = builder.description;
+        this.criteria = builder.criteria;
     }
 
-    public void setTitel(String titel) {
-        this.titel = titel;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setCriteria(Iterable<EvaluationCriterion> criteria) {
-        this.criteria = criteria;
-    }
-
-    public Iterable<EvaluationCriterion> getCriteria() {
-        return criteria;
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -56,6 +31,10 @@ public class JobAdvertisement {
 
     public String getDescription() {
         return description;
+    }
+
+    public List<EvaluationCriterion> getCriteria() {
+        return criteria;
     }
 
     @Override
@@ -81,5 +60,39 @@ public class JobAdvertisement {
                 ", description='" + description + '\'' +
                 ", criteria=" + criteria +
                 '}';
+    }
+
+    public static class Builder {
+        private String id;
+        private String titel;
+        private String description;
+        private List<EvaluationCriterion> criteria = new ArrayList<>();
+
+        public Builder withId(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withTitel(String titel) {
+            this.titel = titel;
+            return this;
+        }
+
+        public Builder withDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder withCriteria(List<EvaluationCriterion> criteria) {
+            this.criteria = criteria;
+            return this;
+        }
+
+        public JobAdvertisement build() {
+            if (id == null || titel == null || description == null) {
+                throw new IllegalStateException("ID, Titel und Beschreibung dürfen nicht null sein.");
+            }
+            return new JobAdvertisement(this);
+        }
     }
 }

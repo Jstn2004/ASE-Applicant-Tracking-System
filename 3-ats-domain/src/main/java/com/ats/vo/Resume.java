@@ -1,36 +1,33 @@
 package com.ats.vo;
 
-import com.ats.entities.Applicant;
-import com.ats.entities.EvaluationCriterion;
-
 import java.util.Objects;
 
 public final class Resume {
-    private final String path;
-    private final Applicant application;
+    private final String contant;
 
-    public Resume(String pfad, Applicant application) {
-        this.path = pfad;
-        this.application = application;
+    public Resume(String contant) {
+        this.contant = contant;
     }
 
-    public String getPath() {
-        return path;
+    public String getContant() {
+        return contant;
     }
-
-    public Applicant getApplication() {
-        return application;
-    }
-
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Resume that)) return false;
-        return Objects.equals(path, that.path);
+        return Objects.equals(contant, that.contant);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(path);
+        return Objects.hash(contant);
+    }
+
+    @Override
+    public String toString() {
+        return "Resume{" +
+                "contant='" + contant + '\'' +
+                '}';
     }
 }

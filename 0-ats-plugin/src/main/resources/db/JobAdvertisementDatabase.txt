@@ -1,0 +1,13 @@
+
+JobAdvertisement{id='e4b82da1-7199-4bab-827f-6caa686f704c', titel='Test', description='Test', criteria=[EvaluationAbilities{name=test, listOfAbilities=[(Test; 1), (Test; 1)], weighting=3}, EvaluationExperience{name=Halloi, points=4, experienceInYear=3, weighting=3}]}
+
+JobAdvertisement{id='b99b3cfd-6c01-4da9-b40d-a8dd6243890d', titel='test', description='Te', criteria=[EvaluationAbilities{name=Re, listOfAbilities=[(Test; 2)], weighting=3}, EvaluationExperience{name=2, points=3, experienceInYear=2, weighting=2}]}
+
+JobAdvertisement{id='7919cb8f-acd9-49c9-8dfe-82396d2f9e41', titel='Test', description='Test', criteria=[EvaluationAbilities{name=Test, listOfAbilities=[(Test; 3)], weighting=3}, EvaluationExperience{name=Tre, points=3, experienceInYear=3, weighting=4}, EvaluationKeywords{listOfKeywords=[com.ats.vo.Keyword@80669350, com.ats.vo.Keyword@80669350]}]}
+
+JobAdvertisement{id='6e5abcd8-9cef-4bd8-b415-06f4ebc400c2', titel='Test', description='TEst', criteria=[EvaluationAbilities{name=TEst, listOfAbilities=[(Hallo; 4)], weighting=3}, EvaluationAbilities{name=Test 2, listOfAbilities=[(Test; 3)], weighting=2}, EvaluationExperience{name=Hallo, points=4, experienceInYear=3, weighting=2}, EvaluationKeywords{name=Hallo, listOfKeywords=[(Hallo; 3)], weighting=2}]}
+
+JobAdvertisement{id='835b78e1-a303-452f-90ec-f268c8d0b68e', titel='Softwareentwickler', description='Ein guter bitte', criteria=[EvaluationAbilities{name=Programmiersprachen, listOfAbilities=[(C#; 100), (Docker; 50)], weighting=5}, EvaluationAbilities{name=Sprachen, listOfAbilities=[(Englisch; 50), (Deutsch; 100)], weighting=3}, EvaluationExperience{name=Berufserfahrungen, points=8, experienceInYear=10, weighting=8}, EvaluationKeywords{name=Schlüsselwörter, listOfKeywords=[(fleißig; 10)], weighting=8}]}
+
+
+

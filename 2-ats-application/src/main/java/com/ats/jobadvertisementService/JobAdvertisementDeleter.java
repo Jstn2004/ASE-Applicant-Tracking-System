@@ -15,7 +15,7 @@ public class JobAdvertisementDeleter {
     }
 
     public void deleteJobAdvertisement(String id) {
-        jobAdvertisementRepository.deleteTenderById(id);
+        jobAdvertisementRepository.deleteJobAdvertisementById(id);
     }
 
 }

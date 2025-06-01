@@ -17,7 +17,7 @@ public class JobAdvertisementLoader {
 
     public List<String> loadAllJobAdvertisement()
     {
-        return jobAdvertisementRepository.loadTender();
+        return jobAdvertisementRepository.loadJobAdvertisement();
     }
 
 }
