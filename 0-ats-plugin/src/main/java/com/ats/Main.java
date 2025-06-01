@@ -9,6 +9,7 @@ import com.ats.evaluationCriterionService.EvaluationKeywordsFactory;
 import com.ats.interfaces.DatabaseConfiguration;
 import com.ats.interfaces.FileManager;
 import com.ats.interfaces.FileManagerConfiguration;
+import com.ats.interfaces.observer.JobAdvertisementCreatedObserver;
 import com.ats.jobadvertisementService.*;
 import com.ats.repositories.JobAdvertisementRepository;
 import com.ats.resumeService.ResumeServiceImpl;
@@ -22,6 +23,7 @@ import com.ats.ui.ResumeUI;
 import com.ats.validation.JobAdvertismentValidation;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.*;
 
 public class Main {
@@ -43,10 +45,10 @@ public class Main {
             System.err.println("Fehler beim Erstellen des FileHandler: " + e.getMessage());
         }
 
-
+        List<JobAdvertisementCreatedObserver> observers = List.of(new Logging(logger));
         DatabaseConfiguration databaseConfiguration = new DatabaseConfigurationImpl();
         JobAdvertisementRepository jobAdvertisementRepository = new JobAdvertisementRepositoryImpl(databaseConfiguration.getDatabaseFilePath());
-        JobAdvertisementCreater jobAdvertisementCreater = new JobAdvertisementCreater(jobAdvertisementRepository, logger);
+        JobAdvertisementCreater jobAdvertisementCreater = new JobAdvertisementCreater(jobAdvertisementRepository, logger, observers);
         JobAdvertisementLoader jobAdvertisementLoader = new JobAdvertisementLoader(jobAdvertisementRepository, logger);
         JobAdvertisementDeleter jobAdvertisementDeleter = new JobAdvertisementDeleter(jobAdvertisementRepository, logger);
         JobAdvertisementParser jobAdvertisementParser = new JobAdvertisementParser(logger);

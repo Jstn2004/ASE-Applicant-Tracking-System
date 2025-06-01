@@ -2,6 +2,7 @@ package com.ats.jobadvertisementService;
 
 import com.ats.entities.EvaluationCriterion;
 import com.ats.entities.JobAdvertisement;
+import com.ats.interfaces.observer.JobAdvertisementCreatedObserver;
 import com.ats.repositories.JobAdvertisementRepository;
 
 import java.util.List;
@@ -12,10 +13,14 @@ public class JobAdvertisementCreater {
 
     private final Logger logger;
     private final JobAdvertisementRepository jobAdvertisementRepository;
+    private final List<JobAdvertisementCreatedObserver> observers;
 
-    public JobAdvertisementCreater(JobAdvertisementRepository jobAdvertisementRepository, Logger logger) {
+    public JobAdvertisementCreater(JobAdvertisementRepository jobAdvertisementRepository,
+                                   Logger logger,
+                                   List<JobAdvertisementCreatedObserver> observers) {
         this.jobAdvertisementRepository = jobAdvertisementRepository;
         this.logger = logger;
+        this.observers = observers;
     }
 
     public void createNewJobAdvertisement(String title, String description, List<EvaluationCriterion> criteria) {
@@ -29,6 +34,13 @@ public class JobAdvertisementCreater {
                 .build();
 
         jobAdvertisementRepository.saveJobAdvertisement(jobAdvertisement);
+
+        notifyObservers(jobAdvertisement);
     }
 
+    private void notifyObservers(JobAdvertisement jobAdvertisement) {
+        for (JobAdvertisementCreatedObserver observer : observers) {
+            observer.onJobAdvertisementCreated(jobAdvertisement);
+        }
+    }
 }

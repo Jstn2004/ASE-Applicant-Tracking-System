@@ -532,18 +532,50 @@ Die Klasse AbilityKeywordCreator weist eine hohe Kohäsion auf, da alle ihre Met
 
 ## Don’t Repeat Yourself (DRY)
 
+Zur Anwendung des **DRY-Prinzips** („Don’t Repeat Yourself“) wurde eine UI-Klasse überarbeitet, in der sich viele **wiederholte Codeabschnitte** befanden. Solcher mehrfach identischer Code führt dazu, dass bei Änderungen **viele Stellen gleichzeitig angepasst werden müssen**, was die **Wartung erschwert** und Fehleranfälligkeit erhöht – allein schon, weil alle betroffenen Stellen zunächst gefunden werden müssen.
+
+### Beispiel 1 (Header)
+
+#### **Vorher:** Dieser Codeblock wurde in mehreren Methoden exakt so wiederholt:
+
+```java
+System.out.println(mainConsole.line(header));
+System.out.println(mainConsole.header(header));
+System.out.println(mainConsole.line(header));
+```
+
+#### **Nachher:** Der Code wurde in eine zentrale Methode ausgelagert:
+
+```java
+private void printHeader(String header) {
+    System.out.println(mainConsole.line(header));
+    System.out.println(mainConsole.header(header));
+    System.out.println(mainConsole.line(header));
+}
+
+// Verwendung:
+printHeader("Ausschreibungen");
+```
+Durch das Auslagern in eine eigene Methode werden Redundanzen verringert die Lesbarkeit der Codes verbessert
+. Wodurch der Wartungsaufwand minimiert werden. Da Änderungen künftig nur an einer Stelle vorgenommne werden. 
+
+**Commit:** 
+
 
 # Unit Tests
 
-| **Unit Test**                          | **Beschreibung**                                                                                                                                                                                                                                                                                                                                  |
-|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `testAnalyseAbilityContant()`          | Testet die Analyse der Fähigkeiten eines Lebenslaufs eines Bewerbers. Hierbei wird der Abschnitt „Fähigkeiten“ aus dem Lebenslauf als Inhalt verwendet und Mock-Bewertungskriterien für die Bewerberfähigkeiten erstellt. Die Methode wird aufgerufen und überprüft, ob die korrekte Punktzahl für die Fähigkeiten berechnet wird.                |
-| `testAnalyseExperienceContant()`       | Testet die Analyse der Erfahrung die ein Bewerber in seinem Lebenslauf angegebene hat. Erstell zunächst eine Liste an EvaluationCriterions, wie sie auch in der Dantebnalne enthalten sind. Weiter wird ein Ausschnit aus einem Lebenslauf genommen und die Analye durchgeführt. Zum Schluss wird geprüft ob die Methode auch korrekt rechnet     |
-| `testCreateNewJobAdvertisement()`      | Testet ob das erzeugen von einem neuen JobAdvertisement auch korrket <br/>erfolgt. Dazu wird ein Beipsiel Kriterium erstellt, die Methode createNewJobAdvertisement mit den Werten aus dem SetUp ausfüllt, und geprüft, on ein passenden JibADvertisment Objekt zurück hgegebn wird                                                               |
-| `testJobAdvertisementHasId()`          | Prüft, ob das erzeuget JobAdvertisment auch korrekt mit einer gültigen ID erzeugt wird,                                                                                                                                                                                                                                                           |
-| `testJobAdvertisementgetDeleted()`     | Prüft, ob das löschen von bestehenden JobAdvertisment anhan der der ID korrket funktioniert.                                                                                                                                                                                                                                                      |
-| `testLoadJobAdvertisement()`           | Prüft, ob das laden der Daten erfolgreich erfolgt                                                                                                                                                                                                                                                                                                 |
-| `testParseJobAdvertisement()`          | Prüft, on das Parsen von JobAdvertisment aus der Datenbank korrket dumktioneir. Dazu wird ein JobAdvertisment Objekt und daraus ein String JiobAdverisment erstellt, welche in der Datenbank so vorligen. Diese String wird geparst und es werden mehrer asserts durchgeführt um zu Prüfen, das die Objket und das Geparste Objekt identisch sind |
+| **Unit Test**                     | **Beschreibung**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ApplicantCreaterTest`            | Innerhalb dieser Testklasse befinden sich drei Testmethoden. Diese prüfen, ob die Bewerber korrekt aus dem Lebenslauf extrahiert werden. Dazu werden eine Valides und ein Unvollständiges Bewerber geprüft, um beide Fälle abzudenken.  Weiter wird geprüft ob  mehrer BEwerber aus auch die mehrere Lebensläufe gleichzeitig lesen und verarbeite kann                                                                                                                                                                                                                                                  |
+| `ResumeAnalyserTest`              | Diese Test überprüft die Funktionsfähigkeit der Analyse der Resumes. Dazu wird im Setup zunächst ein Bewerbererzeugt. Weirere test erzeugten Fake Abilities und Schlüsselwerter und prüffen ob die berechnung und exrahiereung korrekt funktioneirner                                                                                                                                                                                                                                                                                                                                                    |
+| `JobAdvertisementParserTest`      | Der Test prüft, ob die Methode parseJobAdvertisementString(...) des JobAdvertisementParser einen Stellenanzeigen-String korrekt in ein JobAdvertisement-Objekt umwandelt. Dazu wird zunächst ein erwartetes Objekt (expectetJobAd) mit bestimmten Eigenschaften wie ID, Titel, Beschreibung und Bewertungskriterien erstellt. Der Test stellt sicher, dass das zurückgegebene Objekt nicht null ist und dass zentrale Attribute wie ID, Titel, Beschreibung und die Anzahl der Bewertungskriterien mit dem erwarteten Objekt übereinstimmen. Ziel ist es, die Korrektheit der Parser-Logik zu validieren. |
+| `JobAdvertisementLoaderTest`      | Der Test prüft, ob die Methode loadAllJobAdvertisement() der Klasse JobAdvertisementLoader korrekt mit dem Repository kommuniziert. Dabei wird ein Mock-Objekt des JobAdvertisementRepository verwendet, das dem JobAdvertisementLoader beim Setup übergeben wird                                                                                                                                                                                                                                                                                                                                        |
+| `JobAdvertisementDeleteTest`      | Der Test überprüft, ob die Methode deleteJobAdvertisement(String id) der Klasse JobAdvertisementDeleter korrekt funktioniert, indem sie den Löschvorgang an das Repository weiterleitet. Dafür wird zunächst ein Mock des JobAdvertisementRepository erstellt und dem JobAdvertisementDeleter übergeben. Im Test wird eine zufällige ID generiert, an den Deleter übergeben und anschließend mit verify(...) sichergestellt.                                                                                                                                                                             |
+| `JobAdvertisementCreaterTest`     | Der Test überprüft die Methode createNewJobAdvertisement(...) der Klasse JobAdvertisementCreater. Dabei wird getestet, ob eine neue Stellenanzeige korrekt erstellt, mit einer ID versehen, im Repository gespeichert und an registrierte Observer weitergegeben wird. Zudem wird kontrolliert, ob die gespeicherten Daten (Titel, Beschreibung, Kriterien) mit den Eingabewerten übereinstimmen.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `EvaluationKeywordFactoryTest`    | Der Test prüft die Methode createCriterion(...) der Klasse EvaluationKeywordsFactory. Dabei wird sichergestellt, dass bei gültigen Eingaben ein korrekt initialisiertes EvaluationKeywords-Objekt erstellt wird. Zusätzlich wird getestet, dass bei einer ungültigen Eingabe (Liste mit falschem Typ) eine ClassCastException geworfen wird.                                                                                                                                                                                                                                       |
+| `EvaluationExperienceFactoryTest` | Der Test überprüft die Methode createCriterion(...) der Klasse EvaluationExperienceFactory. Dabei wird getestet, ob bei gültigen Eingaben ein korrekt initialisiertes EvaluationExperience-Objekt erstellt wird. Zusätzlich wird sichergestellt, dass bei einer zu kurzen Liste eine IndexOutOfBoundsException und bei einem falschen Listentyp eine ClassCastException ausgelöst wird.                                                                                                                                                                                                                        |
+| `EvaluationAbilitiesFactoryTest`  | Der Test überprüft die Methode createCriterion(...) der Klasse EvaluationAbilitiesFactory. Es wird getestet, ob bei gültigen Eingaben ein korrekt initialisiertes EvaluationAbilities-Objekt zurückgegeben wird. Dabei werden Name, Fähigkeitenliste, Gewichtung und Punkte auf Richtigkeit geprüft.                                                                                                                                                                                                      |
+| `AbilityKeywordCreatorTest`       | Der Test überprüft verschiedene Methoden der Klasse AbilityKeywordCreator. Dabei wird getestet, ob aus gültigen Eingabestrings korrekte Ability- und Keyword-Objekte erzeugt werden und bei ungültigem oder leerem Input null zurückgegeben wird. Zusätzlich wird geprüft, ob die Methode createEvaluationCriterion(...) korrekt mit einer externen EvaluationCriterionFactory zusammenarbeitet, indem die Übergabeparameter überprüft und das erzeugte Kriterium zurückgegeben wird.                                                                                                                                                                                                     |
 
 ## ATRIP
 
@@ -624,40 +656,32 @@ klare
 Kommentierung oder nachvollziehbare Aufschlüsselung der erwarteten Punktzahl, sodass unklar bleibt, warum genau 640 erwartet werden. Zudem ist der Name der Textvariablen (contant) fehlerhaft geschrieben, was die Lesbarkeit und Wartbarkeit beeinträchtigt. Die Methode testet zwar korrekt, wirkt aber im Aufbau eher technisch als sauber dokumentiert oder selbsterklärend, was in professionellen Projekten entscheidend ist.
 
 ## Code Coverage
-Für die Analyse des Code Coverage des Projektes wurde das Plugin jacoco verwendet. 
-Dabei wird für jede Schicht des Anwendung ein Report erstellt welche alle notwendugn Daten anzeigt. 
+Für die Analyse der Code Coverage des Projekts wurde das Plugin JaCoCo verwendet. Dabei wurde für jede Schicht der Anwendung ein separater Bericht erstellt, der alle relevanten Abdeckungsdaten enthält. Insbesondere wurde für jede Ebene der Clean Architecture ein eigener Report generiert.
+
+Im Folgenden werden die Ergebnisse der Schichten dargestellt, in denen Tests vorhanden sind. Es zeigt sich, dass Unit-Tests ausschließlich in der Application- und Domain-Schicht vorhanden sind. Der Grund dafür liegt darin, dass sich in diesen Schichten die zentrale Logik und Funktionalität der Anwendung befindet. Diese enthalten den größten Teil des implementierten Codes, der für das Verhalten der Anwendung wesentlich ist, und sind daher besonders testrelevant.
+
+
 
 
 
 ## Fakes und Mocks
 
-### Beispiel 1 
+### Beispiel 1 (JobAdvertisementLoaderTest)
 ```mermaid
 classDiagram
-direction BT
-class JobAdvertisement {
-  - String id
-  - String titel
-  - String description
-  - List~EvaluationCriterion~ criteria
-  + equals(Object) boolean
-  + setCriteria(List~EvaluationCriterion~) void
-  + setTitel(String) void
-  + hashCode() int
-  + setDescription(String) void
-  + getCriteria() List~EvaluationCriterion~
-  + getId() String
-  + getTitel() String
-  + toString() String
-  + getDescription() String
-}
+  direction BT
+  class JobAdvertisementRepository {
+    <<Interface>>
+    + loadJobAdvertisement() List~String~
+    + deleteJobAdvertisementById(String) void
+    + saveJobAdvertisement(JobAdvertisement) void
+    + getJobAdvertisementById(String) String
+  }
+
+
 ```
 In den Tests wird Mockito verwendet, um das JobAdvertisementRepository zu mocken. Dadurch wird vermieden, dass echte Datenbankzugriffe stattfinden, was die Tests schnell und unabhängig von externen Systemen macht. Statt komplexem Setup kommen realistische, aber einfache Fake-Daten wie zum Beispiel title = "Software Engineer" oder eine List<EvaluationCriterion> zum Einsatz. Das sorgt für übersichtliche und gut wartbare Tests.
 
-### Beispiel 2
-```mermaid
-
-```
 # Domain Driven Design
 
 ## Ubiquitous Language
@@ -895,4 +919,28 @@ class JobAdvertisement {
 Die Klasse JobAdvertisement enthält das Entwurfsmuster des Erbauers.
 Die Klasse hatte einen sehr großen Konstruktor und enthält unterschiedliche Attribute. Diese haben den Nachteil, dass der Code sehr schnell unübersichtlich ist und nur schwer erweitert werden kann – was bei der Erstellung von Bewertungen schnell zu möglichen Änderungen führen kann. Der Erbauer ermöglicht eine schnelle und einfachere Erweiterung und bietet einen übersichtlichen Code, besonders bei der Eingabe, wenn man leicht Fehler bei der Reihenfolge macht oder die falschen Datentypen übergibt. 
 
+## Beobachter
+```mermaid
+classDiagram
+direction BT
+class JobAdvertisementCreatedObserver {
+<<Interface>>
+  + onJobAdvertisementCreated(JobAdvertisement) void
+}
+class JobAdvertisementCreater {
+  - List~JobAdvertisementCreatedObserver~ observers
+  - JobAdvertisementRepository jobAdvertisementRepository
+  - Logger logger
+  + createNewJobAdvertisement(String, String, List~EvaluationCriterion~) void
+  - notifyObservers(JobAdvertisement) void
+}
+class Logging {
+  - Logger logger
+  + onJobAdvertisementCreated(JobAdvertisement) void
+}
+
+JobAdvertisementCreater "1" *--> "observers *" JobAdvertisementCreatedObserver 
+Logging  ..>  JobAdvertisementCreatedObserver
+```
+Das Beobachter-Entwurfsmuster wurde gewählt, um eine lose Kopplung zwischen Klassen zu ermöglichen und das System flexibel erweiterbar zu halten. Neue Beobachter können einfach hinzugefügt werden, ohne den Sender ändern zu müssen. Im Code wurde ein Observer-Interface definiert, das vom LoggingObserver implementiert wird. Der JobAdvertisementCreater agiert als Sender und benachrichtigt alle registrierten Beobachter, sobald eine neue Jobanzeige erstellt wurde. So bleibt die Geschäftslogik sauber und unabhängig von technischen Details – ganz im Sinne der Clean Architecture.
 

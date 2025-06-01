@@ -35,18 +35,42 @@ public class JobAdvertisementUI {
     public void setMainConsole(MainConsole mainConsole) {
         this.mainConsole = mainConsole;
     }
+
     public void setResumeUI(ResumeUI resumeUI) {
         this.resumeUI = resumeUI;
     }
 
-
-    public void jobAdvertismentCLI() {
-        System.out.println();
-
-        String header = "Ausschreibungen ";
+    private void printHeader(String header) {
         System.out.println(mainConsole.line(header));
         System.out.println(mainConsole.header(header));
         System.out.println(mainConsole.line(header));
+    }
+
+    private void showMenu(String option1Text, Runnable option1Action, Runnable backAction) {
+        System.out.println("Wählen Sie eine Option:");
+        System.out.println("1: " + option1Text);
+        System.out.println("2: Zurück");
+        System.out.print("Eingabe:");
+
+        while (running) {
+            String input = scanner.next();
+            switch (input) {
+                case "1":
+                    option1Action.run();
+                    return;
+                case "2":
+                    backAction.run();
+                    return;
+                default:
+                    System.out.println("\u001B[31mUngültige Eingabe, bitte versuchen Sie es erneut.\u001B[0m");
+            }
+        }
+    }
+
+    public void jobAdvertismentCLI() {
+        System.out.println();
+        String header = "Ausschreibungen ";
+        printHeader(header);
 
         System.out.println("Wählen Sie eine Option:");
         System.out.println("1: Neue Jobausschreibung");
@@ -65,52 +89,44 @@ public class JobAdvertisementUI {
                     break;
                 case "3":
                     mainConsole.startCLI();
-                    break;
+                    return;
                 case "4":
                     System.out.println("Beenden");
                     running = false;
-                    break;
+                    return;
                 default:
                     System.out.println("\u001B[31mUngültige Eingabe, bitte versuchen Sie es erneut.\u001B[0m");
                     jobAdvertismentCLI();
             }
         }
         scanner.close();
-
     }
 
     public void newJobAdvertisementCLI() {
         System.out.println();
-
         String header = "Neue Jobausschreibung";
-        System.out.println(mainConsole.line(header));
-        System.out.println(mainConsole.header(header));
-        System.out.println(mainConsole.line(header));
+        printHeader(header);
 
+        scanner.nextLine(); // flush
         System.out.print("Titel: ");
         String title = scanner.nextLine();
-        title = scanner.nextLine();
 
         String description;
         do {
             System.out.print("Beschreibung: ");
             description = scanner.nextLine();
-        }while (!jobAdvertisementValidationController.startBlankInputValidation(description));
+        } while (!jobAdvertisementValidationController.startBlankInputValidation(description));
 
         List<EvaluationCriterion> evaluationCriterionIterable = createEvaluationCriteriaCLI();
         jobAdvertismentController.createJobAdvertisement(title, description, evaluationCriterionIterable);
 
         jobAdvertismentCLI();
-        //kriterienCLI();
     }
 
     public List<EvaluationCriterion> createEvaluationCriteriaCLI() {
         LinkedList<EvaluationCriterion> evaluationCriterionIterable = new LinkedList<>();
-        //Erstellen von Fähigkeits Bewertungen
         String header = "Bewertungskriterien festlegen ";
-        System.out.println(mainConsole.line(header));
-        System.out.println(mainConsole.header(header));
-        System.out.println(mainConsole.line(header));
+        printHeader(header);
 
         String input;
         do {
@@ -118,20 +134,20 @@ public class JobAdvertisementUI {
             evaluationCriterionIterable.add(evaluationAbilities);
             System.out.println("\u001B[90mWeiter Fähigkeiten festlegen? ('y' zum Beenden 'n' zum Fortsetzen)\u001B[0m");
             input = scanner.nextLine();
-        }while (input.equals("y"));
-
+        } while (input.equals("y"));
 
         EvaluationExperience evaluationExperience = createEvaluationExperienceCLI();
         evaluationCriterionIterable.add(evaluationExperience);
 
         EvaluationKeywords evaluationKeywords = createEvaluationKeywordCLI();
         evaluationCriterionIterable.add(evaluationKeywords);
+
         return evaluationCriterionIterable;
     }
 
     public EvaluationAbilities createEvaluationAbilitiesCLI() {
         System.out.println(mainConsole.header("Fähigkeiten"));
-        List<String> evaluationedCriterionArguments= evaluationCriterionCLI(false);
+        List<String> evaluationedCriterionArguments = evaluationCriterionCLI(false);
         List<Ability> abilities = createAbilitieCLI();
 
         return jobAdvertismentController.createEvaluationAbilities(evaluationedCriterionArguments, abilities);
@@ -139,212 +155,149 @@ public class JobAdvertisementUI {
 
     public EvaluationExperience createEvaluationExperienceCLI() {
         System.out.println(mainConsole.header("Erfahrungen"));
-        List<String> evaluationedCriterionArguments= evaluationCriterionCLI(true);
+        List<String> evaluationedCriterionArguments = evaluationCriterionCLI(true);
         String experience;
-        do{
+        do {
             System.out.print("Erfahrungen (In Jahren angeben): ");
-            experience= scanner.nextLine();
-        }while (!jobAdvertisementValidationController.startExperienceValidation(experience));
+            experience = scanner.nextLine();
+        } while (!jobAdvertisementValidationController.startExperienceValidation(experience));
 
         return jobAdvertismentController.createEvaluationExperience(evaluationedCriterionArguments, experience);
     }
 
     public EvaluationKeywords createEvaluationKeywordCLI() {
         System.out.println(mainConsole.header("Schlüsselwörter"));
-        List<String> evaluationedCriterionArguments= evaluationCriterionCLI(false);
+        List<String> evaluationedCriterionArguments = evaluationCriterionCLI(false);
         List<Keyword> keywords = createKeywordCLI();
 
         return jobAdvertismentController.createEvaluationKeywords(evaluationedCriterionArguments, keywords);
     }
 
-    public List<Ability> createAbilitieCLI()
-    {
+    public List<Ability> createAbilitieCLI() {
         List<Ability> abilityString = new ArrayList<>();
         String abilities;
-        do{
+        do {
             do {
                 System.out.println("Fähigkeit: (format: Name;Punkte) ('end' zum Beenden)");
                 abilities = scanner.nextLine();
                 if (abilities.equalsIgnoreCase("end")) {
                     break;
                 }
-            }while (!jobAdvertisementValidationController.startAbilitiesValidationOrKeyword(abilities));
-            if(abilities.equalsIgnoreCase("end")) {
+            } while (!jobAdvertisementValidationController.startAbilitiesValidationOrKeyword(abilities));
+
+            if (abilities.equalsIgnoreCase("end")) {
                 break;
             }
             abilityString.add(jobAdvertismentController.createAbility(abilities));
-        }while (!abilities.equalsIgnoreCase("end"));
+        } while (!abilities.equalsIgnoreCase("end"));
         return abilityString;
-
     }
 
-    public List<Keyword> createKeywordCLI()
-    {
+    public List<Keyword> createKeywordCLI() {
         List<Keyword> keywordStrings = new ArrayList<>();
         String keywords;
-        do{
+        do {
             do {
                 System.out.println("Schlüsselwörter: (format: Schlüsselwort;Punkte) ('end' zum Beenden)");
                 keywords = scanner.nextLine();
                 if (keywords.equalsIgnoreCase("end")) {
                     break;
                 }
-            }while (!jobAdvertisementValidationController.startAbilitiesValidationOrKeyword(keywords));
-            if(keywords.equalsIgnoreCase("end")) {
+            } while (!jobAdvertisementValidationController.startAbilitiesValidationOrKeyword(keywords));
+
+            if (keywords.equalsIgnoreCase("end")) {
                 break;
             }
             keywordStrings.add(jobAdvertismentController.createKeyword(keywords));
-        }while (!keywords.equalsIgnoreCase("end"));
+        } while (!keywords.equalsIgnoreCase("end"));
         return keywordStrings;
-
     }
 
-
-    public List<String> evaluationCriterionCLI(boolean pointsNeeded){
-        List<String> evaluationCriterionArguments= new LinkedList<>();
-
+    public List<String> evaluationCriterionCLI(boolean pointsNeeded) {
+        List<String> evaluationCriterionArguments = new LinkedList<>();
         String name;
         do {
             System.out.print("Name: ");
-            name= scanner.nextLine();
-        }while (!jobAdvertisementValidationController.startBlankInputValidation(name));
+            name = scanner.nextLine();
+        } while (!jobAdvertisementValidationController.startBlankInputValidation(name));
         evaluationCriterionArguments.add(name);
 
-        // Punkte
         if (pointsNeeded) {
             String points;
             do {
                 System.out.print("Punkte (Zahl von 1 bis 100): ");
                 points = scanner.nextLine();
-            }while (!jobAdvertisementValidationController.startPointsValidation(points));
+            } while (!jobAdvertisementValidationController.startPointsValidation(points));
             evaluationCriterionArguments.add(points);
         }
 
-
-        // Gewichtung
         String weighting;
         do {
             System.out.print("Gewichtung (Zahl von 1 bis 10): ");
             weighting = scanner.nextLine();
-        }while (!jobAdvertisementValidationController.startWeightingValidation(weighting));
+        } while (!jobAdvertisementValidationController.startWeightingValidation(weighting));
         evaluationCriterionArguments.add(weighting);
+
         return evaluationCriterionArguments;
     }
 
     public void allJobAdvertismentCLI(boolean type) {
         System.out.println();
         String header = "Alle Jobausschreibungen";
-        System.out.println(mainConsole.line(header));
-        System.out.println(mainConsole.header(header));
-        System.out.println(mainConsole.line(header));
-        jobAdvertismentController.loadAllJobAdvertisement().forEach(item ->
-                {
-                    System.out.printf("ID:             %s%n", item.getId());
-                    System.out.printf("Title:          %s%n", item.getTitel());
-                    System.out.printf("Beschreibung:   %s%n", item.getDescription());
-                    System.out.println("Bewertungskriterien:");
-                    item.getCriteria().forEach(criteria ->
-                    {
-                        System.out.println("  " + criteria.getClass().getSimpleName());
-                        System.out.printf("     Name:            %s%n", criteria.getName());
-                        System.out.printf("     Punkte:          %d%n", criteria.getPoints());
-                        System.out.printf("     Gewichtung:      %d%n", criteria.getWeighting());
-                        if (criteria instanceof EvaluationAbilities) {
-                            System.out.printf("     Fähigkeiten:     %s%n", ((EvaluationAbilities) criteria).getListOfAbilities());}
+        printHeader(header);
 
-                        if (criteria instanceof EvaluationExperience) {
-                            System.out.printf("     Erfahrung:       %d%n", ((EvaluationExperience) criteria).getExperienceInYears());}
+        jobAdvertismentController.loadAllJobAdvertisement().forEach(item -> {
+            System.out.printf("ID:             %s%n", item.getId());
+            System.out.printf("Title:          %s%n", item.getTitel());
+            System.out.printf("Beschreibung:   %s%n", item.getDescription());
+            System.out.println("Bewertungskriterien:");
+            item.getCriteria().forEach(criteria -> {
+                System.out.println("  " + criteria.getClass().getSimpleName());
+                System.out.printf("     Name:            %s%n", criteria.getName());
+                System.out.printf("     Punkte:          %d%n", criteria.getPoints());
+                System.out.printf("     Gewichtung:      %d%n", criteria.getWeighting());
 
-                        if (criteria instanceof EvaluationKeywords) {
-                            System.out.printf("     Schlüsselwörter: %s%n", ((EvaluationKeywords) criteria).getListOfKeywords());}
-
-                    });
-                    System.out.println(mainConsole.line(header));
+                if (criteria instanceof EvaluationAbilities) {
+                    System.out.printf("     Fähigkeiten:     %s%n", ((EvaluationAbilities) criteria).getListOfAbilities());
+                } else if (criteria instanceof EvaluationExperience) {
+                    System.out.printf("     Erfahrung:       %d%n", ((EvaluationExperience) criteria).getExperienceInYears());
+                } else if (criteria instanceof EvaluationKeywords) {
+                    System.out.printf("     Schlüsselwörter: %s%n", ((EvaluationKeywords) criteria).getListOfKeywords());
                 }
-        );
+            });
+            System.out.println(mainConsole.line(header));
+        });
 
-        if(type)
-        {
+        if (type) {
             selectJobAdvertisment();
-        }
-        else {
+        } else {
             deleteJobAdvertisment();
         }
     }
 
-    public void selectJobAdvertisment() {
-        System.out.println("Wählen Sie eine Option:");
-        System.out.println("1: Jobausschreibung Auswählen");
-        System.out.println("2: Zurück");
-        System.out.print("Eingabe:");
-        while (running) {
-            String input = scanner.next();
-            switch (input) {
-                case "1":
-                    selectActiveJobAdvertisment();
-                    break;
-                case "2":
-                    resumeUI.resumeCLI();
-                    break;
-                default:
-                    System.out.println("\u001B[31mUngültige Eingabe, bitte versuchen Sie es erneut.\u001B[0m");
-                    allJobAdvertismentCLI(true);
-            }
-        }
+    public void deleteJobAdvertisment() {
+        showMenu("Jobausschreibung Löschen", this::deleteActiveJobAdvertisment, this::jobAdvertismentCLI);
     }
 
-    public void deleteJobAdvertisment() {
-        System.out.println("Wählen Sie eine Option:");
-        System.out.println("1: Jobausschreibung Löschen");
-        System.out.println("2: Zurück");
-        System.out.print("Eingabe:");
-        while (running) {
-            String input = scanner.next();
-            switch (input) {
-                case "1":
-                    deleteActiveJobAdvertisment();
-                    break;
-                case "2":
-                    jobAdvertismentCLI();
-                    break;
-                default:
-                    System.out.println("\u001B[31mUngültige Eingabe, bitte versuchen Sie es erneut.\u001B[0m");
-                    allJobAdvertismentCLI(false);
-            }
-        }
+    public void selectJobAdvertisment() {
+        showMenu("Jobausschreibung Auswählen", this::selectActiveJobAdvertisment, resumeUI::resumeCLI);
     }
 
     public void deleteActiveJobAdvertisment() {
-        System.out.println();
-
         String header = "Jobausschreibung löschen";
-        System.out.println(mainConsole.line(header));
-        System.out.println(mainConsole.header(header));
-        System.out.println(mainConsole.line(header));
-
+        printHeader(header);
         System.out.println("Zum Löschen die ID der Ausschreibung eingeben");
         String idToDelete = scanner.next();
         jobAdvertismentController.deleteJobAdvertisementById(idToDelete);
         allJobAdvertismentCLI(false);
-
     }
 
     public void selectActiveJobAdvertisment() {
-        System.out.println();
-
         String header = "Jobausschreibung auswählen";
-        System.out.println(mainConsole.line(header));
-        System.out.println(mainConsole.header(header));
-        System.out.println(mainConsole.line(header));
-
+        printHeader(header);
         System.out.println("Zum Auswählen die ID der Ausschreibung eingeben");
         String id = scanner.next();
         String result = resumeController.selectedResume(id);
         resumeUI.resumeCLI();
-
     }
-
-
-
-
 }

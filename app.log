@@ -7157,3 +7157,65 @@ Mai 25, 2025 12:03:44 PM com.ats.resumeService.ResumeServiceImpl loadAllResumes
 INFORMATION: Loading all resumes
 Mai 25, 2025 12:03:44 PM com.ats.resumeService.ResumeServiceImpl loadAllResumes
 INFORMATION: Loading all resumes
+Mai 29, 2025 12:33:23 PM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Mai 29, 2025 12:33:23 PM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Mai 29, 2025 12:33:43 PM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: Holz
+Mai 29, 2025 12:33:50 PM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: Stark
+Mai 29, 2025 12:33:52 PM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 2
+Mai 29, 2025 12:33:52 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 2
+Mai 29, 2025 12:34:11 PM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: stark;3
+Mai 29, 2025 12:34:11 PM com.ats.JobAdvertisementController createAbility
+INFORMATION: Creating Ability
+Mai 29, 2025 12:34:12 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: Creating Evaluation Abilities
+Mai 29, 2025 12:34:12 PM com.ats.JobAdvertisementController createEvaluationAbilities
+INFORMATION: [(stark; 3)]
+Mai 29, 2025 12:34:16 PM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: test
+Mai 29, 2025 12:34:17 PM com.ats.validation.JobAdvertismentValidation validatePoints
+INFORMATION: Validate: s
+Mai 29, 2025 12:34:17 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: s
+Mai 29, 2025 12:34:18 PM com.ats.validation.JobAdvertismentValidation validatePoints
+INFORMATION: Validate: 3
+Mai 29, 2025 12:34:18 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 3
+Mai 29, 2025 12:34:18 PM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 4
+Mai 29, 2025 12:34:18 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 4
+Mai 29, 2025 12:34:20 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 2
+Mai 29, 2025 12:34:20 PM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: Creating EvaluationExperience
+Mai 29, 2025 12:34:20 PM com.ats.JobAdvertisementController createEvaluationExperience
+INFORMATION: 2
+Mai 29, 2025 12:34:24 PM com.ats.validation.JobAdvertismentValidation validateBlankInput
+INFORMATION: Validate Blank Input: test
+Mai 29, 2025 12:34:25 PM com.ats.validation.JobAdvertismentValidation validateWeighting
+INFORMATION: ValidateWeighting: 3
+Mai 29, 2025 12:34:25 PM com.ats.validation.JobAdvertismentValidation isValidNumber
+INFORMATION: Validate Number: 3
+Mai 29, 2025 12:34:28 PM com.ats.validation.JobAdvertismentValidation validateAbilitieOrKeyword
+INFORMATION: Validate Abilities Or Keyword: test;3
+Mai 29, 2025 12:34:28 PM com.ats.JobAdvertisementController createKeyword
+INFORMATION: Creating Keyword
+Mai 29, 2025 12:34:30 PM com.ats.JobAdvertisementController createEvaluationKeywords
+INFORMATION: Creating EvaluationKeywords
+Mai 29, 2025 12:34:30 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: Creating Job Advertisement
+Mai 29, 2025 12:34:30 PM com.ats.JobAdvertisementController createJobAdvertisement
+INFORMATION: [EvaluationAbilities{name=Stark, listOfAbilities=[(stark; 3)], weighting=2}, EvaluationExperience{name=test, points=4, experienceInYear=2, weighting=4}, EvaluationKeywords{name=test, listOfKeywords=[(test; 3)], weighting=3}]
+Mai 29, 2025 12:34:30 PM com.ats.Logging onJobAdvertisementCreated
+INFORMATION: Neues JobInserat erstellt: Handwerker
+Juni 01, 2025 11:22:01 AM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Juni 01, 2025 11:22:01 AM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
