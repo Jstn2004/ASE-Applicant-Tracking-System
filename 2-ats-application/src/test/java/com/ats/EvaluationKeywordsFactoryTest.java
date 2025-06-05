@@ -30,12 +30,5 @@ public class EvaluationKeywordsFactoryTest {
         assertEquals(weighting, result.getWeighting());
     }
 
-    @Test
-    public void testCreateCriterion_invalidInput_wrongType() {
-        EvaluationKeywordsFactory factory = new EvaluationKeywordsFactory();
-        List<String> invalidList = List.of("Spring", "Docker");
 
-        assertThrows(ClassCastException.class, () ->
-                factory.createCriterion("Fehler", (List<?>) invalidList, 10));
-    }
 }

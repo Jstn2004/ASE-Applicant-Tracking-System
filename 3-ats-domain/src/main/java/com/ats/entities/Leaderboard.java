@@ -1,18 +1,20 @@
 package com.ats.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 public class Leaderboard {
     private final UUID id;
     private String name;
-    private Iterable<Applicant> bewerber;
+    private Iterable<Applicant> applicants;
     private JobAdvertisement jobAdvertisement;
 
     public Leaderboard(String name, Iterable<Applicant> bewerber, JobAdvertisement jobAdvertisement) {
         this.id = UUID.randomUUID();
         this.name = name;
-        this.bewerber = bewerber;
+        this.applicants = bewerber;
         this.jobAdvertisement = jobAdvertisement;
     }
 
@@ -28,12 +30,31 @@ public class Leaderboard {
         this.name = name;
     }
 
-    public Iterable<Applicant> getBewerber() {
-        return bewerber;
+    public Iterable<Applicant> getApplicants() {
+        return applicants;
     }
 
-    public void setBewerber(Iterable<Applicant> bewerber) {
-        this.bewerber = bewerber;
+    public List<String> formatLeaderboard() {
+        List<Applicant> sortedApplicants = new ArrayList<>();
+        applicants.forEach(sortedApplicants::add);
+
+        sortedApplicants.sort((a1, a2) -> Integer.compare(a2.getPoints(), a1.getPoints()));
+
+        List<String> resultStrings = new ArrayList<>();
+
+        resultStrings.add("Leaderboard: " + name);
+
+        int rank = 1;
+        for (Applicant a : sortedApplicants) {
+            String formatted = String.format("%d | %s | %d", rank++, a.getName(), a.getPoints());
+            resultStrings.add(formatted);
+        }
+
+        return resultStrings;
+    }
+
+    public void setApplicants(Iterable<Applicant> applicants) {
+        this.applicants = applicants;
     }
 
     public JobAdvertisement getAusschreibung() {
@@ -47,11 +68,11 @@ public class Leaderboard {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Leaderboard rangliste)) return false;
-        return Objects.equals(id, rangliste.id) && Objects.equals(name, rangliste.name) && Objects.equals(bewerber, rangliste.bewerber) && Objects.equals(jobAdvertisement, rangliste.jobAdvertisement);
+        return Objects.equals(id, rangliste.id) && Objects.equals(name, rangliste.name) && Objects.equals(applicants, rangliste.applicants) && Objects.equals(jobAdvertisement, rangliste.jobAdvertisement);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, bewerber, jobAdvertisement);
+        return Objects.hash(id, name, applicants, jobAdvertisement);
     }
 }

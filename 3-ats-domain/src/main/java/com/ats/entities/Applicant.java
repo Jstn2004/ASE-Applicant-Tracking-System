@@ -1,7 +1,6 @@
 package com.ats.entities;
 
 import com.ats.vo.Resume;
-import com.ats.vo.Rank;
 
 import java.util.Objects;
 import java.util.UUID;

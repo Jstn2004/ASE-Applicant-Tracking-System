@@ -1,0 +1,3 @@
+Leaderboard: Rangliste für Softwareentwickler
+1 | Tom | 1200
+2 | Max | 1014

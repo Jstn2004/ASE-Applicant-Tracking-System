@@ -7219,3 +7219,253 @@ Juni 01, 2025 11:22:01 AM com.ats.resumeService.ResumeServiceImpl loadAllResumes
 INFORMATION: Loading all resumes
 Juni 01, 2025 11:22:01 AM com.ats.resumeService.ResumeServiceImpl loadAllResumes
 INFORMATION: Loading all resumes
+Juni 01, 2025 11:46:46 AM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Juni 01, 2025 11:46:46 AM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Juni 01, 2025 11:47:04 AM com.ats.resumeService.ResumeServiceImpl setSelectedJobAdvertisement
+INFORMATION: Selecting resume
+Juni 01, 2025 11:47:04 AM com.ats.resumeService.ResumeServiceImpl setSelectedJobAdvertisement
+INFORMATION: Selected resume: JobAdvertisement{id='835b78e1-a303-452f-90ec-f268c8d0b68e', titel='Softwareentwickler', description='Ein guter bitte', criteria=[EvaluationAbilities{name=Programmiersprachen, listOfAbilities=[(C#; 100), (Docker; 50)], weighting=5}, EvaluationAbilities{name=Sprachen, listOfAbilities=[(Englisch; 50), (Deutsch; 100)], weighting=3}, EvaluationExperience{name=Berufserfahrungen, points=8, experienceInYear=10, weighting=8}, EvaluationKeywords{name=Schlüsselwörter, listOfKeywords=[(fleißig; 10)], weighting=8}]}
+Juni 01, 2025 11:47:07 AM com.ats.resumeService.ResumeServiceImpl startResumeAnalysing
+INFORMATION: Starting resume analysing
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseResume
+INFORMATION: Analysing Resume for JobAdvertisement{id='835b78e1-a303-452f-90ec-f268c8d0b68e', titel='Softwareentwickler', description='Ein guter bitte', criteria=[EvaluationAbilities{name=Programmiersprachen, listOfAbilities=[(C#; 100), (Docker; 50)], weighting=5}, EvaluationAbilities{name=Sprachen, listOfAbilities=[(Englisch; 50), (Deutsch; 100)], weighting=3}, EvaluationExperience{name=Berufserfahrungen, points=8, experienceInYear=10, weighting=8}, EvaluationKeywords{name=Schlüsselwörter, listOfKeywords=[(fleißig; 10)], weighting=8}]}
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseResume
+INFORMATION: Applicant list: [Applicant{id=53868500-819a-4936-b938-4e58e32dcdb2, name='Tom', email='max.mustermann@email.com', points0, phoneNumber='+49 170 1234567', address='Musterstraße 1, 12345 Musterstadt, Deutschland', resume=Resume{contant='Name: Tom Mustermann
+E-Mail: max.mustermann@email.com
+Telefon: +49 170 1234567
+Adresse: Musterstraße 1, 12345 Musterstadt, Deutschland
+
+## Fähigkeiten
+
+- Programmiersprachen: Python, Docker,  Java, C#
+- Sprachen: Deutsch, Englisch
+- Sonstige: Teamfähigkeit, Problemlösung, fleißig
+
+## Erfahrung
+
+- Werkstudent Softwareentwicklung bei TechCorp (2022 - 2023)
+  - Entwicklung und Wartung von Webanwendungen
+  - Optimierung bestehender Codebasis
+- Praktikum IT-Support bei ITSolutions (2021 - 2022)
+  - Fehleranalyse und Behebung technischer Probleme
+  - Kundenberatung und Unterstützung
+
+## Hobbys & Interessen
+
+- Wandern in den Alpen
+- Schach spielen und Turniere besuchen
+- Musikproduktion und DJing
+
+'}}, Applicant{id=90841833-8757-40cc-a776-e78faba95e50, name='Max', email='max.mustermann@email.com', points0, phoneNumber='+49 170 1234567', address='Musterstraße 1, 12345 Musterstadt, Deutschland', resume=Resume{contant='Name: Max Mustermann
+E-Mail: max.mustermann@email.com
+Telefon: +49 170 1234567
+Adresse: Musterstraße 1, 12345 Musterstadt, Deutschland
+
+
+## Fähigkeiten
+
+- Programmiersprachen: Python, Typescript, C#, Angular
+- Sprachen: Deutsch, Englisch, Spanish
+- Sonstige: Teamfähigkeit, Eigenständig, schnelles Lernen
+
+
+## Erfahrung
+
+- Softwareentwicklung bei Google (2012 - 2022)
+  - Entwicklung und Wartung von Webanwendungen
+  - Optimierung bestehender Codebasis
+
+
+## Hobbys & Interessen
+
+- Musikproduktion und DJing
+- Künstliche Intelligenz
+- Programmieren
+
+'}}]
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseAbilitiesInResume
+INFORMATION: Start analysing Abilities
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseAbilitiesInResume
+INFORMATION: Content: - Programmiersprachen: Python, Docker,  Java, C#
+- Sprachen: Deutsch, Englisch
+- Sonstige: Teamfähigkeit, Problemlösung, fleißig
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseAbilitiesInResume
+INFORMATION: Evaluation Abilities: [EvaluationAbilities{name=Programmiersprachen, listOfAbilities=[(C#; 100), (Docker; 50)], weighting=5}, EvaluationAbilities{name=Sprachen, listOfAbilities=[(Englisch; 50), (Deutsch; 100)], weighting=3}]
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseExperienceInResume
+INFORMATION: Start analysing Experience
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseExperienceInResume
+INFORMATION: Content: - Werkstudent Softwareentwicklung bei TechCorp (2022 - 2023)
+  - Entwicklung und Wartung von Webanwendungen
+  - Optimierung bestehender Codebasis
+- Praktikum IT-Support bei ITSolutions (2021 - 2022)
+  - Fehleranalyse und Behebung technischer Probleme
+  - Kundenberatung und Unterstützung
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseKeywordsInResume
+INFORMATION: Start analysing Keywords
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseKeywordsInResume
+INFORMATION: Content: - Wandern in den Alpen
+- Schach spielen und Turniere besuchen
+- Musikproduktion und DJing
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseKeywordsInResume
+INFORMATION: Evaluation Keywords: [EvaluationKeywords{name=Schlüsselwörter, listOfKeywords=[(fleißig; 10)], weighting=8}]
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser assignPointsToApplicant
+INFORMATION: Name: Tom
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser assignPointsToApplicant
+INFORMATION: Points: 1200
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseAbilitiesInResume
+INFORMATION: Start analysing Abilities
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseAbilitiesInResume
+INFORMATION: Content: - Programmiersprachen: Python, Typescript, C#, Angular
+- Sprachen: Deutsch, Englisch, Spanish
+- Sonstige: Teamfähigkeit, Eigenständig, schnelles Lernen
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseAbilitiesInResume
+INFORMATION: Evaluation Abilities: [EvaluationAbilities{name=Programmiersprachen, listOfAbilities=[(C#; 100), (Docker; 50)], weighting=5}, EvaluationAbilities{name=Sprachen, listOfAbilities=[(Englisch; 50), (Deutsch; 100)], weighting=3}]
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseExperienceInResume
+INFORMATION: Start analysing Experience
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseExperienceInResume
+INFORMATION: Content: - Softwareentwicklung bei Google (2012 - 2022)
+  - Entwicklung und Wartung von Webanwendungen
+  - Optimierung bestehender Codebasis
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseKeywordsInResume
+INFORMATION: Start analysing Keywords
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseKeywordsInResume
+INFORMATION: Content: - Musikproduktion und DJing
+- Künstliche Intelligenz
+- Programmieren
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser analyseKeywordsInResume
+INFORMATION: Evaluation Keywords: [EvaluationKeywords{name=Schlüsselwörter, listOfKeywords=[(fleißig; 10)], weighting=8}]
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser assignPointsToApplicant
+INFORMATION: Name: Max
+Juni 01, 2025 11:47:07 AM com.ats.services.ResumeAnalyser assignPointsToApplicant
+INFORMATION: Points: 1014
+Juni 01, 2025 11:51:48 AM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Juni 01, 2025 11:51:48 AM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Juni 01, 2025 11:51:53 AM com.ats.resumeService.ResumeServiceImpl setSelectedJobAdvertisement
+INFORMATION: Selecting resume
+Juni 01, 2025 11:51:53 AM com.ats.resumeService.ResumeServiceImpl setSelectedJobAdvertisement
+INFORMATION: Selected resume: null
+Juni 01, 2025 11:51:59 AM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Juni 01, 2025 11:51:59 AM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Juni 01, 2025 11:52:09 AM com.ats.resumeService.ResumeServiceImpl setSelectedJobAdvertisement
+INFORMATION: Selecting resume
+Juni 01, 2025 11:52:09 AM com.ats.resumeService.ResumeServiceImpl setSelectedJobAdvertisement
+INFORMATION: Selected resume: JobAdvertisement{id='835b78e1-a303-452f-90ec-f268c8d0b68e', titel='Softwareentwickler', description='Ein guter bitte', criteria=[EvaluationAbilities{name=Programmiersprachen, listOfAbilities=[(C#; 100), (Docker; 50)], weighting=5}, EvaluationAbilities{name=Sprachen, listOfAbilities=[(Englisch; 50), (Deutsch; 100)], weighting=3}, EvaluationExperience{name=Berufserfahrungen, points=8, experienceInYear=10, weighting=8}, EvaluationKeywords{name=Schlüsselwörter, listOfKeywords=[(fleißig; 10)], weighting=8}]}
+Juni 01, 2025 11:52:11 AM com.ats.resumeService.ResumeServiceImpl startResumeAnalysing
+INFORMATION: Starting resume analysing
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseResume
+INFORMATION: Analysing Resume for JobAdvertisement{id='835b78e1-a303-452f-90ec-f268c8d0b68e', titel='Softwareentwickler', description='Ein guter bitte', criteria=[EvaluationAbilities{name=Programmiersprachen, listOfAbilities=[(C#; 100), (Docker; 50)], weighting=5}, EvaluationAbilities{name=Sprachen, listOfAbilities=[(Englisch; 50), (Deutsch; 100)], weighting=3}, EvaluationExperience{name=Berufserfahrungen, points=8, experienceInYear=10, weighting=8}, EvaluationKeywords{name=Schlüsselwörter, listOfKeywords=[(fleißig; 10)], weighting=8}]}
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseResume
+INFORMATION: Applicant list: [Applicant{id=ac3a96bd-5d43-4bd6-9b09-454dad21ac9d, name='Tom', email='max.mustermann@email.com', points0, phoneNumber='+49 170 1234567', address='Musterstraße 1, 12345 Musterstadt, Deutschland', resume=Resume{contant='Name: Tom Mustermann
+E-Mail: max.mustermann@email.com
+Telefon: +49 170 1234567
+Adresse: Musterstraße 1, 12345 Musterstadt, Deutschland
+
+## Fähigkeiten
+
+- Programmiersprachen: Python, Docker,  Java, C#
+- Sprachen: Deutsch, Englisch
+- Sonstige: Teamfähigkeit, Problemlösung, fleißig
+
+## Erfahrung
+
+- Werkstudent Softwareentwicklung bei TechCorp (2022 - 2023)
+  - Entwicklung und Wartung von Webanwendungen
+  - Optimierung bestehender Codebasis
+- Praktikum IT-Support bei ITSolutions (2021 - 2022)
+  - Fehleranalyse und Behebung technischer Probleme
+  - Kundenberatung und Unterstützung
+
+## Hobbys & Interessen
+
+- Wandern in den Alpen
+- Schach spielen und Turniere besuchen
+- Musikproduktion und DJing
+
+'}}, Applicant{id=8fcf9a02-5cff-4ee1-966d-dfea31d22006, name='Max', email='max.mustermann@email.com', points0, phoneNumber='+49 170 1234567', address='Musterstraße 1, 12345 Musterstadt, Deutschland', resume=Resume{contant='Name: Max Mustermann
+E-Mail: max.mustermann@email.com
+Telefon: +49 170 1234567
+Adresse: Musterstraße 1, 12345 Musterstadt, Deutschland
+
+
+## Fähigkeiten
+
+- Programmiersprachen: Python, Typescript, C#, Angular
+- Sprachen: Deutsch, Englisch, Spanish
+- Sonstige: Teamfähigkeit, Eigenständig, schnelles Lernen
+
+
+## Erfahrung
+
+- Softwareentwicklung bei Google (2012 - 2022)
+  - Entwicklung und Wartung von Webanwendungen
+  - Optimierung bestehender Codebasis
+
+
+## Hobbys & Interessen
+
+- Musikproduktion und DJing
+- Künstliche Intelligenz
+- Programmieren
+
+'}}]
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseAbilitiesInResume
+INFORMATION: Start analysing Abilities
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseAbilitiesInResume
+INFORMATION: Content: - Programmiersprachen: Python, Docker,  Java, C#
+- Sprachen: Deutsch, Englisch
+- Sonstige: Teamfähigkeit, Problemlösung, fleißig
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseAbilitiesInResume
+INFORMATION: Evaluation Abilities: [EvaluationAbilities{name=Programmiersprachen, listOfAbilities=[(C#; 100), (Docker; 50)], weighting=5}, EvaluationAbilities{name=Sprachen, listOfAbilities=[(Englisch; 50), (Deutsch; 100)], weighting=3}]
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseExperienceInResume
+INFORMATION: Start analysing Experience
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseExperienceInResume
+INFORMATION: Content: - Werkstudent Softwareentwicklung bei TechCorp (2022 - 2023)
+  - Entwicklung und Wartung von Webanwendungen
+  - Optimierung bestehender Codebasis
+- Praktikum IT-Support bei ITSolutions (2021 - 2022)
+  - Fehleranalyse und Behebung technischer Probleme
+  - Kundenberatung und Unterstützung
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseKeywordsInResume
+INFORMATION: Start analysing Keywords
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseKeywordsInResume
+INFORMATION: Content: - Wandern in den Alpen
+- Schach spielen und Turniere besuchen
+- Musikproduktion und DJing
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseKeywordsInResume
+INFORMATION: Evaluation Keywords: [EvaluationKeywords{name=Schlüsselwörter, listOfKeywords=[(fleißig; 10)], weighting=8}]
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser assignPointsToApplicant
+INFORMATION: Name: Tom
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser assignPointsToApplicant
+INFORMATION: Points: 1200
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseAbilitiesInResume
+INFORMATION: Start analysing Abilities
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseAbilitiesInResume
+INFORMATION: Content: - Programmiersprachen: Python, Typescript, C#, Angular
+- Sprachen: Deutsch, Englisch, Spanish
+- Sonstige: Teamfähigkeit, Eigenständig, schnelles Lernen
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseAbilitiesInResume
+INFORMATION: Evaluation Abilities: [EvaluationAbilities{name=Programmiersprachen, listOfAbilities=[(C#; 100), (Docker; 50)], weighting=5}, EvaluationAbilities{name=Sprachen, listOfAbilities=[(Englisch; 50), (Deutsch; 100)], weighting=3}]
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseExperienceInResume
+INFORMATION: Start analysing Experience
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseExperienceInResume
+INFORMATION: Content: - Softwareentwicklung bei Google (2012 - 2022)
+  - Entwicklung und Wartung von Webanwendungen
+  - Optimierung bestehender Codebasis
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseKeywordsInResume
+INFORMATION: Start analysing Keywords
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseKeywordsInResume
+INFORMATION: Content: - Musikproduktion und DJing
+- Künstliche Intelligenz
+- Programmieren
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser analyseKeywordsInResume
+INFORMATION: Evaluation Keywords: [EvaluationKeywords{name=Schlüsselwörter, listOfKeywords=[(fleißig; 10)], weighting=8}]
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser assignPointsToApplicant
+INFORMATION: Name: Max
+Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser assignPointsToApplicant
+INFORMATION: Points: 1014
