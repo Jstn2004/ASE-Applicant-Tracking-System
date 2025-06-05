@@ -2,6 +2,7 @@ package com.ats.resumeService;
 
 import com.ats.entities.Applicant;
 import com.ats.entities.JobAdvertisement;
+import com.ats.entities.Leaderboard;
 import com.ats.interfaces.FileManager;
 import com.ats.interfaces.ResumeService;
 import com.ats.jobadvertisementService.JobAdvertisementParser;
@@ -68,6 +69,14 @@ public class ResumeServiceImpl implements ResumeService {
 
     public List<Applicant> getAnalysedApplicants() {
         return analysedApplicants;
+    }
+
+    public Leaderboard getLeaderboard() {
+        return new Leaderboard(
+                "Rangliste für " + selectedJobAdvertisement.getTitel(),
+                analysedApplicants,
+                selectedJobAdvertisement
+        );
     }
 
 

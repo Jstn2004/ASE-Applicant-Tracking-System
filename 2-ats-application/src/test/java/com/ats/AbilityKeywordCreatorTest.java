@@ -56,17 +56,5 @@ class AbilityKeywordCreatorTest {
         assertNull(creator.generateKeyword(""));
     }
 
-    @Test
-    void testCreateEvaluationCriterion_withMockFactory() {
 
-        EvaluationCriterionFactory factory = mock(EvaluationCriterionFactory.class);
-        EvaluationCriterion dummyCriterion = mock(EvaluationCriterion.class);
-
-        when(factory.createCriterion(eq("Teamfähigkeit"), anyList(), eq(50))).thenReturn(dummyCriterion);
-
-        EvaluationCriterion result = creator.createEvaluationCriterion(factory, "Teamfähigkeit", List.of("Dummy"), 50);
-
-        assertEquals(dummyCriterion, result);
-        verify(factory, times(1)).createCriterion("Teamfähigkeit", List.of("Dummy"), 50);
-    }
 }

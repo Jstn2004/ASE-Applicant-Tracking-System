@@ -2,6 +2,7 @@ package com.ats;
 
 import com.ats.entities.Applicant;
 import com.ats.entities.JobAdvertisement;
+import com.ats.entities.Leaderboard;
 import com.ats.interfaces.FileManager;
 import com.ats.resumeService.ResumeServiceImpl;
 
@@ -41,21 +42,12 @@ public class ResumeController {
     {
         boolean result = resumeService.startResumeAnalysing();
         if (result) {
-            fileManager.saveLeaderboardFile(getActiveJobAdvertisement().getTitel(), transformApplicants(resumeService.getAnalysedApplicants()));
+            fileManager.saveLeaderboardFile(getActiveJobAdvertisement().getTitel(), transformLeaderboard(resumeService.getLeaderboard().formatLeaderboard()));
         }
         return result;
     }
 
-    public List<String> transformApplicants(List<Applicant> analysed) {
-        analysed.sort((a1, a2) -> Integer.compare(a2.getPoints(), a1.getPoints()));
-
-        List<String> resultStrings = new ArrayList<>();
-        int rank = 1;
-        for (Applicant a : analysed) {
-            String formatted = String.format("%d | %s | %d", rank++, a.getName(), a.getPoints());
-            resultStrings.add(formatted);
-        }
-
-        return resultStrings;
+    public List<String> transformLeaderboard(List<String> leaderboard) {
+        return leaderboard;
     }
 }

@@ -1,0 +1,865 @@
+<!DOCTYPE html><html><head>
+      <title>programmentwurf</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////Users/justinhubert/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.8.18/crossnote/dependencies/katex/katex.min.css">
+      
+      
+      <script type="text/javascript" src="file:////Users/justinhubert/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.8.18/crossnote/dependencies/mermaid/mermaid.min.js" charset="UTF-8"></script>
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="programmentwurf---applicant-tracking-system">Programmentwurf - Applicant Tracking System </h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Matrikelnummer</th>
+<th>Studiengruppe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Justin Hubert</td>
+<td>7654321</td>
+<td>TINF22B2</td>
+</tr>
+<tr>
+<td>Luis Bernhardt</td>
+<td>6273748</td>
+<td>TINF22B2</td>
+</tr>
+</tbody>
+</table>
+<h1 id="einleitung">Einleitung </h1>
+<h2 id="übersicht-über-die-application">Übersicht über die Application </h2>
+<p>Die Anwendung ist ein System zur Analyse von Lebensläufen von Bewerbern, das speziell für Unternehmen entwickelt wurde, die offene Stellen anbieten. Sie richtet sich insbesondere an große Unternehmen mit einer hohen Anzahl potenzieller Bewerber und unterstützt diese bei der Vorauswahl geeigneter Kandidaten. Ziel ist es, basierend auf den Anforderungen der Stellenausschreibung ausschließlich passende Kandidaten zu identifizieren. Über eine benutzerfreundliche Konsolenanwendung können neue Jobausschreibungen erstellt werden. Dabei hat der Nutzer die Möglichkeit, einen Titel, eine Beschreibung sowie Bewertungskriterien für die Analyse festzulegen. Alle eingegangenen Lebensläufe können in einem vorgesehenen Eingabeordner abgelegt werden. Beim Start der Analyse wird die ausgewählte Ausschreibung genutzt, um die Lebensläufe entsprechend der festgelegten Kriterien zu bewerten. Nach Abschluss der Analyse liefert die Anwendung eine vollständige Rangliste aller Bewerber, einschließlich ihrer Bewertungspunkte, und bietet so eine strukturierte Grundlage für die weitere Auswahlentscheidung.</p>
+<h2 id="wie-startet-man-die-application">Wie startet man die Application </h2>
+<p>Zum Starten der Anwendung muss die Main-Klasse in der Plugin-Schicht ausgeführt werden. Zudem müssen im Ressourcen-Ordner Input der Plugin-Schicht die Lebensläufe hochgeladen werden. Nach dem Start öffnet sich die Konsole. Der Nutzer muss zunächst eine Jobausschreibung erstellen und anschließend auswählen. Erst danach beginnt die Analyse der hochgeladenen Lebensläufe. Das Ergebnis der Analyse wird im Ressourcen-Ordner Output der Plugin-Schicht gespeichert. Dort befindet sich eine Rangliste der Bewerber in absteigender Reihenfolge nach Punktzahl. So kann der Nutzer schnell erkennen, welcher Bewerber die Kriterien am besten erfüllt. Für das testweise Ausführen der App stehen bereits zwei Lebensläufe zur Analyse bereit. Zudem befinden sich zwei Job-Ausschreibungen in der Datenquelle. Es besteht jedoch die Möglichkeit, weitere Ausschreibungen zu erstellen.</p>
+<h2 id="wie-testet-man-die-application">Wie testet man die Application </h2>
+<p>Die geschriebenen Unit-Tests befinden sich im Test-Ordner der einzelnen Projekte.<br>
+Sie können entweder direkt innerhalb der jeweiligen Datei ausgeführt werden oder durch Eingabe des Befehls:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>mvn clean <span class="token builtin class-name">test</span>
+</code></pre><h1 id="clean-architecture">Clean Architecture </h1>
+<p>Die Clean Architecture ist ein Architekturstil für den Aufbau von IT-Anwendungen,<br>
+der sich durch eine klare Trennung von fachlicher Logik und technischer Infrastruktur<br>
+auszeichnet. Ziel dieses Ansatzes ist es, die Geschäftslogik der Anwendung unabhängig<br>
+von äußeren Faktoren wie Frameworks, Datenbanken oder Benutzeroberflächen zu halten.<br>
+Dadurch wird die Anwendung leichter testbar, flexibler und einfacher weiterzuentwickeln.<br>
+Die Clean Architecture wird in der Regel in vier Schichten unterteilt. Die innerste Schicht<br>
+wird als Domain-Schicht bezeichnet. Diese Schicht enthält die organisationsweit gültige<br>
+Geschäftslogik und die zentralen Entitäten (Entities). Sie repräsentiert die stabilsten<br>
+Bestandteile der Anwendung, die sich am seltensten ändern. Die nächste Schicht enthält<br>
+die Anwendungslogik, also die Use Cases der Anwendung. Diese resultieren direkt aus den<br>
+Anforderungen und steuern den Fluss der Daten sowie die Interaktionen zwischen den Entitäten,<br>
+um die Geschäftsregeln korrekt umzusetzen. Die darauf folgende Schicht, die Adapter-Schicht,<br>
+ist für die Kommunikation zwischen den Use Cases und der Außenwelt zuständig.<br>
+Sie wandelt Daten und Anfragen in ein Format um, das von den inneren Schichten<br>
+verstanden und genutzt werden kann. Die äußerste Schicht enthält die technischen<br>
+Details wie Frameworks, Datenbanken, Benutzeroberflächen oder APIs. Diese Schicht<br>
+enthält keinerlei Anwendungslogik und ist darauf ausgelegt, austauschbar zu sein, ohne die Kernlogik der Anwendung<br>
+zu beeinflussen. Wichtig ist bei der Umsetzung der Clean Architecture die Einhaltung<br>
+der Abhängigkeitsregel. Diese besagt, dass Abhängigkeiten immer nur nach innen zeigen dürfen.<br>
+Jede Schicht darf nur von Schichten abhängen, die näher am Kern liegen. Dies stellt sicher,<br>
+dass die Geschäftslogik unabhängig von äußeren Technologien bleibt und die Anwendung modular<br>
+aufgebaut ist.</p>
+<h2 id="analyse-der-dependency-rule">Analyse der Dependency Rule </h2>
+<h3 id="positivbeispiel-1">Positivbeispiel 1 </h3>
+<p><strong>JobAdvertisementController</strong></p>
+<div class="mermaid">classDiagram
+direction BT
+class EvaluationCriteriaCreater {
+- Logger logger
++ generateAbility(String) Ability
++ generateKeyword(String) Keyword
++ generateEvaluationExperienceCriteria(String, int, int, int) EvaluationExperience
++ generateEvaluationKeywordCriteria(String, List~Keyword~, int) EvaluationKeywords
++ generateEvaluationAbilityCriteria(String, List~Ability~, int) EvaluationAbilities
+  }
+  class JobAdvertisementController {
+- int pointsInt
+- JobAdvertisementParser jobAdvertisementParser
+- int weightingInt
+- JobAdvertisementLoader jobAdvertisementLoader
+- JobAdvertisementCreater jobAdvertisementCreater
+- Logger logger
+- EvaluationCriteriaCreater evaluationCriteriaCreater
+- JobAdvertisementDeleter jobAdvertisementDeleter
++ createKeyword(String) Keyword
++ loadAllJobAdvertisement() List~JobAdvertisement~
++ parseStringtoInterges(String, String) void
++ createEvaluationAbilities(List~String~, List~Ability~) EvaluationAbilities
++ createEvaluationKeywords(List~String~, List~Keyword~) EvaluationKeywords
++ createJobAdvertisement(String, String, List~EvaluationCriterion~) void
++ createEvaluationExperience(List~String~, String) EvaluationExperience
++ deleteJobAdvertisementById(String) void
++ createAbility(String) Ability
+  }
+  class JobAdvertisementCreater {
+- Logger logger
+- JobAdvertisementRepository jobAdvertisementRepository
++ createNewJobAdvertisement(String, String, List~EvaluationCriterion~) void
+  }
+  class JobAdvertisementDeleter {
+- Logger logger
+- JobAdvertisementRepository jobAdvertisementRepository
++ deleteJobAdvertisement(String) void
+  }
+  class JobAdvertisementLoader {
+- JobAdvertisementRepository jobAdvertisementRepository
+- Logger logger
++ loadAllJobAdvertisement() List~String~
+  }
+  class JobAdvertisementParser {
+- Logger logger
++ parseCriteria(String) List~EvaluationCriterion~
++ parseJobAdvertisementString(String) JobAdvertisement
+  }
+  class JobAdvertisementUI {
+- MainConsole mainConsole
+- Scanner scanner
+- boolean running
+- ResumeController resumeController
+- JobAdvertisementValidationController jobAdvertisementValidationController
+- JobAdvertisementController jobAdvertismentController
+- ResumeUI resumeUI
++ allJobAdvertismentCLI(boolean) void
++ selectJobAdvertisment() void
++ deleteJobAdvertisment() void
++ setResumeUI(ResumeUI) void
++ setMainConsole(MainConsole) void
++ createEvaluationAbilitiesCLI() EvaluationAbilities
++ selectActiveJobAdvertisment() void
++ createEvaluationKeywordCLI() EvaluationKeywords
++ evaluationCriterionCLI(boolean) List~String~
++ createAbilitieCLI() List~Ability~
++ deleteActiveJobAdvertisment() void
++ createEvaluationCriteriaCLI() List~EvaluationCriterion~
++ newJobAdvertisementCLI() void
++ createEvaluationExperienceCLI() EvaluationExperience
++ jobAdvertismentCLI() void
++ createKeywordCLI() List~Keyword~
+  }
+
+JobAdvertisementController "1" *--&gt; "evaluationCriteriaCreater 1" EvaluationCriteriaCreater
+JobAdvertisementController "1" *--&gt; "jobAdvertisementCreater 1" JobAdvertisementCreater
+JobAdvertisementController "1" *--&gt; "jobAdvertisementDeleter 1" JobAdvertisementDeleter
+JobAdvertisementController "1" *--&gt; "jobAdvertisementLoader 1" JobAdvertisementLoader
+JobAdvertisementController "1" *--&gt; "jobAdvertisementParser 1" JobAdvertisementParser
+JobAdvertisementUI "1" *--&gt; "jobAdvertismentController 1" JobAdvertisementController
+</div><p>Das erste Beispiel veranschaulicht die Einhaltung der Dependency-Regeln anhand der Klasse<br>
+JobAdvertisementController. Diese befindet sich in der Adapter-Schicht und interagiert mit der<br>
+Application-Schicht sowie der Plugin-Schicht. Dieses Design folgt der Clean Architecture, wobei<br>
+die Schichten wie folgt angeordnet sind:</p>
+<ul>
+<li>Unten befindet sich die UI-Schicht, die in der äußeren Schicht liegt.</li>
+<li>Darauf folgt die Adapter-Schicht</li>
+<li>Im inneren Bereich liegt die Application-Schicht.</li>
+</ul>
+<p>Die Abhängigkeitsrichtung ist dabei eindeutig: Sie zeigt nur nach innen,<br>
+also von der UI-Schicht zur Adapter-Schicht und von der Adapter-Schicht zur Application-Schicht.</p>
+<p>Der JobAdvertisementController greift auf fünf Klassen in der inneren Application-Schicht zu.<br>
+Die UI ruft den Controller nicht direkt auf, sondern wird durch den Controller aufgerufen,<br>
+wodurch die Einhaltung der Abhängigkeitsregel sichergestellt wird.</p>
+<h3 id="positivbeispiel-2">Positivbeispiel 2 </h3>
+<p><strong>ResumeAnalyser</strong></p>
+<div class="mermaid">classDiagram
+  direction BT
+  class ResumeAnalyser {
+    - Logger logger
+    - int points
+    + parseAbilitieContant(String) Map~String, List~String~~
+    + parseExperienceContant(String) int
+    + analyseKeywordsInResume(String, List~EvaluationCriterion~) int
+    + getEvaluationCriterionType(List~EvaluationCriterion~, String) List~EvaluationCriterion~
+    + analyseResume(List~Applicant~, JobAdvertisement) List~Applicant~
+    + analyseAbilitiesInResume(String, List~EvaluationCriterion~, Applicant) int
+    + analyseExperienceInResume(String, List~EvaluationCriterion~) int
+  }
+</div><p>Die Klasse ResumeAnalyser befindet sich innerhalb der Domain Schicht, und enthält keine<br>
+Abhängigkeiten. So ist zu sehen, dass die Dependency Regeln der Clean Architekture berücksichtigt werden.</p>
+<h2 id="analyse-der-schichten">Analyse der Schichten </h2>
+<h3 id="plugin-schicht">Plugin Schicht </h3>
+<p>Innerhalb der Plugin-Schicht befindet sich das UI der Anwendung. Diese Trennung ermöglicht es, die Implementierungsdetails des UI jederzeit auszutauschen, ohne Änderungen in den inneren Schichten vornehmen zu müssen.</p>
+<div class="mermaid">classDiagram
+direction BT
+class MainConsole {
+  - Logger logger
+  - Scanner scanner
+  - boolean running
+  - String stop
+  - ResumeUI resumeUI
+  - JobAdvertisementUI jobAdvertisementUI
+  + startCLI() void
+  + line(String) String
+  + header(String) String
+}
+</div><p>Die Klasse AppConsole ist für die Erstellung und Darstellung der Benutzeroberfläche verantwortlich. Sie übernimmt die Aufgabe, Daten aus den inneren Schichten abzurufen und diese im UI anzuzeigen. Für die unterschiedliche Darstellung der Funktionen ruft die Klasse Methoden aus der resumeUI und JobAdvertisementUI auf.</p>
+<h3 id="domain-schicht">Domain Schicht </h3>
+<p>Die Klasse ResumeAnalyser befindet sich in der Domain-Schicht der Clean Architecture, da sie die Kernlogik der Anwendung enthält und unabhängig von äußeren Faktoren wie Datenbanken, Frameworks oder UI bleibt. Ihre Aufgabe besteht darin, die Lebensläufe der Nutzer mit den Anforderungen einer Job-Ausschreibung zu vergleichen und Übereinstimmungen zu bewerten. Da diese Logik auch in später Zukunft keine Änderungen vonnöten sind, bleibt sie unverändert, selbst wenn sich andere Teile der Anwendung, wie die Datenquelle oder das Benutzerinterface, ändern.</p>
+<div class="mermaid">classDiagram
+direction BT
+class ResumeAnalyser {
+  - Logger logger
+  - int points
+  + parseAbilitieContant(String) Map~String, List~String~~
+  + parseExperienceContant(String) int
+  + analyseKeywordsInResume(String, List~EvaluationCriterion~) int
+  + getEvaluationCriterionType(List~EvaluationCriterion~, String) List~EvaluationCriterion~
+  + analyseResume(List~Applicant~, JobAdvertisement) List~Applicant~
+  + analyseAbilitiesInResume(String, List~EvaluationCriterion~, Applicant) int
+  + analyseExperienceInResume(String, List~EvaluationCriterion~) int
+}
+</div><h1 id="solid">SOLID </h1>
+<h2 id="analyse-single-responsibility-principle-srp">Analyse Single-Responsibility-Principle (SRP) </h2>
+<h3 id="positiv-beispiel">Positiv Beispiel </h3>
+<div class="mermaid">classDiagram
+direction TB
+
+class EvaluationCriteriaCreater {
+  - Logger logger
+  + generateAbility(String) Ability
+  + generateEvaluationExperienceCriteria(String, int, int, int) EvaluationExperience
+  + generateEvaluationKeywordCriteria(String, List~Keyword~, int) EvaluationKeywords
+  + generateEvaluationAbilityCriteria(String, List~Ability~, int) EvaluationAbilities
+  + generateKeyword(String) Keyword
+}
+
+class JobAdvertisementCreater {
+  - JobAdvertisementRepository jobAdvertisementRepository
+  - Logger logger
+  + createNewJobAdvertisement(String, String, List~EvaluationCriterion~) void
+}
+
+class JobAdvertisementDeleter {
+  - JobAdvertisementRepository jobAdvertisementRepository
+  - Logger logger
+  + deleteJobAdvertisement(String) void
+}
+
+class JobAdvertisementLoader {
+  - Logger logger
+  - JobAdvertisementRepository jobAdvertisementRepository
+  + loadAllJobAdvertisement() List~String~
+}
+
+class JobAdvertisementParser {
+  - Logger logger
+  + parseCriteria(String) List~EvaluationCriterion~
+  + parseJobAdvertisementString(String) JobAdvertisement
+}
+</div><p>Das Single-Responsibility-Principle (SRP) wird in diesem Design konsequent umgesetzt, da jede Klasse genau eine klar definierte Aufgabe übernimmt:</p>
+<ul>
+<li>EvaluationCriteriaCreater: Verantwortlich für die Erstellung verschiedener Evaluierungskriterien. Die<br>
+Nutzereingaben werden über die Adapterschicht in Objekte umgewandelt und zurückgegeben.</li>
+<li>JobAdvertisementCreater: Erstellt ein neues JobAdvertisement-Objekt.</li>
+<li>JobAdvertisementDeleter: Löscht bestehende Job-Ausschreibungen anhand der übergebenen UUID.</li>
+<li>obAdvertisementLoader: Lädt alle gespeicherten Job-Ausschreibungen aus der Datenbank.</li>
+<li>JobAdvertisementParser: Da die Job-Ausschreibungen als Textdateien gespeichert sind, wandelt diese Klasse die gespeicherten Daten in Objekte um, sodass sie an das UI weitergegeben werden können.</li>
+</ul>
+<h3 id="negativbeispiel">Negativbeispiel </h3>
+<div class="mermaid">classDiagram
+direction BT
+class ResumeServiceImpl {
+  - Logger logger
+  - ApplicantCreater applicantCreater
+  - ResumeAnalyser resumeAnalyser
+  - JobAdvertisement selectedJobAdvertisement
+  - FileManager fileManager
+  - JobAdvertisementParser jobAdvertisementParser
+  - JobAdvertisementRepository jobAdvertisementRepository
+  - List~String~ loadedResumes
+  + startResumeAnalysing() boolean
+  + setSelectedJobAdvertisement(String) String
+  + loadAllResumes() List~String~
+}
+</div><p>Die Klasse ResumeServiceImple ist dabei ein negatives Beispiel, für das Single-Responsibility-Principle.<br>
+Die Klasse umfasst mehre Veranwortlichkeiten in sich. Sie umfasst unteranderem die folgenden Punkte:</p>
+<ol>
+<li>Laden von Lebensläufen aus Dateien</li>
+<li>Verwalten und Auswählen von Job-Ausschreibungen</li>
+<li>Parsen von Job-Ausschreibungen</li>
+<li>Erstellen von Bewerber-Objekten aus Lebensläufen</li>
+<li>Durchführen der Analyse</li>
+</ol>
+<h4 id="verbesserungsvorschlag">Verbesserungsvorschlag </h4>
+<div class="mermaid">classDiagram
+    direction TB
+    
+class ResumeLoader {
+  - FileManager fileManager
+  + loadResumeFiles() List~String~
+}
+
+class JobAdvertisementResiever {
+    - JobAdvertisementParser jobAdvertisementParser
+    - JobAdvertisementRepository jobAdvertisementRepository
+    + setSelectedJobAdvertisement(String) String 
+    }
+    class ResumeAnalysisCoordinator {
+        - Logger logger;
+        - ApplicantCreater applicantCreater;
+        - ResumeAnalyser resumeAnalyser;
+        + loadAllJobAdvertisement() List~String~
+    }
+</div><p>Die Klasse kann in drei weiter Klassen aufgeteilt werden. Dazu enstehen die folgenden Klassen:</p>
+<ul>
+<li>ResumeLoader: ruft das FileManger auf um alle Lebensläufe zu laden</li>
+<li>JobAdvertismentResiever: holt sich anhand einer Id die passende Jobausschreibung und gibt den Titel für die UI zurück.</li>
+<li>ResumeAnalysisCoordinatior: Die Klasse ResumeAnalysisCoordinator koordiniert den Prozess der Lebenslaufanalyse, indem sie Bewerber aus den Lebensläufen erstellt und die Analyse anhand des ausgewählten Jobangebots durchführt.</li>
+</ul>
+<h2 id="analyse-open-closed-principle-ocp">Analyse Open-Closed-Principle (OCP) </h2>
+<h3 id="positivbeispiel">Positivbeispiel </h3>
+<div class="mermaid">classDiagram
+direction BT
+class EvaluationAbilitiesFactory {
+  + createCriterion(String, List~?~, int) EvaluationCriterion
+}
+class EvaluationCriteriaCreater {
+  - Logger logger
+  + createEvaluationCriterion(EvaluationCriterionFactory, String, List~?~, int) EvaluationCriterion
+  + generateKeyword(String) Keyword
+  + generateAbility(String) Ability
+}
+class EvaluationCriterionFactory {
+&lt;&lt;Interface&gt;&gt;
+  + createCriterion(String, List~?~, int) EvaluationCriterion
+}
+class EvaluationExperienceFactory {
+  + createCriterion(String, List~?~, int) EvaluationCriterion
+}
+class EvaluationKeywordsFactory {
+  + createCriterion(String, List~?~, int) EvaluationCriterion
+}
+
+EvaluationAbilitiesFactory  ..&gt;  EvaluationCriterionFactory 
+EvaluationExperienceFactory  ..&gt;  EvaluationCriterionFactory 
+EvaluationKeywordsFactory  ..&gt;  EvaluationCriterionFactory
+</div><p>Das folgende UML-Diagramm zeigt das Design zur Erstellung von Bewertungskriterien für Jobangebote. Hierbei existiert das Interface EvaluationCriterionFactory, das die Methode createCriterion definiert. Diese Methode wird verwendet, um verschiedene Bewertungskriterien zu erstellen. Die Methode nimmt einen String für den Namen des Kriteriums und eine Liste mit generischen Werten entgegen, um unterschiedliche Werte für jedes Kriterium zu verarbeiten. Für jedes Bewertungskriterium wird eine separate Klasse erstellt, die die spezifische Implementierung für dieses Kriterium enthält. Soll ein neues Kriterium hinzukommen, wird einfach eine neue Klasse hinzugefügt, ohne dass Änderungen an der EvaluationCriteriaCreater-Klasse vorgenommen werden müssen. Dies stellt sicher, dass das System offen für Erweiterungen, aber geschlossen für Änderungen bleibt, was den Prinzipien der Softwareentwicklung entspricht.</p>
+<h3 id="negativbeispiel-1">Negativbeispiel </h3>
+<div class="mermaid">classDiagram
+direction BT
+class ResumeAnalyser {
+  - int points
+  - Logger logger
+  + analyseAbilitiesInResume(String, List~EvaluationCriterion~, Applicant) int
+  + parseAbilitieContant(String) Map~String, List~String~~
+  + analyseExperienceInResume(String, List~EvaluationCriterion~) int
+  + parseExperienceContant(String) int
+  + analyseResume(List~Applicant~, JobAdvertisement) List~Applicant~
+  + analyseKeywordsInResume(String, List~EvaluationCriterion~) int
+  + getEvaluationCriterionType(List~EvaluationCriterion~, String) List~EvaluationCriterion~
+}
+</div><p>Das UML-Diagramm zeigt die Klasse ResumeAnalyser, die für jeden Kriterientyp eine eigene Methode zur Analyse definiert. Dies führt dazu, dass bei einer Erweiterung der Klasse, beispielsweise durch das Hinzufügen eines neuen Kriteriums, sowohl eine neue Methode zur Analyse dieses Kriteriums als auch ein zusätzlicher case-Zweig in der Methode getEvaluationCriterionType() ergänzt werden muss. Dadurch verstößt die aktuelle Implementierung gegen das Open-Closed-Principle (OCP), da sie nicht ohne Änderungen erweitert werden kann.</p>
+<h4 id="verbesserungsvorschlag-1">Verbesserungsvorschlag </h4>
+<p><img src="image.png" alt="alt text"><br>
+Neue Bewertungskriterien können problemlos erweitert werden, indem eine neue Klasse implementiert wird, die die EvaluationStrategy-Schnittstelle erfüllt, ohne dass die bestehende Klasse verändert werden muss.</p>
+<h2 id="analyse-dependency-inversion-principle-dip-interface-segreggation-principle-isp-liskov-substitution-principle-lsp">Analyse Dependency-Inversion-Principle (DIP), Interface-Segreggation-Principle (ISP), Liskov-Substitution-Principle (LSP) </h2>
+<p>In diesem Kapitel wird das Dependency-Inversion-Principle (DIP) Analysiert.</p>
+<h3 id="positivbeispiel-1-1">Positivbeispiel 1 </h3>
+<div class="mermaid">classDiagram
+direction BT
+class JobAdvertisementCreater {
+  - JobAdvertisementRepository jobAdvertisementRepository
+  - Logger logger
+  + createNewJobAdvertisement(String, String, List~EvaluationCriterion~) void
+}
+class JobAdvertisementRepository {
+&lt;&lt;Interface&gt;&gt;
+  + saveJobAdvertisement(JobAdvertisement) void
+  + deleteJobAdvertisementById(String) void
+  + loadJobAdvertisement() List~String~
+  + getJobAdvertisementById(String) String
+}
+class JobAdvertisementRepositoryImpl {
+  - String filePath
+  + deleteJobAdvertisementById(String) void
+  + loadJobAdvertisement() List~String~
+  + getJobAdvertisementById(String) String
+  + saveJobAdvertisement(JobAdvertisement) void
+}
+
+JobAdvertisementRepositoryImpl  ..&gt;  JobAdvertisementRepository
+</div><p>Das zu sehende UML-Diagramm zeigt einen korrekten Einsatz des Dependency Inversion Principle (DIP). Zu sehen sind zwei Klassen: JobAdvertisementCreator in der Application-Schicht und JobAdvertisementRepositoryImpl in der Plugin-Schicht.<br>
+Das Problem besteht darin, dass die Klasse JobAdvertisementCreator Methoden aus JobAdvertisementRepositoryImpl benötigt. Da sich diese jedoch in einer tieferliegenden Schicht befindet, darf der Creator gemäß der Dependency Rule keine direkte Referenz darauf haben.<br>
+Aus diesem Grund wird nur das Interface angesprochen, das von JobAdvertisementRepositoryImpl implementiert wird. So werden die Methoden der Implementierung nutzbar gemacht, ohne die Abhängigkeitsregeln zu verletzen.</p>
+<h3 id="positivbeispiel-2-1">Positivbeispiel 2 </h3>
+<div class="mermaid">classDiagram
+direction BT
+class FileManager {
+&lt;&lt;Interface&gt;&gt;
+  + saveLeaderboardFile(String, String) void
+  + loadResumeFiles() List~String~
+}
+class FileManagerImpl {
+  - String directoryPath
+  + loadResumeFiles() List~String~
+  + saveLeaderboardFile(String, String) void
+}
+class ResumeService {
+&lt;&lt;Interface&gt;&gt;
+  + setSelectedJobAdvertisement(String) String
+  + loadAllResumes() List~String~
+}
+class ResumeServiceImpl {
+  - FileManager fileManager
+  - ApplicantCreater applicantCreater
+  - Logger logger
+  - JobAdvertisementParser jobAdvertisementParser
+  - JobAdvertisementRepository jobAdvertisementRepository
+  - ResumeAnalyser resumeAnalyser
+  + JobAdvertisement selectedJobAdvertisement
+  + List~String~ loadedResumes
+  + startResumeAnalysing() boolean
+  + loadAllResumes() List~String~
+  + setSelectedJobAdvertisement(String) String
+}
+
+FileManagerImpl  ..&gt;  FileManager 
+ResumeServiceImpl  ..&gt;  ResumeService
+</div><p>Die UML zeigt ein weiteres Beispiel für das Dependency Inversion Principle (DIP). Dabei muss die Klasse ResumeServiceImpl auf die Klasse FileManager zugreifen, da sie Methoden enthält, die in ResumeServiceImpl benötigt werden. Statt jedoch direkt auf die konkrete Implementierung von FileManager zuzugreifen, verwendet ResumeServiceImpl lediglich das Interface von FileManager. Dadurch bleibt die Abhängigkeit abstrakt und die Architekturregeln werden eingehalten.</p>
+<h1 id="weitere-prinzipien">Weitere Prinzipien </h1>
+<h2 id="analyse-grasp-geringe-kopplung">Analyse GRASP: Geringe Kopplung </h2>
+<h3 id="positivbeispiel-1">Positivbeispiel </h3>
+<div class="mermaid">classDiagram
+direction BT
+class JobAdvertismentValidation {
+  - Logger logger
+  + validateAbilitieOrKeyword(String) boolean
+  + isValidNumber(String) boolean
+  + validatePoints(String) boolean
+  + validateBlankInput(String) boolean
+  + validateWeighting(String) boolean
+}
+</div><p>Die Klasse JobAdvertismentValidation ist für die Validierung der Nutzereingaben zuständig. Zu diesem Zweck implementiert sie mehrere Methoden zur Überprüfung verschiedener Eingabetypen. Die Klasse weist eine geringe Kopplung auf: Sie hängt ausschließlich von Logger und System.out. Es bestehen keine. Abhängigkeiten zu anderen benutzerdefinierten Klassen oder externen Modulen.Zudem ist die Klasse ausschließlich für Validierungszwecke zuständig und enthält keine Geschäftslogik, Persistenz- oder UI-Komponenten. Ein weiterer positiver Aspekt ist, dass der Logger über den Konstruktor injiziert wird, was die Testbarkeit der Klasse verbessert. Ein Verbesserungsvorschlag wäre, dass sich die Klasse ausschließlich auf die Validierung konzentriert und keine direkte Ausgaben mittels System.out.println vornimmt.</p>
+<h3 id="negativbeispiel-2">Negativbeispiel </h3>
+<div class="mermaid">classDiagram
+direction BT
+class ResumeController {
+  - FileManager fileManager
+  + int numberOfResumes
+  - Logger logger
+  - ResumeServiceImpl resumeService
+  + getActiveJobAdvertisement() JobAdvertisement
+  + loadAllResumes() void
+  + selectedResume(String) String
+  + startResumeAnalyse() boolean
+  + transformApplicants(List~Applicant~) List~String~
+}
+</div><p>Die Klasse ResumeController steuert die Verarbeitung und Analyse von Bewerbungsunterlagen im System. Sie koordiniert den Ablauf zwischen dem Lebenslauf-Dienst (ResumeServiceImpl) und dem Speichern von Ergebnissen über den FileManager.</p>
+<p>Ein zentraler Punkt ist die direkte Abhängigkeit von der konkreten Implementierung ResumeServiceImpl. Um eine lose Kopplung zu erreichen und die Austauschbarkeit der Komponenten zu verbessern, sollte stattdessen auf ein Interface (z. B. ResumeService) gesetzt werden.<br>
+Zudem greift der Controller direkt auf das öffentliche Feld selectedJobAdvertisement im ResumeServiceImpl zu. Das stellt eine enge Kopplung an die interne Struktur der Service-Klasse dar.</p>
+<h2 id="analyse-grasp-hohe-kohäsion">Analyse GRASP: Hohe Kohäsion </h2>
+<div class="mermaid">classDiagram
+direction BT
+class AbilityKeywordCreator {
+  - Logger logger
+  + createEvaluationCriterion(EvaluationCriterionFactory, String, List~?~, int) EvaluationCriterion
+  + generateAbility(String) Ability
+  + generateKeyword(String) Keyword
+}
+</div><p>Die Klasse AbilityKeywordCreator weist eine hohe Kohäsion auf, da alle ihre Methoden eine klar zusammenhängende Aufgabe erfüllen: Sie ist ausschließlich dafür zuständig, Objekte zur Bewertung von Fähigkeiten und Schlüsselwörtern zu erzeugen. Die Methoden generateAbility() und generateKeyword() erstellen jeweils entsprechende Objekte aus Texteingaben, während createEvaluationCriterion() ein generisches Bewertungskriterium erzeugt. Alle Methoden stehen somit thematisch in engem Zusammenhang und unterstützen ein gemeinsames Ziel – die Verarbeitung und Erzeugung von Bewertungselementen im Bewerbungssystem. Durch diese thematische Einheitlichkeit ist die Klasse übersichtlich, leicht wartbar und gut wiederverwendbar.</p>
+<h2 id="dont-repeat-yourself-dry">Don’t Repeat Yourself (DRY) </h2>
+<p>Zur Anwendung des DRY-Prinzips wurde eine UI-Klasse überarbeitet, in der sich viele wiederholte Codeabschnitte befanden. Solcher mehrfach identischer Code führt dazu, dass bei Änderungen viele Stellen gleichzeitig angepasst werden müssen, was die Wartung erschwert und Fehleranfälligkeit erhöht – allein schon, weil alle betroffenen Stellen zunächst gefunden werden müssen.</p>
+<h3 id="beispiel-1-header">Beispiel 1 (Header) </h3>
+<h4 id="vorher-dieser-codeblock-wurde-in-mehreren-methoden-exakt-so-wiederholt"><strong>Vorher:</strong> Dieser Codeblock wurde in mehreren Methoden exakt so wiederholt: </h4>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>mainConsole<span class="token punctuation">.</span><span class="token function">line</span><span class="token punctuation">(</span>header<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>mainConsole<span class="token punctuation">.</span><span class="token function">header</span><span class="token punctuation">(</span>header<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>mainConsole<span class="token punctuation">.</span><span class="token function">line</span><span class="token punctuation">(</span>header<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h4 id="nachher-der-code-wurde-in-eine-zentrale-methode-ausgelagert"><strong>Nachher:</strong> Der Code wurde in eine zentrale Methode ausgelagert: </h4>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token keyword keyword-private">private</span> <span class="token keyword keyword-void">void</span> <span class="token function">printHeader</span><span class="token punctuation">(</span><span class="token class-name">String</span> header<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>mainConsole<span class="token punctuation">.</span><span class="token function">line</span><span class="token punctuation">(</span>header<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>mainConsole<span class="token punctuation">.</span><span class="token function">header</span><span class="token punctuation">(</span>header<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>mainConsole<span class="token punctuation">.</span><span class="token function">line</span><span class="token punctuation">(</span>header<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Verwendung:</span>
+<span class="token function">printHeader</span><span class="token punctuation">(</span><span class="token string">"Ausschreibungen"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Durch das Auslagern in eine eigene Methode werden Redundanzen verringert die Lesbarkeit der Codes verbessert. Wodurch der Wartungsaufwand minimiert werden. Da Änderungen künftig nur an einer Stelle vorgenommne werden.</p>
+<p><strong>Commit:</strong> <a href="https://github.com/Jstn2004/ASE-Applicant-Tracking-System/commit/d01dd2a4255093d675f7ded9f4cc7b4cdab86a11">https://github.com/Jstn2004/ASE-Applicant-Tracking-System/commit/d01dd2a4255093d675f7ded9f4cc7b4cdab86a11</a></p>
+<h1 id="unit-tests">Unit Tests </h1>
+<table>
+<thead>
+<tr>
+<th><strong>Unit Test</strong></th>
+<th><strong>Beschreibung</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ApplicantCreaterTest</code></td>
+<td>Innerhalb dieser Testklasse befinden sich drei Testmethoden. Diese prüfen, ob die Bewerber korrekt aus dem Lebenslauf extrahiert werden. Dazu werden eine Valides und ein Unvollständiges Bewerber geprüft, um beide Fälle abzudenken.  Weiter wird geprüft ob  mehrer BEwerber aus auch die mehrere Lebensläufe gleichzeitig lesen und verarbeite kann</td>
+</tr>
+<tr>
+<td><code>ResumeAnalyserTest</code></td>
+<td>Diese Test überprüft die Funktionsfähigkeit der Analyse der Resumes. Dazu wird im Setup zunächst ein Bewerbererzeugt. Weirere test erzeugten Fake Abilities und Schlüsselwerter und prüffen ob die berechnung und exrahiereung korrekt funktioneirner</td>
+</tr>
+<tr>
+<td><code>JobAdvertisementParserTest</code></td>
+<td>Der Test prüft, ob die Methode parseJobAdvertisementString(...) des JobAdvertisementParser einen Stellenanzeigen-String korrekt in ein JobAdvertisement-Objekt umwandelt. Dazu wird zunächst ein erwartetes Objekt (expectetJobAd) mit bestimmten Eigenschaften wie ID, Titel, Beschreibung und Bewertungskriterien erstellt. Der Test stellt sicher, dass das zurückgegebene Objekt nicht null ist und dass zentrale Attribute wie ID, Titel, Beschreibung und die Anzahl der Bewertungskriterien mit dem erwarteten Objekt übereinstimmen. Ziel ist es, die Korrektheit der Parser-Logik zu validieren.</td>
+</tr>
+<tr>
+<td><code>JobAdvertisementLoaderTest</code></td>
+<td>Der Test prüft, ob die Methode loadAllJobAdvertisement() der Klasse JobAdvertisementLoader korrekt mit dem Repository kommuniziert. Dabei wird ein Mock-Objekt des JobAdvertisementRepository verwendet, das dem JobAdvertisementLoader beim Setup übergeben wird</td>
+</tr>
+<tr>
+<td><code>JobAdvertisementDeleteTest</code></td>
+<td>Der Test überprüft, ob die Methode deleteJobAdvertisement(String id) der Klasse JobAdvertisementDeleter korrekt funktioniert, indem sie den Löschvorgang an das Repository weiterleitet. Dafür wird zunächst ein Mock des JobAdvertisementRepository erstellt und dem JobAdvertisementDeleter übergeben. Im Test wird eine zufällige ID generiert, an den Deleter übergeben und anschließend mit verify(...) sichergestellt.</td>
+</tr>
+<tr>
+<td><code>JobAdvertisementCreaterTest</code></td>
+<td>Der Test überprüft die Methode createNewJobAdvertisement(...) der Klasse JobAdvertisementCreater. Dabei wird getestet, ob eine neue Stellenanzeige korrekt erstellt, mit einer ID versehen, im Repository gespeichert und an registrierte Observer weitergegeben wird. Zudem wird kontrolliert, ob die gespeicherten Daten (Titel, Beschreibung, Kriterien) mit den Eingabewerten übereinstimmen.</td>
+</tr>
+<tr>
+<td><code>EvaluationKeywordFactoryTest</code></td>
+<td>Der Test prüft die Methode createCriterion(...) der Klasse EvaluationKeywordsFactory. Dabei wird sichergestellt, dass bei gültigen Eingaben ein korrekt initialisiertes EvaluationKeywords-Objekt erstellt wird. Zusätzlich wird getestet, dass bei einer ungültigen Eingabe (Liste mit falschem Typ) eine ClassCastException geworfen wird.</td>
+</tr>
+<tr>
+<td><code>EvaluationExperienceFactoryTest</code></td>
+<td>Der Test überprüft die Methode createCriterion(...) der Klasse EvaluationExperienceFactory. Dabei wird getestet, ob bei gültigen Eingaben ein korrekt initialisiertes EvaluationExperience-Objekt erstellt wird. Zusätzlich wird sichergestellt, dass bei einer zu kurzen Liste eine IndexOutOfBoundsException und bei einem falschen Listentyp eine ClassCastException ausgelöst wird.</td>
+</tr>
+<tr>
+<td><code>EvaluationAbilitiesFactoryTest</code></td>
+<td>Der Test überprüft die Methode createCriterion(...) der Klasse EvaluationAbilitiesFactory. Es wird getestet, ob bei gültigen Eingaben ein korrekt initialisiertes EvaluationAbilities-Objekt zurückgegeben wird. Dabei werden Name, Fähigkeitenliste, Gewichtung und Punkte auf Richtigkeit geprüft.</td>
+</tr>
+<tr>
+<td><code>AbilityKeywordCreatorTest</code></td>
+<td>Der Test überprüft verschiedene Methoden der Klasse AbilityKeywordCreator. Dabei wird getestet, ob aus gültigen Eingabestrings korrekte Ability- und Keyword-Objekte erzeugt werden und bei ungültigem oder leerem Input null zurückgegeben wird. Zusätzlich wird geprüft, ob die Methode createEvaluationCriterion(...) korrekt mit einer externen EvaluationCriterionFactory zusammenarbeitet, indem die Übergabeparameter überprüft und das erzeugte Kriterium zurückgegeben wird.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="atrip">ATRIP </h2>
+<h3 id="automatic">Automatic </h3>
+<p>Für die automatische Testausführung wird das Surefire-Plugin verwendet, das standardmäßig von Maven bereitgestellt wird. Dabei muss lediglich darauf geachtet werden, dass die Testklassen korrekt benannt sind, damit sie automatisch erkannt werden. In unserem Projekt tragen die Testklassen jeweils den Namen der getesteten Klasse mit dem Suffix Test. Um alle Tests auszuführen, genügt der Befehl mvn clean test im Terminal.</p>
+<h3 id="thorough">Thorough </h3>
+<h3 id="positiv-beispiel-1">Positiv Beispiel </h3>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token annotation punctuation">@Test</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-void">void</span> <span class="token function">testSavedJobAdvertisementContainsCorrectData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EvaluationCriterion</span><span class="token punctuation">&gt;</span></span> criteria <span class="token operator">=</span> <span class="token class-name">List</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token class-name">EvaluationCriterion</span><span class="token punctuation">(</span><span class="token string">"Experience"</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        jobAdvertisementCreater<span class="token punctuation">.</span><span class="token function">createNewJobAdvertisement</span><span class="token punctuation">(</span>title<span class="token punctuation">,</span> description<span class="token punctuation">,</span> criteria<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">ArgumentCaptor</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">JobAdvertisement</span><span class="token punctuation">&gt;</span></span> captor <span class="token operator">=</span> <span class="token class-name">ArgumentCaptor</span><span class="token punctuation">.</span><span class="token function">forClass</span><span class="token punctuation">(</span><span class="token class-name">JobAdvertisement</span><span class="token punctuation">.</span><span class="token keyword keyword-class">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">verify</span><span class="token punctuation">(</span>jobAdvertisementRepositoryMock<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">saveJobAdvertisement</span><span class="token punctuation">(</span>captor<span class="token punctuation">.</span><span class="token function">capture</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">JobAdvertisement</span> jobAd <span class="token operator">=</span> captor<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span>title<span class="token punctuation">,</span> jobAd<span class="token punctuation">.</span><span class="token function">getTitel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span>description<span class="token punctuation">,</span> jobAd<span class="token punctuation">.</span><span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> jobAd<span class="token punctuation">.</span><span class="token function">getCriteria</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token string">"Experience"</span><span class="token punctuation">,</span> jobAd<span class="token punctuation">.</span><span class="token function">getCriteria</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre><p>Die Testmethode testSavedJobAdvertisementContainsCorrectData() ist gründlich (Thorough), da sie nicht nur prüft, ob die Methode aufgerufen wurde, sondern auch den Inhalt des gespeicherten Objekts validiert. Sie stellt sicher, dass Titel, Beschreibung und Kriterien korrekt gesetzt wurden, wodurch nicht nur der Aufruf, sondern auch die inhaltliche Richtigkeit der Objektgenerierung getestet wird.</p>
+<h4 id="negativ-beispiel">Negativ Beispiel </h4>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token annotation punctuation">@Test</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-void">void</span> <span class="token function">testAnalyseExperienceContant</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EvaluationCriterion</span><span class="token punctuation">&gt;</span></span> experience <span class="token operator">=</span> <span class="token class-name">List</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token class-name">EvaluationExperience</span><span class="token punctuation">(</span>
+                <span class="token string">"Berufserfahrungen"</span><span class="token punctuation">,</span>
+                <span class="token number">80</span><span class="token punctuation">,</span>
+                <span class="token number">2</span><span class="token punctuation">,</span>
+                <span class="token number">8</span>
+        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">String</span> contant <span class="token operator">=</span> <span class="token string">" - Werkstudent Softwareentwicklung bei TechCorp (2022 - 2023)\n"</span> <span class="token operator">+</span>
+                <span class="token string">"  - Entwicklung und Wartung von Webanwendungen\n"</span> <span class="token operator">+</span>
+                <span class="token string">"  - Optimierung bestehender Codebasis\n"</span> <span class="token operator">+</span>
+                <span class="token string">"- Praktikum IT-Support bei ITSolutions (2021 - 2022)\n"</span> <span class="token operator">+</span>
+                <span class="token string">"  - Fehleranalyse und Behebung technischer Probleme\n"</span> <span class="token operator">+</span>
+                <span class="token string">"  - Kundenberatung und Unterstützung"</span><span class="token punctuation">;</span>
+
+        <span class="token keyword keyword-int">int</span> result <span class="token operator">=</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>analyser<span class="token punctuation">.</span><span class="token function">analyseExperienceInResume</span><span class="token punctuation">(</span>contant<span class="token punctuation">,</span> experience<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token number">640</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre><p>Die Testmethode testAnalyseAbilityContant() erfüllt zentrale Anforderungen an die Gründlichkeit, da sie verschiedene Kriteriengruppen und relevante sowie irrelevante Begriffe berücksichtigt. Dadurch geht sie über den einfachen Standardfall hinaus und prüft, ob die Methode relevante Fähigkeiten korrekt erkennt und bewertet.</p>
+<p>Allerdings könnten zusätzliche Testfälle die Gründlichkeit noch deutlich verbessern. Der Test enthält keine negativen Szenarien, etwa einen Lebenslauf ohne zutreffende Fähigkeiten oder mit Duplikaten. Auch Grenzfälle wie eine leere Kriterienliste, unvollständige Abschnitte oder falsch formatierte Eingaben werden nicht berücksichtigt.</p>
+<h3 id="professional">Professional </h3>
+<h4 id="positiv-beispiel-2">Positiv Beispiel </h4>
+<p>Die Testmethode testSavedJobAdvertisementContainsCorrectData() (siehe Thorough-Positivbeispiel) ist professionell geschrieben, da sie klar strukturiert und leicht verständlich ist. Die verwendeten Namen sind sprechend, es wird mit einem ArgumentCaptor gearbeitet, um den tatsächlichen Inhalt zu prüfen, und die Assertions sind gezielt auf die wichtigsten Datenfelder ausgerichtet. Der Test ist kompakt und vollständig nachvollziehbar.</p>
+<h4 id="negativ-beispiel-1">Negativ Beispiel </h4>
+<p>Die Testmethode testAnalyseExperienceContant() (siehe Thorough-Negativbeispiel) wirkt im Vergleich weniger professionell. Es fehlt eine klare Kommentierung oder nachvollziehbare Aufschlüsselung der erwarteten Punktzahl, sodass unklar bleibt, warum genau 640 erwartet werden. Zudem ist der Name der Textvariablen (contant) fehlerhaft geschrieben, was die Lesbarkeit und Wartbarkeit beeinträchtigt. Die Methode testet zwar korrekt, wirkt aber im Aufbau eher technisch als sauber dokumentiert oder selbsterklärend – was in professionellen Projekten entscheidend ist.</p>
+<h2 id="code-coverage">Code Coverage </h2>
+<p>Um die Reports zu erstellen:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>mvn clean <span class="token builtin class-name">test</span> jacoco:reportﬁ
+</code></pre><p>Für die Analyse der Code Coverage des Projekts wurde das Plugin JaCoCo verwendet. Dabei wurde für jede Schicht der Anwendung ein separater Bericht erstellt, der alle relevanten Abdeckungsdaten enthält. Insbesondere wurde für jede Ebene der Clean Architecture ein eigener Report generiert.</p>
+<p>Im Folgenden werden die Ergebnisse der Schichten dargestellt, in denen Tests vorhanden sind. Es zeigt sich, dass Unit-Tests ausschließlich in der Application- und Domain-Schicht vorhanden sind. Der Grund dafür liegt darin, dass sich in diesen Schichten die zentrale Logik und Funktionalität der Anwendung befindet. Diese enthalten den größten Teil des implementierten Codes, der für das Verhalten der Anwendung wesentlich ist, und sind daher besonders testrelevant.</p>
+<p><img src="img.png" alt="img.png"></p>
+<p>In der Applikationsschicht zeigt sich, dass vor allem die Services zur Erstellung und Verarbeitung von Job­ausschreibungen getestet wurden. Diese bilden einen zentralen Aspekt der Anwendung ab, mit einer insgesamt soliden Testabdeckung.</p>
+<p><img src="img_1.png" alt="img_1.png"><br>
+Das zweite Bild zeigt die Testabdeckung der Domain­schicht. Hier wurde hauptsächlich der Service – also die Kernlogik – abgedeckt, während andere Teile weitgehend ungetestet bleiben.</p>
+<h2 id="fakes-und-mocks">Fakes und Mocks </h2>
+<h3 id="beispiel-1-jobadvertisementloadertest">Beispiel 1 (JobAdvertisementLoaderTest) </h3>
+<div class="mermaid">classDiagram
+  direction BT
+  class JobAdvertisementRepository {
+    &lt;&lt;Interface&gt;&gt;
+    + loadJobAdvertisement() List~String~
+    + deleteJobAdvertisementById(String) void
+    + saveJobAdvertisement(JobAdvertisement) void
+    + getJobAdvertisementById(String) String
+  }
+
+
+</div><p>In den Tests wird Mockito verwendet, um das JobAdvertisementRepository zu mocken. Dadurch wird vermieden, dass echte Datenbankzugriffe stattfinden, was die Tests schnell und unabhängig von externen Systemen macht. Statt komplexem Setup kommen realistische, aber einfache Fake-Daten wie zum Beispiel title = "Software Engineer" oder eine List<evaluationcriterion> zum Einsatz. Das sorgt für übersichtliche und gut wartbare Tests.</evaluationcriterion></p>
+<h1 id="domain-driven-design">Domain Driven Design </h1>
+<h2 id="ubiquitous-language">Ubiquitous Language </h2>
+<table>
+<thead>
+<tr>
+<th><strong>Bezeichnung</strong></th>
+<th><strong>Bedeutung</strong></th>
+<th><strong>Begründung</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Resume</td>
+<td>Dokument, das die Qualifikationen, Erfahrungen und Fähigkeiten eines Bewerbers beschreibt.</td>
+<td>Lebensläufe sind der zentrale Input für das System, und alle Funktionen drehen sich um deren Analyse und Verwaltung.</td>
+</tr>
+<tr>
+<td>Applicant</td>
+<td>Jeder Bewerber ist einem Lebenslauf und einer Ausschreibung zugeordnet. Durch die Analyse seines Lebenslaufs kann der Bewerber Punkte erhalten, die ihn in der zugehörigen Rangliste der Ausschreibung platzieren.</td>
+<td>Bewerber sind ein zentraler Bauteil der Anwendung, die den Lebenslauf und die Rangliste miteinander verknüpfen.</td>
+</tr>
+<tr>
+<td>Leaderboard</td>
+<td>Die Rangliste ist einer Ausschreibung zugeordnet und zeigt die Bewerber, die sich auf diese Ausschreibung beworben haben, in absteigender Reihenfolge nach erreichter Punktzahl an.</td>
+<td>Die Rangliste ist der zentrale Output der Anwendung und liefert den Mehrwert der Anwendung.</td>
+</tr>
+<tr>
+<td>Job advertisement</td>
+<td>Ausschreibungen können vom Anwender angepasst werden. Sie enthalten den Namen der Ausschreibung sowie die Kriterien, die zur Bewertung der Lebensläufe verwendet werden. Jede Ausschreibung ist einer Rangliste zugeordnet und kann bei Bedarf gelöscht werden.</td>
+<td>Jede Ausschreibung definiert die Bewertungsregeln, die für die Analyse der Lebensläufe wichtig sind.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entities">Entities </h2>
+<h3 id="identität">Identität </h3>
+<p>Dafür wird ein Surrogatschlüssel verwendet, da zum einen keine passenden natürlichen Schlüssel innerhalb der Domäne vorhanden sind und zum anderen die Nutzung eines Surrogatschlüssels einfach umzusetzen ist.</p>
+<h3 id="applicant">Applicant </h3>
+<p>Der Bewerber ist eine Kern-Entity und besitzt eine eindeutige Identifikation, die durch eine generierte Bewerber-ID realisiert wird. Zusätzlich hat der Bewerber einen Lebenszyklus, da sich sein Zustand während der Anwendung ändern kann. Beispielsweise können Punkte, die der Bewerber im Rahmen der Lebenslaufanalyse erhält, sowie sein Rang innerhalb einer Rangliste dynamisch angepasst werden.</p>
+<h3 id="job-advertisement">Job advertisement </h3>
+<p>Die Ausschreibung beschreibt eine offene Stelle mit spezifischen Anforderungen. Sie kann vom Anwender bearbeitet oder gelöscht werden und ist einer Rangliste zugeordnet. Der Lebenszyklus der Anwendung ändert sich durch Änderungen an den Bewertungskriterien.</p>
+<h3 id="leaderboard">Leaderboard </h3>
+<p>Die Rangliste wird für jede Ausschreibung erstellt und enthält eine geordnete Liste von Bewerbern basierend auf deren Punktzahl. Sie ist eng an die Ausschreibung gekoppelt und bietet die Übersicht der besten Kandidaten. Die Rangliste hat eine eigene Identität und kann verwaltet werden. Der Inhalt der Liste kann sich in ihrem Lebenszyklus ändern, durch neue Bewerber und Änderungen an den Punkten der Bewerber.</p>
+<h3 id="evaluationcriteria">Evaluationcriteria </h3>
+<p>EvaluationCriterion ist eine Entität, weil jedes Kriterium als individuelles, unterscheidbares Objekt im System behandelt wird. Auch wenn zwei Kriterien den gleichen Namen, die gleiche Punktzahl und Gewichtung haben, werden sie dennoch als getrennte Objekte betrachtet. Ihre Identität ergibt sich also nicht nur aus ihren Attributwerten, sondern durch ihre Eigenständigkeit im Lebenszyklus der Anwendung</p>
+<h2 id="value-objects">Value Objects </h2>
+<h3 id="resume">Resume </h3>
+<p>Der Lebenslauf enthält alle Informationen eines Bewerbers, die zur Analyse und Bewertung verwendet werden. Der Lebenslauf hat keine Identität im System. Er repräsentiert lediglich eine Sammlung von Daten, die bewertet werden. Zwei Lebensläufe mit identischen Attributen sind inhaltlich gleich.</p>
+<h3 id="ability">Ability </h3>
+<p>Ist ein Value Object, weil sie keine eigene Identität hat und nur durch ihre Werte beschrieben wird. Zwei Fähigkeiten mit dem gleichen Namen gelten als gleich, unabhängig davon, wann sie erstellt wurden.</p>
+<h3 id="keyword">Keyword </h3>
+<p>Ist ein Value Object, weil sie nur durch ihre Werte beschrieben wird. Sie hat keine eigene Identität, ist unveränderlich und zwei Keywords mit dem gleichen Inhalt und den gleichen Punkten gelten als gleich.</p>
+<h1 id="refactoring">Refactoring </h1>
+<h2 id="code-smells">Code Smells </h2>
+<p>Dies Code Smells werden anhanf der Klasse ResumeAnalyser.java dargestellt. Da diese Klasse direkt mehrer Code Smells beinahltete.</p>
+<h3 id="duplicate-code">Duplicate Code </h3>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token comment">// In analyseAbilitiesInResume()</span>
+tempPoints<span class="token punctuation">.</span><span class="token function">accumulateAndGet</span><span class="token punctuation">(</span>weighting<span class="token punctuation">,</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> a <span class="token operator">*</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+points<span class="token punctuation">.</span><span class="token function">addAndGet</span><span class="token punctuation">(</span>tempPoints<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// In analyseExperienceInResume()</span>
+points <span class="token operator">+=</span> evaluationPoints <span class="token operator">*</span> weighting<span class="token punctuation">;</span>
+
+<span class="token comment">// In analyseKeywordsInResume()</span>
+tempPoints<span class="token punctuation">.</span><span class="token function">accumulateAndGet</span><span class="token punctuation">(</span>weighting<span class="token punctuation">,</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> a <span class="token operator">*</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+points<span class="token punctuation">.</span><span class="token function">addAndGet</span><span class="token punctuation">(</span>tempPoints<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Der Code zeigt die die Berechnung der Punkte für die Unterschiedlichen Lebenslauf inhalte. Die Berechnung der von Punkten und GEwicht. wird in jeder Methode Manuell wiederholt. Wenn sich die Logik ändert, muss sie an mehreren Stellen angepasst werden.</p>
+<h4 id="verbesserung">Verbesserung </h4>
+<p>Eine zentrale Methode für die Berechnung der Punkte und Gewichtung, um nur an einer Stelle Änderungen vornehemen zu müssen.</p>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-int">int</span> <span class="token function">calculateWeightedPoints</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> basePoints<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> weighting<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> basePoints <span class="token operator">*</span> weighting<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="long-method">Long Method </h3>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code>   <span class="token keyword keyword-public">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Applicant</span><span class="token punctuation">&gt;</span></span> <span class="token function">analyseResume</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Applicant</span><span class="token punctuation">&gt;</span></span> applicantList<span class="token punctuation">,</span> <span class="token class-name">JobAdvertisement</span> selectedJobAdvertisement<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Analysing Resume for "</span> <span class="token operator">+</span> selectedJobAdvertisement<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Applicant list: "</span> <span class="token operator">+</span> applicantList<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token class-name">String</span> sectionRegex <span class="token operator">=</span> <span class="token string">"(?&lt;=\\n|^)##\\s*([A-Za-zÄÖÜäöüß\\s&amp;]+)\\s*(?=\\n)([\\s\\S]+?)(?=\\n##|\\z)"</span><span class="token punctuation">;</span>
+  <span class="token class-name">Pattern</span> pattern <span class="token operator">=</span> <span class="token class-name">Pattern</span><span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>sectionRegex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+  applicantList<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>applicant <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> points <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token class-name">Matcher</span> matcher <span class="token operator">=</span> pattern<span class="token punctuation">.</span><span class="token function">matcher</span><span class="token punctuation">(</span>applicant<span class="token punctuation">.</span><span class="token function">getResume</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContant</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">List</span><span class="token operator">&lt;</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&gt;</span> sections <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>matcher<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token class-name">String</span> title <span class="token operator">=</span> matcher<span class="token punctuation">.</span><span class="token function">group</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token class-name">String</span> content <span class="token operator">=</span> matcher<span class="token punctuation">.</span><span class="token function">group</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      sections<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>title<span class="token punctuation">,</span> content<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    points <span class="token operator">+=</span> <span class="token function">analyseAbilitiesInResume</span><span class="token punctuation">(</span>sections<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token function">getEvaluationCriterionType</span><span class="token punctuation">(</span>selectedJobAdvertisement<span class="token punctuation">.</span><span class="token function">getCriteria</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"ABILITIES"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> applicant<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    points <span class="token operator">+=</span> <span class="token function">analyseExperienceInResume</span><span class="token punctuation">(</span> sections<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token function">getEvaluationCriterionType</span><span class="token punctuation">(</span>selectedJobAdvertisement<span class="token punctuation">.</span><span class="token function">getCriteria</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"EXPERIENCE"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    points <span class="token operator">+=</span> <span class="token function">analyseKeywordsInResume</span><span class="token punctuation">(</span> sections<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token function">getEvaluationCriterionType</span><span class="token punctuation">(</span>selectedJobAdvertisement<span class="token punctuation">.</span><span class="token function">getCriteria</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"KEYWORDS"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    applicant<span class="token punctuation">.</span><span class="token function">setPoints</span><span class="token punctuation">(</span>points<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword keyword-return">return</span> applicantList<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Die Methode analyseResume(...) in der Klasse ResumeAnalyser ist sehr lang und übernimmt zu viele Verantwortlichkeiten auf einmal. Die Methode enthält mehrere ineinandergeschachtelte Aufgaben: Sie verarbeitet den vollständigen Lebenslauftext mit einem komplexen Regex (sectionRegex), um die einzelnen Abschnitte (Abilities, Experience, Keywords) zu extrahieren. Danach wird über jeden Bewerber iteriert und jeweils: Fähigkeiten analysiert, Berufserfahrung verglichen, Schlagwörter gesucht. Abschließend werden auf Basis der Analysen Punkte berechnet und direkt dem Bewerber zugewiesen.</p>
+<h4 id="verbesserung-1">Verbesserung </h4>
+<p>Um diese Probleme zu lösen, sollte die Methode in kleinere, klar abgegrenzte Teilmethoden zerlegt werden.</p>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token keyword keyword-public">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Applicant</span><span class="token punctuation">&gt;</span></span> <span class="token function">analyseResume</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Applicant</span><span class="token punctuation">&gt;</span></span> applicantList<span class="token punctuation">,</span> <span class="token class-name">JobAdvertisement</span> selectedJobAdvertisement<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    foreach <span class="token punctuation">(</span>applicant in applicantList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Section</span><span class="token punctuation">&gt;</span></span> sections <span class="token operator">=</span> <span class="token function">extractSections</span><span class="token punctuation">(</span>applicant<span class="token punctuation">.</span><span class="token function">getResume</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-int">int</span> totalPoints <span class="token operator">=</span> <span class="token function">calculateTotalPoints</span><span class="token punctuation">(</span>sections<span class="token punctuation">,</span> selectedJobAdvertisement<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assignPointsToApplicant</span><span class="token punctuation">(</span>applicant<span class="token punctuation">,</span> totalPoints<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-return">return</span> applicantList<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>In der Methode analyseResume wird für jeden Bewerber zunächst der Lebenslauf in thematische Abschnitte zerlegt. Anschließend werden die Inhalte dieser Abschnitte analysiert und auf Basis des gewählten Jobangebots eine Gesamtpunktzahl berechnet. Zum Schluss wird diese Punktzahl dem jeweiligen Bewerber zugewiesen.</p>
+<h2 id="2-refactorings">2 Refactorings </h2>
+<h3 id="extract-method">Extract Method </h3>
+<p>UML vorher</p>
+<div class="mermaid">classDiagram
+direction BT
+class ResumeAnalyser {
+  - int points
+  - Logger logger
+  + analyseAbilitiesInResume(String, List~EvaluationCriterion~, Applicant) int
+  + parseAbilitieContant(String) Map~String, List~String~~
+  + analyseExperienceInResume(String, List~EvaluationCriterion~) int
+  + parseExperienceContant(String) int
+  + analyseResume(List~Applicant~, JobAdvertisement) List~Applicant~
+  + analyseKeywordsInResume(String, List~EvaluationCriterion~) int
+  + getEvaluationCriterionType(List~EvaluationCriterion~, String) List~EvaluationCriterion~
+}
+</div><p>UML nachher</p>
+<div class="mermaid">classDiagram
+direction BT
+class ResumeAnalyser {
+  - Logger logger
+  - int points
+  + analyseResume(List~Applicant~, JobAdvertisement) List~Applicant~
+  - compileSectionPattern() Pattern
+  - calculateTotalPoints(List~String[]~, JobAdvertisement, Applicant) int
+  + analyseExperienceInResume(String, List~EvaluationCriterion~) int
+  + parseAbilitieContant(String) Map~String, List~String~~
+  + analyseKeywordsInResume(String, List~EvaluationCriterion~) int
+  - extractSections(String, Pattern) List~String[]~
+  + parseExperienceContant(String) int
+  - assignPointsToApplicant(Applicant, int) void
+  + getEvaluationCriterionType(List~EvaluationCriterion~, String) List~EvaluationCriterion~
+  + analyseAbilitiesInResume(String, List~EvaluationCriterion~, Applicant) int
+}
+</div><p>Die Klasse und ihre Methoden waren zuvor sehr groß, unübersichtlich und enthielten duplizierten Code, was Lesbarkeit und Wartbarkeit deutlich einschränkte. Durch die Aufteilung der Methode analyseResume(...) in kleinere, klar benannte Methoden wie compileSectionPattern(), extractSections(...), calculateTotalPoints(...) und assignPointsToApplicant(...) wurde die Struktur verbessert. Jede Methode erfüllt nun eine eindeutige Aufgabe und kann leichter getestet oder wiederverwendet werden.</p>
+<p>Commit: <a href="https://github.com/Jstn2004/ASE-Applicant-Tracking-System/commit/6148ac0fb3ef30f19f3a93047b90da8b53ad997d">https://github.com/Jstn2004/ASE-Applicant-Tracking-System/commit/6148ac0fb3ef30f19f3a93047b90da8b53ad997d</a></p>
+<h3 id="replace-errorcode-with-exception">Replace ErrorCode with Exception </h3>
+<div class="mermaid">classDiagram
+direction BT
+class JobAdvertisementParser {
+  - Logger logger
+  - parseAbilities(String) List~EvaluationCriterion~
+  - parseKeywords(String) List~EvaluationCriterion~
+  - parsePositiveInt(String, String) int
+  + parseJobAdvertisementString(String) JobAdvertisement
+  - parseExperience(String) List~EvaluationCriterion~
+  + parseCriteria(String) List~EvaluationCriterion~
+}
+</div><p>Zuvor wurde bei Fehlern in der Verarbeitung lediglich null zurückgegeben oder potenzielle Fehler gar nicht erst abgefangen. Dadurch konnten Probleme unbemerkt bleiben oder zu unerwarteten Laufzeitfehlern führen. Aus diesem Grund wurde das Refactoring Replace Error Code with Exception angewendet. Anstelle von Rückgabewerten wie null werden nun gezielt aussagekräftige Exceptions geworfen, um Fehler frühzeitig zu erkennen und klar zu kommunizieren. Dadurch wird die Fehlerbehandlung robuster, nachvollziehbarer und sicherer für den weiteren Programmfluss.</p>
+<p>Commit: <a href="https://github.com/Jstn2004/ASE-Applicant-Tracking-System/commit/7d6b8e1241e12f25f367aa76e05735abe68560ba">https://github.com/Jstn2004/ASE-Applicant-Tracking-System/commit/7d6b8e1241e12f25f367aa76e05735abe68560ba</a></p>
+<h1 id="entwurfsmuster">Entwurfsmuster </h1>
+<h2 id="erbauer">Erbauer </h2>
+<div class="mermaid">classDiagram
+direction BT
+class JobAdvertisement {
+  - String id
+  - String description
+  - String titel
+  - List~EvaluationCriterion~ criteria
+  + equals(Object) boolean
+  + builder() Builder
+  + toString() String
+  + getTitel() String
+  + getId() String
+  + getCriteria() List~EvaluationCriterion~
+  + getDescription() String
+  + hashCode() int
+}
+</div><p>Die Klasse JobAdvertisement enthält das Entwurfsmuster des Erbauers. Die Klasse hatte einen sehr großen Konstruktor und enthält unterschiedliche Attribute. Diese haben den Nachteil, dass der Code sehr schnell unübersichtlich ist und nur schwer erweitert werden kann – was bei der Erstellung von Bewertungen schnell zu möglichen Änderungen führen kann. Der Erbauer ermöglicht eine schnelle und einfachere Erweiterung und bietet einen übersichtlichen Code, besonders bei der Eingabe, wenn man leicht Fehler bei der Reihenfolge macht oder die falschen Datentypen übergibt.</p>
+<h2 id="beobachter">Beobachter </h2>
+<div class="mermaid">classDiagram
+direction BT
+class JobAdvertisementCreatedObserver {
+&lt;&lt;Interface&gt;&gt;
+  + onJobAdvertisementCreated(JobAdvertisement) void
+}
+class JobAdvertisementCreater {
+  - List~JobAdvertisementCreatedObserver~ observers
+  - JobAdvertisementRepository jobAdvertisementRepository
+  - Logger logger
+  + createNewJobAdvertisement(String, String, List~EvaluationCriterion~) void
+  - notifyObservers(JobAdvertisement) void
+}
+class Logging {
+  - Logger logger
+  + onJobAdvertisementCreated(JobAdvertisement) void
+}
+
+JobAdvertisementCreater "1" *--&gt; "observers *" JobAdvertisementCreatedObserver 
+Logging  ..&gt;  JobAdvertisementCreatedObserver
+</div><p>Das Beobachter-Entwurfsmuster wurde gewählt, um eine lose Kopplung zwischen Klassen zu ermöglichen und das System flexibel erweiterbar zu halten. Neue Beobachter können einfach hinzugefügt werden, ohne den Sender ändern zu müssen. Im Code wurde ein Observer-Interface definiert, das vom LoggingObserver implementiert wird. Der JobAdvertisementCreater agiert als Sender und benachrichtigt alle registrierten Beobachter, sobald eine neue Jobanzeige erstellt wurde. So bleibt die Geschäftslogik sauber und unabhängig von technischen Details – ganz im Sinne der Clean Architecture.</p>
+
+      </div>
+      
+      
+    
+    
+    <script type="module">
+// TODO: If ZenUML gets integrated into mermaid in the future,
+//      we can remove the following lines.
+
+
+var MERMAID_CONFIG = ({"startOnLoad":false});
+if (typeof MERMAID_CONFIG !== 'undefined') {
+  MERMAID_CONFIG.startOnLoad = false
+  MERMAID_CONFIG.cloneCssStyles = false
+  MERMAID_CONFIG.theme = "default"
+}
+
+mermaid.initialize(MERMAID_CONFIG || {})
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
+      }
+    }
+  }
+  Reveal.addEventListener('slidetransitionend', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+} else {
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+}
+</script>
+    
+    
+    
+  
+    </body></html>
