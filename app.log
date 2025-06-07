@@ -7469,3 +7469,11 @@ Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser assignPointsToApplican
 INFORMATION: Name: Max
 Juni 01, 2025 11:52:11 AM com.ats.services.ResumeAnalyser assignPointsToApplicant
 INFORMATION: Points: 1014
+Juni 05, 2025 2:55:05 PM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Juni 05, 2025 2:55:05 PM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Juni 07, 2025 5:27:26 PM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes
+Juni 07, 2025 5:27:26 PM com.ats.resumeService.ResumeServiceImpl loadAllResumes
+INFORMATION: Loading all resumes

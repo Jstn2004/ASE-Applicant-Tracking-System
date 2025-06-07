@@ -28,7 +28,7 @@ public class FileManagerImpl implements FileManager {
             throw new IllegalArgumentException("Der angegebene Pfad ist kein gültiges Verzeichnis: " + inputPath);
         }
 
-        File[] files = folder.listFiles((_, name) -> name.endsWith(".txt"));
+        File[] files = folder.listFiles((dir, name) -> name.endsWith(".txt"));
         if (files == null) {
             return fileContents;
         }
